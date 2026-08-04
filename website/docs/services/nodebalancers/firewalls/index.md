@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>firewalls</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>firewalls</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="firewalls" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.nodebalancers.firewalls" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>firewalls</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_node_balancer_firewalls"
+    defaultValue="list"
     values={[
-        { label: 'get_node_balancer_firewalls', value: 'get_node_balancer_firewalls' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_node_balancer_firewalls">
+<TabItem value="list">
 
 Returns a paginated list of Firewalls assigned to this NodeBalancer.
 
@@ -58,12 +59,17 @@ Returns a paginated list of Firewalls assigned to this NodeBalancer.
 <tr>
     <td><CopyableCode code="created" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2018-01-01T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2025-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="entities" /></td>
+    <td><code>array</code></td>
+    <td>__Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.</td>
 </tr>
 <tr>
     <td><CopyableCode code="label" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$</code>)</td>
+    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^&#91;a-zA-Z&#93;((?!--|__|\.\.)&#91;a-zA-Z0-9-_.&#93;)+$</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="rules" /></td>
@@ -73,7 +79,7 @@ Returns a paginated list of Firewalls assigned to this NodeBalancer.
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (example: enabled)</td>
+    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (enabled, disabled, deleted) (example: enabled)</td>
 </tr>
 <tr>
     <td><CopyableCode code="tags" /></td>
@@ -83,7 +89,7 @@ Returns a paginated list of Firewalls assigned to this NodeBalancer.
 <tr>
     <td><CopyableCode code="updated" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2018-01-02T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -106,16 +112,16 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_node_balancer_firewalls"><CopyableCode code="get_node_balancer_firewalls" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-nodeBalancerId"><code>nodeBalancerId</code></a></td>
     <td></td>
     <td>View information for Firewalls assigned to this NodeBalancer.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_node_balancer_firewalls"><CopyableCode code="put_node_balancer_firewalls" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td><a href="#parameter-data__firewall_ids"><code>data__firewall_ids</code></a></td>
+    <td><a href="#parameter-nodeBalancerId"><code>nodeBalancerId</code></a>, <a href="#parameter-firewall_ids"><code>firewall_ids</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Replace the current list of assigned firewalls with a new list, or provide an empty list to remove all firewalls from this NodeBalancer.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -135,6 +141,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-nodeBalancerId">
+    <td><CopyableCode code="nodeBalancerId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the NodeBalancer. (example: &#123;&#123;nodeBalancerId&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -151,12 +162,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_node_balancer_firewalls"
+    defaultValue="list"
     values={[
-        { label: 'get_node_balancer_firewalls', value: 'get_node_balancer_firewalls' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_node_balancer_firewalls">
+<TabItem value="list">
 
 View information for Firewalls assigned to this NodeBalancer.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -164,12 +175,14 @@ View information for Firewalls assigned to this NodeBalancer.<br /><br />[Learn 
 SELECT
 id,
 created,
+entities,
 label,
 rules,
 status,
 tags,
 updated
 FROM linode.nodebalancers.firewalls
+WHERE nodeBalancerId = '{{ nodeBalancerId }}' -- required
 ;
 ```
 </TabItem>
@@ -179,21 +192,22 @@ FROM linode.nodebalancers.firewalls
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_node_balancer_firewalls"
+    defaultValue="update"
     values={[
-        { label: 'put_node_balancer_firewalls', value: 'put_node_balancer_firewalls' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_node_balancer_firewalls">
+<TabItem value="update">
 
 Replace the current list of assigned firewalls with a new list, or provide an empty list to remove all firewalls from this NodeBalancer.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.nodebalancers.firewalls
 SET 
-data__firewall_ids = '{{ firewall_ids }}'
+firewall_ids = '{{ firewall_ids }}'
 WHERE 
-data__firewall_ids = '{{ firewall_ids }}' --required
+nodeBalancerId = '{{ nodeBalancerId }}' --required
+AND firewall_ids = '{{ firewall_ids }}' --required
 AND page = '{{ page}}'
 AND page_size = '{{ page_size}}'
 RETURNING

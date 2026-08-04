@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>network_usage</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>network_usage</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="network_usage" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.network_usage" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>network_usage</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_transfer"
+    defaultValue="get"
     values={[
-        { label: 'get_transfer', value: 'get_transfer' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_transfer">
+<TabItem value="get">
 
 Returns a single Transfer object.
 
@@ -91,7 +92,7 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_transfer"><CopyableCode code="get_transfer" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
@@ -119,12 +120,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_transfer"
+    defaultValue="get"
     values={[
-        { label: 'get_transfer', value: 'get_transfer' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_transfer">
+<TabItem value="get">
 
 Returns a Transfer object showing your network utilization, in GB, for the current month.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 

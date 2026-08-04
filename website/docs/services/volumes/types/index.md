@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>types</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>types</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="types" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.volumes.types" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>types</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_volume_types"
+    defaultValue="list"
     values={[
-        { label: 'get_volume_types', value: 'get_volume_types' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_volume_types">
+<TabItem value="list">
 
 A collection of volume types.
 
@@ -51,24 +52,29 @@ A collection of volume types.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The ID representing the volume type. (example: volume)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>__Filterable__, __Read-only__ The volume type label is for display purposes only. (example: Storage Volume)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="price" /></td>
+    <td><code>object</code></td>
+    <td>__Read-only__ The default cost of this volume type. Prices are in US dollars, broken down into hourly and monthly charges.  Certain regions have different prices from the default. For region-specific prices, see `region_prices`.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="region_prices" /></td>
     <td><code>array</code></td>
-    <td>The volume types.</td>
+    <td></td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
+    <td><CopyableCode code="transfer" /></td>
     <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td>__Filterable__, __Read-only__ The monthly outbound transfer amount, in MB.</td>
 </tr>
 </tbody>
 </table>
@@ -91,11 +97,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_volume_types"><CopyableCode code="get_volume_types" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
-    <td>Returns volume types and prices, including any region-specific rates.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
+    <td>Returns Block Storage volume types and prices, including any region-specific rates.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 </tbody>
 </table>
@@ -119,21 +125,22 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_volume_types"
+    defaultValue="list"
     values={[
-        { label: 'get_volume_types', value: 'get_volume_types' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_volume_types">
+<TabItem value="list">
 
-Returns volume types and prices, including any region-specific rates.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
+Returns Block Storage volume types and prices, including any region-specific rates.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+label,
+price,
+region_prices,
+transfer
 FROM linode.volumes.types
 ;
 ```

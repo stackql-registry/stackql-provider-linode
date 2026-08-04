@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>mysql_ssl_certificates</code> r
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>mysql_ssl_certificates</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="mysql_ssl_certificates" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.databases.mysql_ssl_certificates" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>mysql_ssl_certificates</code> r
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_databases_mysql_instance_ssl"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_mysql_instance_ssl', value: 'get_databases_mysql_instance_ssl' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_databases_mysql_instance_ssl">
+<TabItem value="get">
 
 Returns the SSL CA certificate of a single MySQL Managed Database.
 
@@ -76,9 +77,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_databases_mysql_instance_ssl"><CopyableCode code="get_databases_mysql_instance_ssl" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-instanceId"><code>instanceId</code></a></td>
     <td></td>
     <td>Display the SSL CA certificate for an accessible MySQL Managed Database. The database's status needs to be `active`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -98,18 +99,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-instanceId">
+    <td><CopyableCode code="instanceId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Managed MySQL Database.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_databases_mysql_instance_ssl"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_mysql_instance_ssl', value: 'get_databases_mysql_instance_ssl' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_databases_mysql_instance_ssl">
+<TabItem value="get">
 
 Display the SSL CA certificate for an accessible MySQL Managed Database. The database's status needs to be `active`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -117,6 +123,7 @@ Display the SSL CA certificate for an accessible MySQL Managed Database. The dat
 SELECT
 ca_certificate
 FROM linode.databases.mysql_ssl_certificates
+WHERE instanceId = '{{ instanceId }}' -- required
 ;
 ```
 </TabItem>

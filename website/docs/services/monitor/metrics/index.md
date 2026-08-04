@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>metrics</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>metrics</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="metrics" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.monitor.metrics" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>metrics</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_monitor_information"
+    defaultValue="list"
     values={[
-        { label: 'get_monitor_information', value: 'get_monitor_information' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_monitor_information">
+<TabItem value="list">
 
 Returns a paginated list of metric information.
 
@@ -51,24 +52,44 @@ Returns a paginated list of metric information.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
+    <td><CopyableCode code="available_aggregate_functions" /></td>
     <td><code>array</code></td>
-    <td></td>
+    <td>Available aggregate functions for the metric. (example: increase)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="dimensions" /></td>
+    <td><code>array</code></td>
+    <td>Dimensions for the metric.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="is_alertable" /></td>
+    <td><code>boolean</code></td>
+    <td>Whether the metric is alertable.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>The total number of results.</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>The name of the metric. This is used for display purposes in Akamai Cloud Manager. (example: CPU Usage)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="metric" /></td>
+    <td><code>string</code></td>
+    <td>The identifier for the metric. This is how the metric is called out in other Monitor operations in the API. (example: cpu_usage)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="metric_type" /></td>
+    <td><code>string</code></td>
+    <td>The type of metric. A value of `counter` represents variable values and a set target for the count. A `histogram` represents the frequency distribution of data points across a continuous range of numerical values. A `gauge` represents the performance against a target goal, and `summary` presents and summarizes data from multiple sources. (counter, histogram, gauge, summary) (example: histogram)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="scrape_interval" /></td>
+    <td><code>string</code></td>
+    <td>How frequently a metric is scraped to gather data, using `s` for seconds, `m` for minutes, or `h` for hours. Set to `60s`, the metric would be scraped every 60 seconds. Set to `2m`, the scrape occurs every two minutes. (example: 60s)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="unit" /></td>
+    <td><code>string</code></td>
+    <td>The unit of measurement for the metric. (%, Bytes, sec, bps, msec, Bps, KB, MB, GB, rate, percentile, ratio, OPS, IOPS) (example: Bps)</td>
 </tr>
 </tbody>
 </table>
@@ -91,25 +112,25 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_monitor_information"><CopyableCode code="get_monitor_information" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-serviceType"><code>serviceType</code></a></td>
     <td><a href="#parameter-X-Filter"><code>X-Filter</code></a></td>
-    <td>__Beta__ Returns metrics for a specific service type. Include the appropriate `service_type` as a path parameter.<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - Currently, only the Managed Databases (`dbaas`) service type is supported.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>__Beta__ Returns metrics for a specific service type.<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_read_metric"><CopyableCode code="post_read_metric" /></a></td>
+    <td><a href="#read"><CopyableCode code="read" /></a></td>
     <td><CopyableCode code="exec" /></td>
+    <td><a href="#parameter-serviceType"><code>serviceType</code></a>, <a href="#parameter-relative_time_duration"><code>relative_time_duration</code></a>, <a href="#parameter-metrics"><code>metrics</code></a>, <a href="#parameter-entity_ids"><code>entity_ids</code></a>, <a href="#parameter-absolute_time_duration"><code>absolute_time_duration</code></a></td>
     <td></td>
-    <td></td>
-    <td>__Beta__ Returns metrics information for the individual entities within a specific service type. Include the appropriate `service_type` as a path parameter. Requires an `authorization: Bearer` [token](https://techdocs.akamai.com/linode-api/reference/post-get-token) you've created for this `service_type`.<br /><br />&gt; 📘<br />&gt;<br />&gt; - Currently, only the Managed Databases (`dbaas`) service type is supported.<br />&gt;<br />&gt; - This operation uses a different URL and version from standard Linode API operations. Verify you're using the URL with the `monitor-api.linode.com` hostname and include `v2beta` as the version in the URL.</td>
+    <td>__Beta__ Returns metrics information for the individual entities within a specific service type. Thi operation also requires an `authorization: Bearer` [token](https://techdocs.akamai.com/linode-api/reference/post-get-token) you've created for this `serviceType`.<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation uses a different URL and version from standard Linode API operations. Verify you're using the URL with the `monitor-api.linode.com` hostname and include `v2beta` as the version in the URL.<br />&gt;<br />&gt; - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).</td>
 </tr>
 <tr>
-    <td><a href="#post_get_token"><CopyableCode code="post_get_token" /></a></td>
+    <td><a href="#create_token"><CopyableCode code="create_token" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td><a href="#parameter-entity_ids"><code>entity_ids</code></a></td>
+    <td><a href="#parameter-serviceType"><code>serviceType</code></a>, <a href="#parameter-entity_ids"><code>entity_ids</code></a></td>
     <td></td>
-    <td>__Beta__ Returns a token that authenticates requests for the entities within a specific service type. Include the appropriate `service_type` as a path parameter. The token has a lifetime of six hours after you create it. For an example of the token generation process, see [Monitor API operation authentication](https://techdocs.akamai.com/linode-api/docs/get-started#monitor-api-operation-authentication).<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - Currently, only the Managed Databases (`dbaas`) service type is supported.<br />&gt;<br />&gt; - You also need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the selected `service_type`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>__Beta__ Returns a token that authenticates requests for the entities within a specific service type. The token has a lifetime of six hours after you create it. For an example of the token generation process, see [Authenticate Monitor API operations](https://techdocs.akamai.com/linode-api/reference/get-started#authenticate-monitor-api-operations).<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation.<br />&gt;<br />&gt; - You also need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the specified `serviceType`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -127,6 +148,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-serviceType">
+    <td><CopyableCode code="serviceType" /></td>
+    <td><code>string</code></td>
+    <td>The Akamai Cloud Computing service being monitored. To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation and store the appropriate `service_type`.</td>
+</tr>
 <tr id="parameter-X-Filter">
     <td><CopyableCode code="X-Filter" /></td>
     <td><code>object</code></td>
@@ -138,23 +164,28 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_monitor_information"
+    defaultValue="list"
     values={[
-        { label: 'get_monitor_information', value: 'get_monitor_information' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_monitor_information">
+<TabItem value="list">
 
-__Beta__ Returns metrics for a specific service type. Include the appropriate `service_type` as a path parameter.<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - Currently, only the Managed Databases (`dbaas`) service type is supported.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+__Beta__ Returns metrics for a specific service type.<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+available_aggregate_functions,
+dimensions,
+is_alertable,
+label,
+metric,
+metric_type,
+scrape_interval,
+unit
 FROM linode.monitor.metrics
-WHERE X-Filter = '{{ X-Filter }}'
+WHERE serviceType = '{{ serviceType }}' -- required
+AND X-Filter = '{{ X-Filter }}'
 ;
 ```
 </TabItem>
@@ -164,28 +195,39 @@ WHERE X-Filter = '{{ X-Filter }}'
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_read_metric"
+    defaultValue="read"
     values={[
-        { label: 'post_read_metric', value: 'post_read_metric' },
-        { label: 'post_get_token', value: 'post_get_token' }
+        { label: 'read', value: 'read' },
+        { label: 'create_token', value: 'create_token' }
     ]}
 >
-<TabItem value="post_read_metric">
+<TabItem value="read">
 
-__Beta__ Returns metrics information for the individual entities within a specific service type. Include the appropriate `service_type` as a path parameter. Requires an `authorization: Bearer` [token](https://techdocs.akamai.com/linode-api/reference/post-get-token) you've created for this `service_type`.<br /><br />&gt; 📘<br />&gt;<br />&gt; - Currently, only the Managed Databases (`dbaas`) service type is supported.<br />&gt;<br />&gt; - This operation uses a different URL and version from standard Linode API operations. Verify you're using the URL with the `monitor-api.linode.com` hostname and include `v2beta` as the version in the URL.
+__Beta__ Returns metrics information for the individual entities within a specific service type. Thi operation also requires an `authorization: Bearer` [token](https://techdocs.akamai.com/linode-api/reference/post-get-token) you've created for this `serviceType`.<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation uses a different URL and version from standard Linode API operations. Verify you're using the URL with the `monitor-api.linode.com` hostname and include `v2beta` as the version in the URL.<br />&gt;<br />&gt; - For more details on the metrics available for each service, see the [Metrics reference](https://techdocs.akamai.com/cloud-computing/docs/metrics-dimensions-parameters).
 
 ```sql
-EXEC linode.monitor.metrics.post_read_metric 
-
+EXEC linode.monitor.metrics.read 
+@serviceType='{{ serviceType }}' --required 
+@@json=
+'{
+"entity_ids": "{{ entity_ids }}", 
+"filters": "{{ filters }}", 
+"group_by": "{{ group_by }}", 
+"metrics": "{{ metrics }}", 
+"time_granularity": "{{ time_granularity }}", 
+"relative_time_duration": "{{ relative_time_duration }}", 
+"absolute_time_duration": "{{ absolute_time_duration }}"
+}'
 ;
 ```
 </TabItem>
-<TabItem value="post_get_token">
+<TabItem value="create_token">
 
-__Beta__ Returns a token that authenticates requests for the entities within a specific service type. Include the appropriate `service_type` as a path parameter. The token has a lifetime of six hours after you create it. For an example of the token generation process, see [Monitor API operation authentication](https://techdocs.akamai.com/linode-api/docs/get-started#monitor-api-operation-authentication).<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - Currently, only the Managed Databases (`dbaas`) service type is supported.<br />&gt;<br />&gt; - You also need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the selected `service_type`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+__Beta__ Returns a token that authenticates requests for the entities within a specific service type. The token has a lifetime of six hours after you create it. For an example of the token generation process, see [Authenticate Monitor API operations](https://techdocs.akamai.com/linode-api/reference/get-started#authenticate-monitor-api-operations).<br /><br />&gt; 📘<br />&gt;<br />&gt; - This operation is beta. Call it using the `v4beta` path in its URL.<br />&gt;<br />&gt; - To see your currently supported services, run the [List supported service types](https://techdocs.akamai.com/linode-api/reference/get-monitor-services) operation.<br />&gt;<br />&gt; - You also need `read_only` access to the [scope](https://techdocs.akamai.com/linode-api/reference/get-started#oauth-reference) for the specified `serviceType`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.monitor.metrics.post_get_token 
+EXEC linode.monitor.metrics.create_token 
+@serviceType='{{ serviceType }}' --required 
 @@json=
 '{
 "entity_ids": "{{ entity_ids }}"

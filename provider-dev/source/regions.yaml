@@ -2,17 +2,14 @@ openapi: 3.0.1
 info:
   title: regions API
   description: linode regions API
-  version: 4.208.1
+  version: 4.215.0
 paths:
   /regions:
     get:
-      description: >-
-        Lists the regions available for Linode services. Not all services are
-        guaranteed to be available in all regions.
+      description: |-
+        Lists the regions available for Linode services. Not all services are guaranteed to be available in all regions.
 
-
-        [Learn
-        more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
+        [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
       externalDocs:
         description: See documentation for this operation in Akamai's Linode API
         url: https://techdocs.akamai.com/linode-api/reference/get-regions
@@ -44,9 +41,7 @@ paths:
                           type: array
                           x-linode-cli-display: 4
                         country:
-                          description: >-
-                            __Filterable__ The country where this region
-                            resides.
+                          description: __Filterable__ The country where this region resides.
                           example: us
                           type: string
                           x-akamai:
@@ -60,56 +55,28 @@ paths:
                           type: string
                           x-linode-cli-display: 1
                         label:
-                          description: >-
-                            Detailed location information for this region,
-                            including city, state or region, and country.
+                          description: Detailed location information for this region, including city, state or region, and country.
                           example: Newark, NJ, USA
                           type: string
                           x-linode-cli-display: 2
                         monitors:
                           additionalProperties: false
-                          description: >-
-                            __Beta__ Lists the services in this region that
-                            support metrics and alerts use with Akamai Cloud
-                            Pulse (ACLP).
-
+                          description: |-
+                            __Beta__ Lists the services in this region that support metrics and alerts use with Akamai Cloud Pulse (ACLP).
 
                             > 📘
-
                             >
-
-                            > The ACLP service is currently beta. This object is
-                            only returned in a response if you're participating
-                            in the ACLP beta. Contact your account team for more
-                            information.
+                            > The ACLP service is currently beta. This object is only returned in a response if you're participating in the ACLP beta. Contact your account team for more information.
                           properties:
                             alerts:
-                              description: >-
-                                Each `service_type` supported for use in
-                                managing ACLP
-                                [alerts](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type)
-                                in this region. A `service_type` is the
-                                identifier for the Akamai Cloud Computing
-                                service. Currently, only the Managed Databases
-                                (`dbaas`) service is supported.
-                              enum:
-                                - dbaas
+                              description: Each `service_type` supported for use in managing ACLP [alerts](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service.
                               example:
                                 - dbaas
                               items:
                                 type: string
                               type: array
                             metrics:
-                              description: >-
-                                Each `service_type` supported for use in
-                                managing ACLP
-                                [metrics](https://techdocs.akamai.com/linode-api/reference/get-dashboards-all)
-                                in this region. A `service_type` is the
-                                identifier for the Akamai Cloud Computing
-                                service. Currently, only the Managed Databases
-                                (`dbaas`) service is supported.
-                              enum:
-                                - dbaas
+                              description: Each `service_type` supported for use in managing ACLP [metrics](https://techdocs.akamai.com/linode-api/reference/get-dashboards-all) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service.
                               example:
                                 - dbaas
                               items:
@@ -123,42 +90,20 @@ paths:
                             status: BETA
                         placement_group_limits:
                           additionalProperties: false
-                          description: >-
-                            The limits for [placement
-                            groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/)
-                            in this region.
+                          description: The limits for [placement groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) in this region.
                           properties:
                             maximum_linodes_per_flexible_pg:
-                              description: >-
-                                The maximum number of Linodes you can include in
-                                a placement group, when that placement group
-                                uses a `placement_group_policy` of `flexible`. 
-                                Displayed as `null` if you don't have a limit.
-                                See [Create placement
-                                group](https://techdocs.akamai.com/linode-api/reference/post-placement-group)
-                                for more information on
-                                `placement_group_policy`.
+                              description: The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement_group_policy` of `flexible`.  Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.
                               example: 5
                               nullable: true
                               type: integer
                             maximum_linodes_per_pg:
-                              description: >-
-                                The maximum number of Linodes you can include in
-                                a placement group, when that placement group
-                                uses a `placement _group_policy` of `strict`.
-                                Displayed as `null` if you don't have a limit.
-                                See [Create placement
-                                group](https://techdocs.akamai.com/linode-api/reference/post-placement-group)
-                                for more information on
-                                `placement_group_policy`.
+                              description: The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement _group_policy` of `strict`. Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.
                               example: 5
                               nullable: true
                               type: integer
                             maximum_pgs_per_customer:
-                              description: >-
-                                The maximum number of placement groups you can
-                                have in this region. Displayed as `null` if you
-                                don't have a limit.
+                              description: The maximum number of placement groups you can have in this region. Displayed as `null` if you don't have a limit.
                               example: 10
                               nullable: true
                               type: integer
@@ -168,28 +113,17 @@ paths:
                           additionalProperties: false
                           properties:
                             ipv4:
-                              description: >-
-                                The IPv4 addresses for this region's DNS
-                                resolvers, separated by commas.
+                              description: The IPv4 addresses for this region's DNS resolvers, separated by commas.
                               example: 192.0.2.0,192.0.2.1
                               type: string
                             ipv6:
-                              description: >-
-                                The IPv6 addresses for this region's DNS
-                                resolvers, separated by commas.
+                              description: The IPv6 addresses for this region's DNS resolvers, separated by commas.
                               example: 2001:0db8::,2001:0db8::1
                               type: string
                           type: object
                           x-linode-cli-display: 6
                         site_type:
-                          description: >-
-                            __Filterable__ This region's site type. A `core`
-                            region indicates a traditional cloud computing
-                            [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability)
-                            that offers all compute services. A `distributed`
-                            region indicates sites that are globally dispersed
-                            to be closer to end users and workloads. These
-                            regions offer limited services.
+                          description: __Filterable__ This region's site type. A `core` region indicates a traditional cloud computing [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability) that offers all compute services. A `distributed` region indicates sites that are globally dispersed to be closer to end users and workloads. These regions offer limited services.
                           enum:
                             - core
                             - distributed
@@ -213,16 +147,12 @@ paths:
                         file-path: schemas/region.yaml
                     type: array
                   page:
-                    description: >-
-                      __Read-only__ The current
-                      [page](https://techdocs.akamai.com/linode-api/reference/pagination).
+                    description: __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
                     example: 1
                     readOnly: true
                     type: integer
                   pages:
-                    description: >-
-                      __Read-only__ The total number of
-                      [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
+                    description: __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
                     example: 1
                     readOnly: true
                     type: integer
@@ -246,28 +176,14 @@ paths:
                   errors:
                     items:
                       additionalProperties: false
-                      description: >-
-                        An object for describing a single error that occurred
-                        during the processing of a request.
+                      description: An object for describing a single error that occurred during the processing of a request.
                       properties:
                         field:
-                          description: >-
-                            The field in the request that caused this error.
-                            This may be a path, separated by periods in the case
-                            of nested fields. In some cases this may come back
-                            as `null` if the error is not specific to any single
-                            element of the request.
+                          description: The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
                           example: fieldname
                           type: string
                         reason:
-                          description: >-
-                            What happened to cause this error. In most cases,
-                            this can be fixed immediately by changing the data
-                            you sent in the request, but in some cases you will
-                            be instructed to [Open a support
-                            ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket)
-                            or perform some other action before you can complete
-                            the request successfully.
+                          description: What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
                           example: fieldname must be a valid value
                           type: string
                       type: object
@@ -275,10 +191,7 @@ paths:
                         file-path: schemas/error-object.yaml
                     type: array
                 type: object
-          description: >-
-            See
-            [Errors](https://techdocs.akamai.com/linode-api/reference/errors)
-            for the range of possible error response codes.
+          description: See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
       summary: List regions
       tags:
         - Regions
@@ -286,8 +199,7 @@ paths:
         tabs:
           - syntax: linode-cli regions list
             title: CLI
-            url: >-
-              https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
+            url: https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
       x-linode-cli-action:
         - list
         - ls
@@ -299,16 +211,13 @@ paths:
     x-linode-cli-command: regions
   /regions/availability:
     get:
-      description: >-
+      description: |-
         Returns availability data for all regions.
 
-
-        [Learn
-        more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
+        [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
       externalDocs:
         description: See documentation for this operation in Akamai's Linode API
-        url: >-
-          https://techdocs.akamai.com/linode-api/reference/get-regions-availability
+        url: https://techdocs.akamai.com/linode-api/reference/get-regions-availability
       operationId: get-regions-availability
       responses:
         '200':
@@ -323,90 +232,63 @@ paths:
                 pages: 1
                 results: 1
               schema:
-                allOf:
-                  - additionalProperties: false
-                    description: >-
-                      An envelope for paginated response. When accessing a
-                      collection through a GET endpoint, the results are wrapped
-                      in this envelope which includes metadata about those
-                      results. Results are presented within a `data` array. See
-                      [Pagination](https://techdocs.akamai.com/linode-api/reference/pagination)
-                      for more information.
-                    properties:
-                      page:
-                        description: >-
-                          __Read-only__ The current
-                          [page](https://techdocs.akamai.com/linode-api/reference/pagination).
-                        example: 1
-                        readOnly: true
-                        type: integer
-                      pages:
-                        description: >-
-                          __Read-only__ The total number of
-                          [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
-                        example: 1
-                        readOnly: true
-                        type: integer
-                      results:
-                        description: __Read-only__ The total number of results.
-                        example: 1
-                        readOnly: true
-                        type: integer
-                    type: object
-                    x-akamai:
-                      file-path: schemas/pagination-envelope.yaml
-                  - properties:
-                      data:
-                        items:
-                          additionalProperties: false
-                          description: >-
-                            Compute instance availability information by
-                            [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types)
-                            and
-                            [Region](https://techdocs.akamai.com/linode-api/reference/get-regions).
-                          properties:
-                            available:
-                              description: >-
-                                __Filterable__ Whether the compute instance type
-                                is available in the region.
-                              example: true
-                              type: boolean
-                              x-akamai:
-                                labels:
-                                  - Filterable
-                              x-linode-cli-display: 3
-                              x-linode-filterable: true
-                            plan:
-                              description: >-
-                                __Filterable__ The compute instance
-                                [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types)
-                                ID.
-                              example: gpu-rtx6000-1.1
-                              type: string
-                              x-akamai:
-                                labels:
-                                  - Filterable
-                              x-linode-cli-display: 2
-                              x-linode-filterable: true
-                            region:
-                              description: >-
-                                __Filterable__ The
-                                [Region](https://techdocs.akamai.com/linode-api/reference/get-regions)
-                                ID.
-                              example: us-east
-                              type: string
-                              x-akamai:
-                                labels:
-                                  - Filterable
-                              x-linode-cli-display: 1
-                              x-linode-filterable: true
-                          type: object
-                          x-akamai:
-                            file-path: schemas/region-availability.yaml
-                        type: array
-                    type: object
                 x-akamai:
                   file-path: schemas/added-get-regions-availability-200.yaml
+                additionalProperties: false
+                description: An envelope for paginated response. When accessing a collection through a GET endpoint, the results are wrapped in this envelope which includes metadata about those results. Results are presented within a `data` array. See [Pagination](https://techdocs.akamai.com/linode-api/reference/pagination) for more information.
+                properties:
+                  page:
+                    description: __Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).
+                    example: 1
+                    readOnly: true
+                    type: integer
+                  pages:
+                    description: __Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).
+                    example: 1
+                    readOnly: true
+                    type: integer
+                  results:
+                    description: __Read-only__ The total number of results.
+                    example: 1
+                    readOnly: true
+                    type: integer
+                  data:
+                    items:
+                      additionalProperties: false
+                      description: Compute instance availability information by [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) and [Region](https://techdocs.akamai.com/linode-api/reference/get-regions).
+                      properties:
+                        available:
+                          description: __Filterable__ Whether the compute instance type is available in the region.
+                          example: true
+                          type: boolean
+                          x-akamai:
+                            labels:
+                              - Filterable
+                          x-linode-cli-display: 3
+                          x-linode-filterable: true
+                        plan:
+                          description: __Filterable__ The compute instance [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) ID.
+                          example: gpu-rtx6000-1.1
+                          type: string
+                          x-akamai:
+                            labels:
+                              - Filterable
+                          x-linode-cli-display: 2
+                          x-linode-filterable: true
+                        region:
+                          description: __Filterable__ The [Region](https://techdocs.akamai.com/linode-api/reference/get-regions) ID.
+                          example: us-east
+                          type: string
+                          x-akamai:
+                            labels:
+                              - Filterable
+                          x-linode-cli-display: 1
+                          x-linode-filterable: true
+                      type: object
+                      x-akamai:
+                        file-path: schemas/region-availability.yaml
+                    type: array
+                type: object
           description: Returns a Region Availability object.
         default:
           content:
@@ -417,28 +299,14 @@ paths:
                   errors:
                     items:
                       additionalProperties: false
-                      description: >-
-                        An object for describing a single error that occurred
-                        during the processing of a request.
+                      description: An object for describing a single error that occurred during the processing of a request.
                       properties:
                         field:
-                          description: >-
-                            The field in the request that caused this error.
-                            This may be a path, separated by periods in the case
-                            of nested fields. In some cases this may come back
-                            as `null` if the error is not specific to any single
-                            element of the request.
+                          description: The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
                           example: fieldname
                           type: string
                         reason:
-                          description: >-
-                            What happened to cause this error. In most cases,
-                            this can be fixed immediately by changing the data
-                            you sent in the request, but in some cases you will
-                            be instructed to [Open a support
-                            ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket)
-                            or perform some other action before you can complete
-                            the request successfully.
+                          description: What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
                           example: fieldname must be a valid value
                           type: string
                       type: object
@@ -446,10 +314,7 @@ paths:
                         file-path: schemas/error-object.yaml
                     type: array
                 type: object
-          description: >-
-            See
-            [Errors](https://techdocs.akamai.com/linode-api/reference/errors)
-            for the range of possible error response codes.
+          description: See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
       summary: List regions' availability
       tags:
         - Regions
@@ -457,8 +322,7 @@ paths:
         tabs:
           - syntax: linode-cli regions list-avail
             title: CLI
-            url: >-
-              https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
+            url: https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
       x-linode-cli-action: list-avail
     parameters: []
     x-akamai:
@@ -467,12 +331,10 @@ paths:
     x-linode-cli-command: regions
   /regions/{regionId}:
     get:
-      description: >-
+      description: |-
         Returns a single Region.
 
-
-        [Learn
-        more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
+        [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
       externalDocs:
         description: See documentation for this operation in Akamai's Linode API
         url: https://techdocs.akamai.com/linode-api/reference/get-region
@@ -514,50 +376,28 @@ paths:
                     type: string
                     x-linode-cli-display: 1
                   label:
-                    description: >-
-                      Detailed location information for this region, including
-                      city, state or region, and country.
+                    description: Detailed location information for this region, including city, state or region, and country.
                     example: Newark, NJ, USA
                     type: string
                     x-linode-cli-display: 2
                   monitors:
                     additionalProperties: false
-                    description: >-
-                      __Beta__ Lists the services in this region that support
-                      metrics and alerts use with Akamai Cloud Pulse (ACLP).
-
+                    description: |-
+                      __Beta__ Lists the services in this region that support metrics and alerts use with Akamai Cloud Pulse (ACLP).
 
                       > 📘
-
                       >
-
-                      > The ACLP service is currently beta. This object is only
-                      returned in a response if you're participating in the ACLP
-                      beta. Contact your account team for more information.
+                      > The ACLP service is currently beta. This object is only returned in a response if you're participating in the ACLP beta. Contact your account team for more information.
                     properties:
                       alerts:
-                        description: >-
-                          Each `service_type` supported for use in managing ACLP
-                          [alerts](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type)
-                          in this region. A `service_type` is the identifier for
-                          the Akamai Cloud Computing service. Currently, only
-                          the Managed Databases (`dbaas`) service is supported.
-                        enum:
-                          - dbaas
+                        description: Each `service_type` supported for use in managing ACLP [alerts](https://techdocs.akamai.com/linode-api/reference/post-alert-definition-for-service-type) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service.
                         example:
                           - dbaas
                         items:
                           type: string
                         type: array
                       metrics:
-                        description: >-
-                          Each `service_type` supported for use in managing ACLP
-                          [metrics](https://techdocs.akamai.com/linode-api/reference/get-dashboards-all)
-                          in this region. A `service_type` is the identifier for
-                          the Akamai Cloud Computing service. Currently, only
-                          the Managed Databases (`dbaas`) service is supported.
-                        enum:
-                          - dbaas
+                        description: Each `service_type` supported for use in managing ACLP [metrics](https://techdocs.akamai.com/linode-api/reference/get-dashboards-all) in this region, for your account. A `service_type` identifies the Akamai Cloud Computing service.
                         example:
                           - dbaas
                         items:
@@ -571,40 +411,20 @@ paths:
                       status: BETA
                   placement_group_limits:
                     additionalProperties: false
-                    description: >-
-                      The limits for [placement
-                      groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/)
-                      in this region.
+                    description: The limits for [placement groups](https://www.linode.com/docs/products/compute/compute-instances/guides/placement-groups/) in this region.
                     properties:
                       maximum_linodes_per_flexible_pg:
-                        description: >-
-                          The maximum number of Linodes you can include in a
-                          placement group, when that placement group uses a
-                          `placement_group_policy` of `flexible`.  Displayed as
-                          `null` if you don't have a limit. See [Create
-                          placement
-                          group](https://techdocs.akamai.com/linode-api/reference/post-placement-group)
-                          for more information on `placement_group_policy`.
+                        description: The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement_group_policy` of `flexible`.  Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.
                         example: 5
                         nullable: true
                         type: integer
                       maximum_linodes_per_pg:
-                        description: >-
-                          The maximum number of Linodes you can include in a
-                          placement group, when that placement group uses a
-                          `placement _group_policy` of `strict`. Displayed as
-                          `null` if you don't have a limit. See [Create
-                          placement
-                          group](https://techdocs.akamai.com/linode-api/reference/post-placement-group)
-                          for more information on `placement_group_policy`.
+                        description: The maximum number of Linodes you can include in a placement group, when that placement group uses a `placement _group_policy` of `strict`. Displayed as `null` if you don't have a limit. See [Create placement group](https://techdocs.akamai.com/linode-api/reference/post-placement-group) for more information on `placement_group_policy`.
                         example: 5
                         nullable: true
                         type: integer
                       maximum_pgs_per_customer:
-                        description: >-
-                          The maximum number of placement groups you can have in
-                          this region. Displayed as `null` if you don't have a
-                          limit.
+                        description: The maximum number of placement groups you can have in this region. Displayed as `null` if you don't have a limit.
                         example: 10
                         nullable: true
                         type: integer
@@ -614,28 +434,17 @@ paths:
                     additionalProperties: false
                     properties:
                       ipv4:
-                        description: >-
-                          The IPv4 addresses for this region's DNS resolvers,
-                          separated by commas.
+                        description: The IPv4 addresses for this region's DNS resolvers, separated by commas.
                         example: 192.0.2.0,192.0.2.1
                         type: string
                       ipv6:
-                        description: >-
-                          The IPv6 addresses for this region's DNS resolvers,
-                          separated by commas.
+                        description: The IPv6 addresses for this region's DNS resolvers, separated by commas.
                         example: 2001:0db8::,2001:0db8::1
                         type: string
                     type: object
                     x-linode-cli-display: 6
                   site_type:
-                    description: >-
-                      __Filterable__ This region's site type. A `core` region
-                      indicates a traditional cloud computing
-                      [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability)
-                      that offers all compute services. A `distributed` region
-                      indicates sites that are globally dispersed to be closer
-                      to end users and workloads. These regions offer limited
-                      services.
+                    description: __Filterable__ This region's site type. A `core` region indicates a traditional cloud computing [region](https://www.linode.com/docs/products/platform/get-started/guides/choose-a-data-center/#product-availability) that offers all compute services. A `distributed` region indicates sites that are globally dispersed to be closer to end users and workloads. These regions offer limited services.
                     enum:
                       - core
                       - distributed
@@ -669,28 +478,14 @@ paths:
                   errors:
                     items:
                       additionalProperties: false
-                      description: >-
-                        An object for describing a single error that occurred
-                        during the processing of a request.
+                      description: An object for describing a single error that occurred during the processing of a request.
                       properties:
                         field:
-                          description: >-
-                            The field in the request that caused this error.
-                            This may be a path, separated by periods in the case
-                            of nested fields. In some cases this may come back
-                            as `null` if the error is not specific to any single
-                            element of the request.
+                          description: The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
                           example: fieldname
                           type: string
                         reason:
-                          description: >-
-                            What happened to cause this error. In most cases,
-                            this can be fixed immediately by changing the data
-                            you sent in the request, but in some cases you will
-                            be instructed to [Open a support
-                            ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket)
-                            or perform some other action before you can complete
-                            the request successfully.
+                          description: What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
                           example: fieldname must be a valid value
                           type: string
                       type: object
@@ -698,10 +493,7 @@ paths:
                         file-path: schemas/error-object.yaml
                     type: array
                 type: object
-          description: >-
-            See
-            [Errors](https://techdocs.akamai.com/linode-api/reference/errors)
-            for the range of possible error response codes.
+          description: See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
       summary: Get a region
       tags:
         - Regions
@@ -709,91 +501,39 @@ paths:
         tabs:
           - syntax: linode-cli regions view us-east
             title: CLI
-            url: >-
-              https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
+            url: https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
       x-linode-cli-action: view
-    parameters:
-      - description: ID of the Region to look up.
-        example: '{{regionId}}'
-        in: path
-        name: regionId
-        required: true
-        schema:
-          example: us-east
-          type: string
-        x-akamai:
-          file-path: parameters/region-id-path.yaml
+      parameters:
+        - description: The abbreviated value ("slug") for the applicable data center. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the slug for each data center.
+          example: '{{regionId}}'
+          in: path
+          name: regionId
+          required: true
+          schema:
+            example: us-iad
+            type: string
+          x-akamai:
+            file-path: parameters/region-id-path.yaml
     x-akamai:
       file-path: paths/region.yaml
       path-info: /{apiVersion}/regions/{regionId}
     x-linode-cli-command: regions
   /regions/{regionId}/availability:
     get:
-      description: >-
+      description: |-
         Returns availability data for a single Region.
 
-
-        [Learn
-        more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
+        [Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
       externalDocs:
         description: See documentation for this operation in Akamai's Linode API
-        url: >-
-          https://techdocs.akamai.com/linode-api/reference/get-region-availability
+        url: https://techdocs.akamai.com/linode-api/reference/get-region-availability
       operationId: get-region-availability
       responses:
         '200':
           content:
             application/json:
               schema:
-                items:
-                  additionalProperties: false
-                  description: >-
-                    Compute instance availability information by
-                    [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types)
-                    and
-                    [Region](https://techdocs.akamai.com/linode-api/reference/get-regions).
-                  properties:
-                    available:
-                      description: >-
-                        __Filterable__ Whether the compute instance type is
-                        available in the region.
-                      example: true
-                      type: boolean
-                      x-akamai:
-                        labels:
-                          - Filterable
-                      x-linode-cli-display: 3
-                      x-linode-filterable: true
-                    plan:
-                      description: >-
-                        __Filterable__ The compute instance
-                        [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types)
-                        ID.
-                      example: gpu-rtx6000-1.1
-                      type: string
-                      x-akamai:
-                        labels:
-                          - Filterable
-                      x-linode-cli-display: 2
-                      x-linode-filterable: true
-                    region:
-                      description: >-
-                        __Filterable__ The
-                        [Region](https://techdocs.akamai.com/linode-api/reference/get-regions)
-                        ID.
-                      example: us-east
-                      type: string
-                      x-akamai:
-                        labels:
-                          - Filterable
-                      x-linode-cli-display: 1
-                      x-linode-filterable: true
-                  type: object
-                  x-akamai:
-                    file-path: schemas/region-availability.yaml
-                type: array
-                x-akamai:
-                  file-path: schemas/added-get-region-availability-200.yaml
+                $ref: '#/components/schemas/Get-region-availabilityResponse'
               x-example:
                 x-ref: ../examples/get-region-availability-200.json
           description: The availability data for a single Region.
@@ -806,28 +546,14 @@ paths:
                   errors:
                     items:
                       additionalProperties: false
-                      description: >-
-                        An object for describing a single error that occurred
-                        during the processing of a request.
+                      description: An object for describing a single error that occurred during the processing of a request.
                       properties:
                         field:
-                          description: >-
-                            The field in the request that caused this error.
-                            This may be a path, separated by periods in the case
-                            of nested fields. In some cases this may come back
-                            as `null` if the error is not specific to any single
-                            element of the request.
+                          description: The field in the request that caused this error. This may be a path, separated by periods in the case of nested fields. In some cases this may come back as `null` if the error is not specific to any single element of the request.
                           example: fieldname
                           type: string
                         reason:
-                          description: >-
-                            What happened to cause this error. In most cases,
-                            this can be fixed immediately by changing the data
-                            you sent in the request, but in some cases you will
-                            be instructed to [Open a support
-                            ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket)
-                            or perform some other action before you can complete
-                            the request successfully.
+                          description: What happened to cause this error. In most cases, this can be fixed immediately by changing the data you sent in the request, but in some cases you will be instructed to [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) or perform some other action before you can complete the request successfully.
                           example: fieldname must be a valid value
                           type: string
                       type: object
@@ -835,10 +561,7 @@ paths:
                         file-path: schemas/error-object.yaml
                     type: array
                 type: object
-          description: >-
-            See
-            [Errors](https://techdocs.akamai.com/linode-api/reference/errors)
-            for the range of possible error response codes.
+          description: See [Errors](https://techdocs.akamai.com/linode-api/reference/errors) for the range of possible error response codes.
       summary: Get a region's availability
       tags:
         - Regions
@@ -846,24 +569,68 @@ paths:
         tabs:
           - syntax: linode-cli regions view-avail us-east
             title: CLI
-            url: >-
-              https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
+            url: https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli
       x-linode-cli-action: view-avail
-    parameters:
-      - description: ID of the Region to look up.
-        example: '{{regionId}}'
-        in: path
-        name: regionId
-        required: true
-        schema:
-          example: us-east
-          type: string
-        x-akamai:
-          file-path: parameters/region-id-path.yaml
+      parameters:
+        - description: The abbreviated value ("slug") for the applicable data center. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the slug for each data center.
+          example: '{{regionId}}'
+          in: path
+          name: regionId
+          required: true
+          schema:
+            example: us-iad
+            type: string
+          x-akamai:
+            file-path: parameters/region-id-path.yaml
+      x-stackql-bare-array-wrap:
+        wrapperKey: region_availability
+        wrapperName: Get-region-availabilityResponse
+        mediaType: application/json
+        scalar: false
     x-akamai:
       file-path: paths/region-availability.yaml
       path-info: /{apiVersion}/regions/{regionId}/availability
     x-linode-cli-command: regions
-components: {}
+components:
+  schemas:
+    Get-region-availabilityResponse:
+      type: object
+      properties:
+        region_availability:
+          type: array
+          items:
+            additionalProperties: false
+            description: Compute instance availability information by [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) and [Region](https://techdocs.akamai.com/linode-api/reference/get-regions).
+            properties:
+              available:
+                description: __Filterable__ Whether the compute instance type is available in the region.
+                example: true
+                type: boolean
+                x-akamai:
+                  labels:
+                    - Filterable
+                x-linode-cli-display: 3
+                x-linode-filterable: true
+              plan:
+                description: __Filterable__ The compute instance [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) ID.
+                example: gpu-rtx6000-1.1
+                type: string
+                x-akamai:
+                  labels:
+                    - Filterable
+                x-linode-cli-display: 2
+                x-linode-filterable: true
+              region:
+                description: __Filterable__ The [Region](https://techdocs.akamai.com/linode-api/reference/get-regions) ID.
+                example: us-east
+                type: string
+                x-akamai:
+                  labels:
+                    - Filterable
+                x-linode-cli-display: 1
+                x-linode-filterable: true
+            type: object
+            x-akamai:
+              file-path: schemas/region-availability.yaml
 servers:
   - url: https://api.linode.com

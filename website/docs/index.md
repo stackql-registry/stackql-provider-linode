@@ -20,37 +20,37 @@ Cloud hosting platform that provides virtual private servers, Kubernetes, manage
 
 :::info[Provider Summary] 
 
-total services: __20__  
-total resources: __156__  
+total services: __21__  
+total resources: __163__  
 
 :::
 
-See also:   
+See also:
 [[` SHOW `]](https://stackql.io/docs/language-spec/show) [[` DESCRIBE `]](https://stackql.io/docs/language-spec/describe)  [[` REGISTRY `]](https://stackql.io/docs/language-spec/registry)
-* * * 
+* * *
 
 ## Installation
 
-To pull the latest version of the `linode` provider, run the following command:  
+To pull the latest version of the `linode` provider, run the following command:
 
 ```bash
 REGISTRY PULL linode;
 ```
-> To view previous provider versions or to pull a specific provider version, see [here](https://stackql.io/docs/language-spec/registry).  
+> To view previous provider versions or to pull a specific provider version, see [here](https://stackql.io/docs/language-spec/registry).
 
 ## Authentication
 
-The following system environment variables are used for authentication by default:  
+The following system environment variables are used for authentication by default:
 
 - <CopyableCode code="LINODE_TOKEN" /> - Linode API token (see <a href="https://www.linode.com/docs/products/tools/api/guides/manage-api-tokens/#create-an-api-token">How to Create a Linode API Token</a>)
-  
-These variables are sourced at runtime (from the local machine or as CI variables/secrets).  
+
+These variables are sourced at runtime (from the local machine or as CI variables/secrets).
 
 <details>
 
 <summary>Using different environment variables</summary>
 
-To use different environment variables (instead of the defaults), use the `--auth` flag of the `stackql` program.  For example:  
+To use different environment variables (instead of the defaults), use the `--auth` flag of the `stackql` program.  For example:
 
 ```bash
 
@@ -58,7 +58,7 @@ AUTH='{ "linode": { "type": "bearer",  "credentialsenvvar": "YOUR_LINODE_TOKEN_V
 stackql shell --auth="${AUTH}"
 
 ```
-or using PowerShell:  
+or using PowerShell:
 
 ```powershell
 
@@ -67,6 +67,153 @@ stackql.exe shell --auth=$Auth
 
 ```
 </details>
+
+## Compute inventory
+
+All Linode instances on your account, with placement, plan and status:
+
+```sql
+SELECT
+  id,
+  label,
+  region,
+  type,
+  status,
+  ipv4
+FROM linode.linode.instances;
+```
+
+## Find the right plan and region
+
+The plan catalog with pricing - `price` is an object, so project the hourly and monthly rates with `json_extract`:
+
+```sql
+SELECT
+  id,
+  vcpus,
+  memory,
+  disk,
+  json_extract(price, '$.hourly') as hourly_price,
+  json_extract(price, '$.monthly') as monthly_price
+FROM linode.linode.types
+ORDER BY json_extract(price, '$.monthly')
+LIMIT 5;
+```
+
+Regions filtered by capability (for example, only regions where you can run Kubernetes):
+
+```sql
+SELECT
+  id,
+  label,
+  country
+FROM linode.regions.regions
+WHERE capabilities LIKE '%Kubernetes%';
+```
+
+Available images from a given vendor:
+
+```sql
+SELECT
+  id,
+  label,
+  vendor,
+  size
+FROM linode.images.images
+WHERE vendor = 'Debian';
+```
+
+## Launch a Linode
+
+`INSERT` columns are the native Linode API body properties (no prefixes). This launches the smallest available plan running Debian 12:
+
+```sql
+INSERT INTO linode.linode.instances (
+  label,
+  region,
+  type,
+  image,
+  root_pass
+)
+SELECT
+  'demo-vm',
+  'us-ord',
+  'g6-nanode-1',
+  'linode/debian12',
+  '<a strong password>';
+```
+
+Watch it come up and grab its address:
+
+```sql
+SELECT id, label, status, ipv4
+FROM linode.linode.instances
+WHERE label = 'demo-vm';
+```
+
+Lifecycle operations (stop, start, reboot, resize and so on) are `EXEC` methods - named for the action, addressed by the Linode id:
+
+```sql
+EXEC linode.linode.instances.shutdown @linodeId = '12345678';
+
+EXEC linode.linode.instances.boot @linodeId = '12345678';
+```
+
+Clean it up when you are done:
+
+```sql
+DELETE FROM linode.linode.instances
+WHERE linodeId = 12345678;
+```
+
+## Storage
+
+Block storage volumes and Object Storage buckets across the account:
+
+```sql
+SELECT
+  id,
+  label,
+  size,
+  region,
+  status
+FROM linode.volumes.volumes;
+```
+
+```sql
+SELECT
+  label,
+  cluster,
+  size,
+  objects
+FROM linode.object_storage.buckets;
+```
+
+## Kubernetes
+
+LKE clusters on the account:
+
+```sql
+SELECT
+  id,
+  label,
+  region,
+  k8s_version
+FROM linode.lke.clusters;
+```
+
+## Account and billing
+
+Your account standing at a glance:
+
+```sql
+SELECT
+  company,
+  balance,
+  active_since
+FROM linode.account.account;
+```
+
 
 ## Services
 <div class="row">
@@ -79,6 +226,7 @@ stackql.exe shell --auth=$Auth
 <a href="/services/linode/">linode</a><br />
 <a href="/services/lke/">lke</a><br />
 <a href="/services/longview/">longview</a><br />
+<a href="/services/maintenance/">maintenance</a><br />
 <a href="/services/managed/">managed</a><br />
 <a href="/services/monitor/">monitor</a><br />
 </div>

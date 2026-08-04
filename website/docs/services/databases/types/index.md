@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>types</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>types</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="types" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.databases.types" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>types</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_databases_type"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_type', value: 'get_databases_type' },
-        { label: 'get_databases_types', value: 'get_databases_types' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_databases_type">
+<TabItem value="get">
 
 Returns a single Managed Databases type.
 
@@ -59,7 +60,7 @@ Returns a single Managed Databases type.
 <tr>
     <td><CopyableCode code="class" /></td>
     <td><code>string</code></td>
-    <td>The compute class category. (example: nanode)</td>
+    <td>The Linode class category. This can be [dedicated](https://techdocs.akamai.com/cloud-computing/docs/dedicated-cpu-compute-instances), [shared](https://techdocs.akamai.com/cloud-computing/docs/shared-cpu-compute-instances), or [premium](https://techdocs.akamai.com/cloud-computing/docs/premium-compute-instances).  &gt; 📘 &gt; &gt; Premium plan Linodes are available in limited regions. (dedicated, shared, premium) (example: dedicated)</td>
 </tr>
 <tr>
     <td><CopyableCode code="disk" /></td>
@@ -89,7 +90,7 @@ Returns a single Managed Databases type.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_databases_types">
+<TabItem value="list">
 
 Returns a paginated list of all Managed Databases types.
 
@@ -110,7 +111,7 @@ Returns a paginated list of all Managed Databases types.
 <tr>
     <td><CopyableCode code="class" /></td>
     <td><code>string</code></td>
-    <td>The compute class category. (example: nanode)</td>
+    <td>The Linode class category. This can be [dedicated](https://techdocs.akamai.com/cloud-computing/docs/dedicated-cpu-compute-instances), [shared](https://techdocs.akamai.com/cloud-computing/docs/shared-cpu-compute-instances), or [premium](https://techdocs.akamai.com/cloud-computing/docs/premium-compute-instances).  &gt; 📘 &gt; &gt; Premium plan Linodes are available in limited regions. (dedicated, shared, premium) (example: dedicated)</td>
 </tr>
 <tr>
     <td><CopyableCode code="disk" /></td>
@@ -158,14 +159,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_databases_type"><CopyableCode code="get_databases_type" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-typeId"><code>typeId</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Display the details of a single Managed Databases node type. The type and number of nodes determine the resources and price of a Managed Databases instance. Run the [List Managed Databases type](https://techdocs.akamai.com/linode-api/reference/get-databases-types) operation and store the `id` for the applicable database node type.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#get_databases_types"><CopyableCode code="get_databases_types" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
@@ -187,6 +188,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-typeId">
+    <td><CopyableCode code="typeId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Managed Database type. (example: &#123;&#123;typeId&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -203,13 +209,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_databases_type"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_type', value: 'get_databases_type' },
-        { label: 'get_databases_types', value: 'get_databases_types' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_databases_type">
+<TabItem value="get">
 
 Display the details of a single Managed Databases node type. The type and number of nodes determine the resources and price of a Managed Databases instance. Run the [List Managed Databases type](https://techdocs.akamai.com/linode-api/reference/get-databases-types) operation and store the `id` for the applicable database node type.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -223,12 +229,13 @@ label,
 memory,
 vcpus
 FROM linode.databases.types
-WHERE page = '{{ page }}'
+WHERE typeId = '{{ typeId }}' -- required
+AND page = '{{ page }}'
 AND page_size = '{{ page_size }}'
 ;
 ```
 </TabItem>
-<TabItem value="get_databases_types">
+<TabItem value="list">
 
 Display all Managed Databases node types. The type and number of nodes determine the resources and price of a Managed Databases instance. Each database can have one node type. With a high availability database, all nodes are deployed according to the chosen type.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 

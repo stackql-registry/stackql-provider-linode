@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>object_storage</code> resource
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>object_storage</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="object_storage" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.object_storage" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>object_storage</code> resource
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_transfer"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_transfer', value: 'get_object_storage_transfer' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_transfer">
+<TabItem value="get">
 
 Returns the amount of outbound data transfer used by your account's Object Storage buckets.
 
@@ -76,14 +77,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_transfer"><CopyableCode code="get_object_storage_transfer" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
     <td>The amount of outbound data transfer used by your account's Object Storage buckets. Object Storage adds 1 terabyte of outbound data transfer to your data transfer pool. See the [Object Storage Overview](https://www.linode.com/docs/products/storage/object-storage/#pricing) guide for details on Object Storage transfer quotas. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)<br /><br />-<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#post_cancel_object_storage"><CopyableCode code="post_cancel_object_storage" /></a></td>
+    <td><a href="#cancel"><CopyableCode code="cancel" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td></td>
     <td></td>
@@ -111,12 +112,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_transfer"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_transfer', value: 'get_object_storage_transfer' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_transfer">
+<TabItem value="get">
 
 The amount of outbound data transfer used by your account's Object Storage buckets. Object Storage adds 1 terabyte of outbound data transfer to your data transfer pool. See the [Object Storage Overview](https://www.linode.com/docs/products/storage/object-storage/#pricing) guide for details on Object Storage transfer quotas. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)<br /><br />-<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -133,17 +134,17 @@ FROM linode.object_storage.object_storage
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_cancel_object_storage"
+    defaultValue="cancel"
     values={[
-        { label: 'post_cancel_object_storage', value: 'post_cancel_object_storage' }
+        { label: 'cancel', value: 'cancel' }
     ]}
 >
-<TabItem value="post_cancel_object_storage">
+<TabItem value="cancel">
 
 Cancel Object Storage on an Account.<br /><br />&gt; 🚧<br />&gt;<br />&gt; This removes all buckets and their contents from your Account. This data is irretrievable once removed.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.object_storage.object_storage.post_cancel_object_storage 
+EXEC linode.object_storage.object_storage.cancel 
 
 ;
 ```

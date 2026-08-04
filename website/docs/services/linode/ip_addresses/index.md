@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>ip_addresses</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>ip_addresses</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="ip_addresses" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.linode.ip_addresses" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists an <code>ip_addresses</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_linode_ip"
+    defaultValue="get"
     values={[
-        { label: 'get_linode_ip', value: 'get_linode_ip' },
-        { label: 'get_linode_ips', value: 'get_linode_ips' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_linode_ip">
+<TabItem value="get">
 
 A single IP address.
 
@@ -99,7 +100,7 @@ A single IP address.
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The type of address this is. (example: ipv4)</td>
+    <td>__Read-only__ The type of address this is. (ipv4, ipv6, ipv6/pool, ipv6/range) (example: ipv4)</td>
 </tr>
 <tr>
     <td><CopyableCode code="vpc_nat_1_1" /></td>
@@ -109,7 +110,7 @@ A single IP address.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_linode_ips">
+<TabItem value="list">
 
 Requested Linode's networking configuration.
 
@@ -153,37 +154,37 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_linode_ip"><CopyableCode code="get_linode_ip" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a>, <a href="#parameter-address"><code>address</code></a></td>
     <td></td>
     <td>View information for a Linode's set of IPs, its Linode interfaces and VPC IPs and ranges.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_linode_ips"><CopyableCode code="get_linode_ips" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a></td>
     <td></td>
     <td>Returns networking information for a single Linode.<br /><br />&gt; 📘<br />&gt;<br />&gt; If the target Linode has several configuration profiles that include a Virtual Private Cloud (VPC) interface, the response lists address information for all of the VPCs.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_add_linode_ip"><CopyableCode code="post_add_linode_ip" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__type"><code>data__type</code></a>, <a href="#parameter-data__public"><code>data__public</code></a></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a>, <a href="#parameter-type"><code>type</code></a>, <a href="#parameter-public"><code>public</code></a></td>
     <td></td>
     <td>Allocates a public or private IPv4 address to a Linode. Public IP Addresses, after the one included with each Linode, incur an additional monthly charge. If you need an additional public IP Address you must request one - please [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket). You may not add more than one private IPv4 address to a single Linode.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_linode_ip"><CopyableCode code="put_linode_ip" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td><a href="#parameter-data__rdns"><code>data__rdns</code></a></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a>, <a href="#parameter-address"><code>address</code></a>, <a href="#parameter-rdns"><code>rdns</code></a></td>
     <td></td>
     <td>Updates the reverse DNS (RDNS) for a Linode's IP Address. This may be done for both IPv4 and IPv6 addresses.<br /><br />Setting the RDNS to `null` for a public IPv4 address, resets it to the default `ip.linodeusercontent.com` RDNS value.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_linode_ip"><CopyableCode code="delete_linode_ip" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a>, <a href="#parameter-address"><code>address</code></a></td>
     <td></td>
     <td>Deletes a public or private IPv4 address associated with this Linode. This will fail if it is the Linode's last remaining public IPv4 address, or if the address has a 1:1 NAT with an active VPC Subnet address.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can't use this operation to delete an IP assigned to a Linode interface. Run the [update the Linode interface](https://techdocs.akamai.com/linode-api/reference/put-linode-interface) operation instead.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -203,19 +204,29 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-address">
+    <td><CopyableCode code="address" /></td>
+    <td><code>string (ip)</code></td>
+    <td>The IP address. (example: &#123;&#123;address&#125;&#125;)</td>
+</tr>
+<tr id="parameter-linodeId">
+    <td><CopyableCode code="linodeId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Linode.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_linode_ip"
+    defaultValue="get"
     values={[
-        { label: 'get_linode_ip', value: 'get_linode_ip' },
-        { label: 'get_linode_ips', value: 'get_linode_ips' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_linode_ip">
+<TabItem value="get">
 
 View information for a Linode's set of IPs, its Linode interfaces and VPC IPs and ranges.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -233,10 +244,12 @@ subnet_mask,
 type,
 vpc_nat_1_1
 FROM linode.linode.ip_addresses
+WHERE linodeId = '{{ linodeId }}' -- required
+AND address = '{{ address }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_linode_ips">
+<TabItem value="list">
 
 Returns networking information for a single Linode.<br /><br />&gt; 📘<br />&gt;<br />&gt; If the target Linode has several configuration profiles that include a Virtual Private Cloud (VPC) interface, the response lists address information for all of the VPCs.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -245,6 +258,7 @@ SELECT
 ipv4,
 ipv6
 FROM linode.linode.ip_addresses
+WHERE linodeId = '{{ linodeId }}' -- required
 ;
 ```
 </TabItem>
@@ -254,24 +268,26 @@ FROM linode.linode.ip_addresses
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_add_linode_ip"
+    defaultValue="create"
     values={[
-        { label: 'post_add_linode_ip', value: 'post_add_linode_ip' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_add_linode_ip">
+<TabItem value="create">
 
 Allocates a public or private IPv4 address to a Linode. Public IP Addresses, after the one included with each Linode, incur an additional monthly charge. If you need an additional public IP Address you must request one - please [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket). You may not add more than one private IPv4 address to a single Linode.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.linode.ip_addresses (
-data__public,
-data__type
+public,
+type,
+linodeId
 )
 SELECT 
 {{ public }} /* required */,
-'{{ type }}' /* required */
+'{{ type }}' /* required */,
+'{{ linodeId }}'
 RETURNING
 interface_id,
 linode_id,
@@ -289,22 +305,23 @@ vpc_nat_1_1
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: ip_addresses
   props:
+    - name: linodeId
+      value: "{{ linodeId }}"
+      description: Required parameter for the ip_addresses resource.
     - name: public
-      value: boolean
-      description: >
+      value: {{ public }}
+      description: |
         Whether to create a public or private IPv4 address.
-        
     - name: type
-      value: string
-      description: >
+      value: "{{ type }}"
+      description: |
         The type of address you are allocating. Only IPv4 addresses may be allocated through this operation.
-        
       valid_values: ['ipv4']
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -312,21 +329,23 @@ vpc_nat_1_1
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_linode_ip"
+    defaultValue="update"
     values={[
-        { label: 'put_linode_ip', value: 'put_linode_ip' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_linode_ip">
+<TabItem value="update">
 
 Updates the reverse DNS (RDNS) for a Linode's IP Address. This may be done for both IPv4 and IPv6 addresses.<br /><br />Setting the RDNS to `null` for a public IPv4 address, resets it to the default `ip.linodeusercontent.com` RDNS value.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.linode.ip_addresses
 SET 
-data__rdns = '{{ rdns }}'
+rdns = '{{ rdns }}'
 WHERE 
-data__rdns = '{{ rdns }}' --required
+linodeId = '{{ linodeId }}' --required
+AND address = '{{ address }}' --required
+AND rdns = '{{ rdns }}' --required
 RETURNING
 interface_id,
 linode_id,
@@ -347,17 +366,19 @@ vpc_nat_1_1;
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_linode_ip"
+    defaultValue="delete"
     values={[
-        { label: 'delete_linode_ip', value: 'delete_linode_ip' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_linode_ip">
+<TabItem value="delete">
 
 Deletes a public or private IPv4 address associated with this Linode. This will fail if it is the Linode's last remaining public IPv4 address, or if the address has a 1:1 NAT with an active VPC Subnet address.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can't use this operation to delete an IP assigned to a Linode interface. Run the [update the Linode interface](https://techdocs.akamai.com/linode-api/reference/put-linode-interface) operation instead.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.linode.ip_addresses
+WHERE linodeId = '{{ linodeId }}' --required
+AND address = '{{ address }}' --required
 ;
 ```
 </TabItem>

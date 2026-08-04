@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>clusters</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>clusters</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="clusters" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.clusters" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>clusters</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_cluster"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_cluster', value: 'get_object_storage_cluster' },
-        { label: 'get_object_storage_clusters', value: 'get_object_storage_clusters' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_cluster">
+<TabItem value="get">
 
 The requested Cluster.
 
@@ -74,12 +75,12 @@ The requested Cluster.
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>This cluster's status. (example: available)</td>
+    <td>This cluster's status. (available, unavailable) (example: available)</td>
 </tr>
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_object_storage_clusters">
+<TabItem value="list">
 
 A paginated list of available clusters.
 
@@ -93,24 +94,29 @@ A paginated list of available clusters.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>string</code></td>
+    <td>The unique ID for this cluster. (example: us-east-1)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="domain" /></td>
+    <td><code>string</code></td>
+    <td>The base URL for this cluster, used for connecting with third-party clients. (example: us-east-1.linodeobjects.com)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="region" /></td>
+    <td><code>string</code></td>
+    <td>The region where this cluster is located. (example: us-east)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="static_site_domain" /></td>
+    <td><code>string</code></td>
+    <td>The base URL for this cluster used when hosting static sites. (example: website-us-east-1.linodeobjects.com)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="status" /></td>
+    <td><code>string</code></td>
+    <td>This cluster's status. (available, unavailable) (example: available)</td>
 </tr>
 </tbody>
 </table>
@@ -133,14 +139,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_cluster"><CopyableCode code="get_object_storage_cluster" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-clusterId"><code>clusterId</code></a></td>
     <td></td>
     <td>__Deprecated__ Returns a single Object Storage cluster.<br /><br />&gt; 📘<br />&gt;<br />&gt; This displays deprecated `clusterId` values that represent regions used with older versions of the API. It's maintained for backward compatibility. Run [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region) instead.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#get_object_storage_clusters"><CopyableCode code="get_object_storage_clusters" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
@@ -162,19 +168,24 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-clusterId">
+    <td><CopyableCode code="clusterId" /></td>
+    <td><code>string</code></td>
+    <td>Identifies a cluster where this bucket lives. For backward compatibility with Object Storage in this API.  &gt; 📘 &gt; &gt; You can use the applicable `regionId`, for example `us-west`, in place of the `clusterId`, for example, `us-west-1`. Run [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) to see all regions.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_cluster"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_cluster', value: 'get_object_storage_cluster' },
-        { label: 'get_object_storage_clusters', value: 'get_object_storage_clusters' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_cluster">
+<TabItem value="get">
 
 __Deprecated__ Returns a single Object Storage cluster.<br /><br />&gt; 📘<br />&gt;<br />&gt; This displays deprecated `clusterId` values that represent regions used with older versions of the API. It's maintained for backward compatibility. Run [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region) instead.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -186,19 +197,21 @@ region,
 static_site_domain,
 status
 FROM linode.object_storage.clusters
+WHERE clusterId = '{{ clusterId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_object_storage_clusters">
+<TabItem value="list">
 
 __Deprecated__ Returns a paginated list of available Object Storage legacy clusters.<br /><br />&gt; 📘<br />&gt;<br />&gt; This displays deprecated `clusterId` values that represent regions used with older versions of the API. It's maintained for backward compatibility. Run [Get a region](https://techdocs.akamai.com/linode-api/reference/get-region) instead.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+domain,
+region,
+static_site_domain,
+status
 FROM linode.object_storage.clusters
 ;
 ```

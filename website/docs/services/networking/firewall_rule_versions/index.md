@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>firewall_rule_versions</code> r
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>firewall_rule_versions</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="firewall_rule_versions" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.networking.firewall_rule_versions" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>firewall_rule_versions</code> r
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_firewall_rule_version"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_rule_version', value: 'get_firewall_rule_version' },
-        { label: 'get_firewall_rule_versions', value: 'get_firewall_rule_versions' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_firewall_rule_version">
+<TabItem value="get">
 
 Returns a rule version.
 
@@ -59,12 +60,17 @@ Returns a rule version.
 <tr>
     <td><CopyableCode code="created" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2018-01-01T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2025-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="entities" /></td>
+    <td><code>array</code></td>
+    <td>__Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.</td>
 </tr>
 <tr>
     <td><CopyableCode code="label" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$</code>)</td>
+    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^&#91;a-zA-Z&#93;((?!--|__|\.\.)&#91;a-zA-Z0-9-_.&#93;)+$</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="rules" /></td>
@@ -74,7 +80,7 @@ Returns a rule version.
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (example: enabled)</td>
+    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (enabled, disabled, deleted) (example: enabled)</td>
 </tr>
 <tr>
     <td><CopyableCode code="tags" /></td>
@@ -84,12 +90,12 @@ Returns a rule version.
 <tr>
     <td><CopyableCode code="updated" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2018-01-02T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_firewall_rule_versions">
+<TabItem value="list">
 
 Returns information for all rule versions for this firewall.
 
@@ -110,12 +116,17 @@ Returns information for all rule versions for this firewall.
 <tr>
     <td><CopyableCode code="created" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2018-01-01T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2025-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="entities" /></td>
+    <td><code>array</code></td>
+    <td>__Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.</td>
 </tr>
 <tr>
     <td><CopyableCode code="label" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$</code>)</td>
+    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^&#91;a-zA-Z&#93;((?!--|__|\.\.)&#91;a-zA-Z0-9-_.&#93;)+$</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="rules" /></td>
@@ -125,7 +136,7 @@ Returns information for all rule versions for this firewall.
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (example: enabled)</td>
+    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (enabled, disabled, deleted) (example: enabled)</td>
 </tr>
 <tr>
     <td><CopyableCode code="tags" /></td>
@@ -135,7 +146,7 @@ Returns information for all rule versions for this firewall.
 <tr>
     <td><CopyableCode code="updated" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2018-01-02T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -158,16 +169,16 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_firewall_rule_version"><CopyableCode code="get_firewall_rule_version" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a>, <a href="#parameter-version"><code>version</code></a></td>
     <td></td>
     <td>Get a specific firewall rule version for an `enabled` or `disabled` firewall.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_firewall_rule_versions"><CopyableCode code="get_firewall_rule_versions" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a></td>
     <td></td>
     <td>Lists the current and historical rules of the firewall (that is not deleted), using `version`. Whenever rules update, the `version` increments from `1`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -187,19 +198,29 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-firewallId">
+    <td><CopyableCode code="firewallId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Firewall to access.</td>
+</tr>
+<tr id="parameter-version">
+    <td><CopyableCode code="version" /></td>
+    <td><code>string</code></td>
+    <td>The firewall rule version to view.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_firewall_rule_version"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_rule_version', value: 'get_firewall_rule_version' },
-        { label: 'get_firewall_rule_versions', value: 'get_firewall_rule_versions' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_firewall_rule_version">
+<TabItem value="get">
 
 Get a specific firewall rule version for an `enabled` or `disabled` firewall.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -207,16 +228,19 @@ Get a specific firewall rule version for an `enabled` or `disabled` firewall.<br
 SELECT
 id,
 created,
+entities,
 label,
 rules,
 status,
 tags,
 updated
 FROM linode.networking.firewall_rule_versions
+WHERE firewallId = '{{ firewallId }}' -- required
+AND version = '{{ version }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_firewall_rule_versions">
+<TabItem value="list">
 
 Lists the current and historical rules of the firewall (that is not deleted), using `version`. Whenever rules update, the `version` increments from `1`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -224,12 +248,14 @@ Lists the current and historical rules of the firewall (that is not deleted), us
 SELECT
 id,
 created,
+entities,
 label,
 rules,
 status,
 tags,
 updated
 FROM linode.networking.firewall_rule_versions
+WHERE firewallId = '{{ firewallId }}' -- required
 ;
 ```
 </TabItem>

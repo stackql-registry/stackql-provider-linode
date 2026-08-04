@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>nodes</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>nodes</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="nodes" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.lke.nodes" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>nodes</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_lke_cluster_node"
+    defaultValue="get"
     values={[
-        { label: 'get_lke_cluster_node', value: 'get_lke_cluster_node' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_lke_cluster_node">
+<TabItem value="get">
 
 Returns the values of a node object in the form that it appears currently in the node pool array.
 
@@ -63,7 +64,7 @@ Returns the values of a node object in the form that it appears currently in the
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>The creation status of this Node. This status is distinct from this Node's readiness as a Kubernetes Node Object as determined by the command `kubectl get nodes`.  `not_ready` indicates that the Linode is still being created.  `ready` indicates that the Linode has successfully been created and is running Kubernetes software. (example: ready)</td>
+    <td>The creation status of this Node. This status is distinct from this Node's readiness as a Kubernetes Node Object as determined by the command `kubectl get nodes`.  `not_ready` indicates that the Linode is still being created.  `ready` indicates that the Linode has successfully been created and is running Kubernetes software. (ready, not_ready) (example: ready)</td>
 </tr>
 </tbody>
 </table>
@@ -86,23 +87,23 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_lke_cluster_node"><CopyableCode code="get_lke_cluster_node" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-clusterId"><code>clusterId</code></a>, <a href="#parameter-nodeId"><code>nodeId</code></a></td>
     <td></td>
     <td>Returns the values for a specified node object.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_lke_cluster_node"><CopyableCode code="delete_lke_cluster_node" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
-    <td></td>
+    <td><a href="#parameter-clusterId"><code>clusterId</code></a>, <a href="#parameter-nodeId"><code>nodeId</code></a></td>
     <td></td>
     <td>Deletes a specific Node from a Node Pool.<br /><br />__Deleting a Node is a destructive action and cannot be undone.__<br /><br />Deleting a Node will reduce the size of the Node Pool it belongs to.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_lke_cluster_node_recycle"><CopyableCode code="post_lke_cluster_node_recycle" /></a></td>
+    <td><a href="#recycle"><CopyableCode code="recycle" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td></td>
+    <td><a href="#parameter-clusterId"><code>clusterId</code></a>, <a href="#parameter-nodeId"><code>nodeId</code></a></td>
     <td></td>
     <td>Recycles an individual Node in the designated Kubernetes Cluster. The Node will be deleted and replaced with a new Linode, which may take a few minutes. Replacement Nodes are installed with the latest available patch for the Cluster's Kubernetes Version.<br /><br />__Any local storage on deleted Linodes (such as `hostPath` and `emptyDir` volumes, or `local` PersistentVolumes) will be erased.__<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -122,18 +123,28 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-clusterId">
+    <td><CopyableCode code="clusterId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Kubernetes cluster containing the Node. (example: &#123;&#123;clusterId&#125;&#125;)</td>
+</tr>
+<tr id="parameter-nodeId">
+    <td><CopyableCode code="nodeId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Node to be recycled. (example: &#123;&#123;nodeId&#125;&#125;)</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_lke_cluster_node"
+    defaultValue="get"
     values={[
-        { label: 'get_lke_cluster_node', value: 'get_lke_cluster_node' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_lke_cluster_node">
+<TabItem value="get">
 
 Returns the values for a specified node object.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -143,6 +154,8 @@ id,
 instance_id,
 status
 FROM linode.lke.nodes
+WHERE clusterId = '{{ clusterId }}' -- required
+AND nodeId = '{{ nodeId }}' -- required
 ;
 ```
 </TabItem>
@@ -152,17 +165,19 @@ FROM linode.lke.nodes
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_lke_cluster_node"
+    defaultValue="delete"
     values={[
-        { label: 'delete_lke_cluster_node', value: 'delete_lke_cluster_node' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_lke_cluster_node">
+<TabItem value="delete">
 
 Deletes a specific Node from a Node Pool.<br /><br />__Deleting a Node is a destructive action and cannot be undone.__<br /><br />Deleting a Node will reduce the size of the Node Pool it belongs to.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.lke.nodes
+WHERE clusterId = '{{ clusterId }}' --required
+AND nodeId = '{{ nodeId }}' --required
 ;
 ```
 </TabItem>
@@ -172,18 +187,19 @@ DELETE FROM linode.lke.nodes
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_lke_cluster_node_recycle"
+    defaultValue="recycle"
     values={[
-        { label: 'post_lke_cluster_node_recycle', value: 'post_lke_cluster_node_recycle' }
+        { label: 'recycle', value: 'recycle' }
     ]}
 >
-<TabItem value="post_lke_cluster_node_recycle">
+<TabItem value="recycle">
 
 Recycles an individual Node in the designated Kubernetes Cluster. The Node will be deleted and replaced with a new Linode, which may take a few minutes. Replacement Nodes are installed with the latest available patch for the Cluster's Kubernetes Version.<br /><br />__Any local storage on deleted Linodes (such as `hostPath` and `emptyDir` volumes, or `local` PersistentVolumes) will be erased.__<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.lke.nodes.post_lke_cluster_node_recycle 
-
+EXEC linode.lke.nodes.recycle 
+@clusterId='{{ clusterId }}' --required, 
+@nodeId='{{ nodeId }}' --required
 ;
 ```
 </TabItem>

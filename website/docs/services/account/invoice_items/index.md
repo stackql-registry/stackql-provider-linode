@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>invoice_items</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>invoice_items</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="invoice_items" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.invoice_items" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>invoice_items</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_invoice_items"
+    defaultValue="list"
     values={[
-        { label: 'get_invoice_items', value: 'get_invoice_items' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_invoice_items">
+<TabItem value="list">
 
 A paginated list of InvoiceItem objects.
 
@@ -51,24 +52,54 @@ A paginated list of InvoiceItem objects.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="amount" /></td>
+    <td><code>number</code></td>
+    <td>__Read-only__ The price, in US dollars, of the Invoice Item. Equal to the unit price multiplied by quantity.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="from" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ The date the Invoice Item started, based on month. (example: 2018-01-01T00:01:01)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The Invoice Item's display label. (example: Linode 123)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
+    <td><CopyableCode code="quantity" /></td>
     <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td>__Read-only__ The quantity of this Item for the specified Invoice.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="region" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The ID of the applicable Region associated with this Invoice Item.  `null` if there is no applicable Region. (example: us-west)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="tax" /></td>
+    <td><code>number</code></td>
+    <td>__Read-only__ The amount of tax levied on this Item in US Dollars.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="to" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ The date the Invoice Item ended, based on month. (example: 2018-01-31T11:59:59)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="total" /></td>
+    <td><code>number</code></td>
+    <td>__Read-only__ The price of this Item after taxes in US Dollars.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="type" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The type of service, ether `hourly` or `misc`. (hourly, misc) (example: hourly)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="unit_price" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The monthly service fee in US Dollars for this Item.</td>
 </tr>
 </tbody>
 </table>
@@ -91,9 +122,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_invoice_items"><CopyableCode code="get_invoice_items" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-invoiceId"><code>invoiceId</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Returns a paginated list of Invoice items.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -113,6 +144,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-invoiceId">
+    <td><CopyableCode code="invoiceId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Invoice.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -129,23 +165,30 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_invoice_items"
+    defaultValue="list"
     values={[
-        { label: 'get_invoice_items', value: 'get_invoice_items' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_invoice_items">
+<TabItem value="list">
 
 Returns a paginated list of Invoice items.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+amount,
+from,
+label,
+quantity,
+region,
+tax,
+to,
+total,
+type,
+unit_price
 FROM linode.account.invoice_items
-WHERE page = '{{ page }}'
+WHERE invoiceId = '{{ invoiceId }}' -- required
+AND page = '{{ page }}'
 AND page_size = '{{ page_size }}'
 ;
 ```

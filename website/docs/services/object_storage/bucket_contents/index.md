@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>bucket_contents</code> resource
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>bucket_contents</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="bucket_contents" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.bucket_contents" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>bucket_contents</code> resource
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_bucket_content"
+    defaultValue="list"
     values={[
-        { label: 'get_object_storage_bucket_content', value: 'get_object_storage_bucket_content' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_bucket_content">
+<TabItem value="list">
 
 One page of the requested bucket's contents.
 
@@ -51,19 +52,29 @@ One page of the requested bucket's contents.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
-</tr>
-<tr>
-    <td><CopyableCode code="is_truncated" /></td>
-    <td><code>boolean</code></td>
-    <td>Designates if there is another page of bucket objects.</td>
-</tr>
-<tr>
-    <td><CopyableCode code="next_marker" /></td>
+    <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>Returns the value you should pass to the `marker` query parameter to get the next page of objects. If there is no next page, `null` will be returned. (example: bd021c21-e734-4823-97a4-58b41c2cd4c8.892602.184)</td>
+    <td>The name of this object or prefix. (example: example)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="etag" /></td>
+    <td><code>string</code></td>
+    <td>An MD-5 hash of the object. `null` if this object represents a prefix. (example: 9f254c71e28e033bf9e0e5262e3e72ab)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="last_modified" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>The date and time this object was last modified. `null` if this object represents a prefix. (example: 2019-01-01T01:23:45)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="owner" /></td>
+    <td><code>string</code></td>
+    <td>The owner of this object, as a UUID. `null` if this object represents a prefix. (example: bfc70ab2-e3d4-42a4-ad55-83921822270c)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="size" /></td>
+    <td><code>integer</code></td>
+    <td>The size of this object, in bytes. `null` if this object represents a prefix.</td>
 </tr>
 </tbody>
 </table>
@@ -86,9 +97,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_bucket_content"><CopyableCode code="get_object_storage_bucket_content" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a>, <a href="#parameter-bucket"><code>bucket</code></a></td>
     <td><a href="#parameter-marker"><code>marker</code></a>, <a href="#parameter-delimiter"><code>delimiter</code></a>, <a href="#parameter-prefix"><code>prefix</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Returns the contents of a bucket. The contents are paginated using a `marker`, that's the name of the last object on the previous page. Objects can also be filtered by `prefix` and `delimiter`. See [Filtering and sorting](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) for more information.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#get-object) for more options. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -108,6 +119,16 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-bucket">
+    <td><CopyableCode code="bucket" /></td>
+    <td><code>string</code></td>
+    <td>The bucket name. (example: &#123;&#123;bucket&#125;&#125;)</td>
+</tr>
+<tr id="parameter-regionId">
+    <td><CopyableCode code="regionId" /></td>
+    <td><code>string</code></td>
+    <td>Identifies a region where this bucket lives.  &gt; 📘 &gt; &gt; You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`.</td>
+</tr>
 <tr id="parameter-delimiter">
     <td><CopyableCode code="delimiter" /></td>
     <td><code>string</code></td>
@@ -134,22 +155,26 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_bucket_content"
+    defaultValue="list"
     values={[
-        { label: 'get_object_storage_bucket_content', value: 'get_object_storage_bucket_content' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_bucket_content">
+<TabItem value="list">
 
 Returns the contents of a bucket. The contents are paginated using a `marker`, that's the name of the last object on the previous page. Objects can also be filtered by `prefix` and `delimiter`. See [Filtering and sorting](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) for more information.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#get-object) for more options. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-is_truncated,
-next_marker
+name,
+etag,
+last_modified,
+owner,
+size
 FROM linode.object_storage.bucket_contents
-WHERE marker = '{{ marker }}'
+WHERE regionId = '{{ regionId }}' -- required
+AND bucket = '{{ bucket }}' -- required
+AND marker = '{{ marker }}'
 AND delimiter = '{{ delimiter }}'
 AND prefix = '{{ prefix }}'
 AND page_size = '{{ page_size }}'

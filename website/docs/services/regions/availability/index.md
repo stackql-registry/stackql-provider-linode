@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>availability</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>availability</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="availability" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.regions.availability" /></td></tr>
 </tbody></table>
@@ -32,15 +33,15 @@ Creates, updates, deletes, gets or lists an <code>availability</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_region_availability"
+    defaultValue="get"
     values={[
-        { label: 'get_region_availability', value: 'get_region_availability' },
-        { label: 'get_regions_availability', value: 'get_regions_availability' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_region_availability">
+<TabItem value="get">
 
-The availability data for a single Region.
+Compute instance availability information by [Type](https://techdocs.akamai.com/linode-api/reference/get-linode-types) and [Region](https://techdocs.akamai.com/linode-api/reference/get-regions).
 
 <table>
 <thead>
@@ -69,7 +70,7 @@ The availability data for a single Region.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_regions_availability">
+<TabItem value="list">
 
 Returns a Region Availability object.
 
@@ -118,14 +119,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_region_availability"><CopyableCode code="get_region_availability" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a></td>
     <td></td>
     <td>Returns availability data for a single Region.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#get_regions_availability"><CopyableCode code="get_regions_availability" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
@@ -147,19 +148,24 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-regionId">
+    <td><CopyableCode code="regionId" /></td>
+    <td><code>string</code></td>
+    <td>The abbreviated value ("slug") for the applicable data center. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the slug for each data center.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_region_availability"
+    defaultValue="get"
     values={[
-        { label: 'get_region_availability', value: 'get_region_availability' },
-        { label: 'get_regions_availability', value: 'get_regions_availability' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_region_availability">
+<TabItem value="get">
 
 Returns availability data for a single Region.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -169,10 +175,11 @@ available,
 plan,
 region
 FROM linode.regions.availability
+WHERE regionId = '{{ regionId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_regions_availability">
+<TabItem value="list">
 
 Returns availability data for all regions.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 

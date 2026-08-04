@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>account</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>account</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="account" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.account" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>account</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_account"
+    defaultValue="get"
     values={[
-        { label: 'get_account', value: 'get_account' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account">
+<TabItem value="get">
 
 Returns a single account object.
 
@@ -98,7 +99,7 @@ Returns a single account object.
 <tr>
     <td><CopyableCode code="billing_source" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`. (example: akamai)</td>
+    <td>__Read-only__ The source of service charges for this account. Accounts that are associated with Akamai-specific customers return a value of `akamai`. All other accounts return a value of `linode`. (akamai, linode) (example: akamai)</td>
 </tr>
 <tr>
     <td><CopyableCode code="capabilities" /></td>
@@ -171,21 +172,21 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_account"><CopyableCode code="get_account" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
     <td>Returns the contact and billing information related to your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_account"><CopyableCode code="put_account" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
     <td></td>
     <td></td>
     <td>Updates contact and billing information related to your account. If you exclude any properties from the request, the operation leaves them unchanged.<br /><br />&gt; 📘<br />&gt;<br />&gt; When updating an account's `country` to `US`, you'll get an error if the account's `zip` is not a valid US zip code.<br /><br />**Parent and child accounts**<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- You can't change the `company` for a parent account. Akamai uses this value to set the name for a child account parent user (proxy user) on any child account.<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_cancel_account"><CopyableCode code="post_cancel_account" /></a></td>
+    <td><a href="#cancel"><CopyableCode code="cancel" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td></td>
     <td></td>
@@ -213,12 +214,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_account"
+    defaultValue="get"
     values={[
-        { label: 'get_account', value: 'get_account' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account">
+<TabItem value="get">
 
 Returns the contact and billing information related to your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -254,30 +255,30 @@ FROM linode.account.account
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_account"
+    defaultValue="update"
     values={[
-        { label: 'put_account', value: 'put_account' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_account">
+<TabItem value="update">
 
 Updates contact and billing information related to your account. If you exclude any properties from the request, the operation leaves them unchanged.<br /><br />&gt; 📘<br />&gt;<br />&gt; When updating an account's `country` to `US`, you'll get an error if the account's `zip` is not a valid US zip code.<br /><br />**Parent and child accounts**<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- You can't change the `company` for a parent account. Akamai uses this value to set the name for a child account parent user (proxy user) on any child account.<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.account.account
 SET 
-data__address_1 = '{{ address_1 }}',
-data__address_2 = '{{ address_2 }}',
-data__city = '{{ city }}',
-data__company = '{{ company }}',
-data__country = '{{ country }}',
-data__email = '{{ email }}',
-data__first_name = '{{ first_name }}',
-data__last_name = '{{ last_name }}',
-data__phone = '{{ phone }}',
-data__state = '{{ state }}',
-data__tax_id = '{{ tax_id }}',
-data__zip = '{{ zip }}'
+address_1 = '{{ address_1 }}',
+address_2 = '{{ address_2 }}',
+city = '{{ city }}',
+company = '{{ company }}',
+country = '{{ country }}',
+email = '{{ email }}',
+first_name = '{{ first_name }}',
+last_name = '{{ last_name }}',
+phone = '{{ phone }}',
+state = '{{ state }}',
+tax_id = '{{ tax_id }}',
+zip = '{{ zip }}'
 RETURNING
 tax_id,
 first_name,
@@ -307,17 +308,17 @@ zip;
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_cancel_account"
+    defaultValue="cancel"
     values={[
-        { label: 'post_cancel_account', value: 'post_cancel_account' }
+        { label: 'cancel', value: 'cancel' }
     ]}
 >
-<TabItem value="post_cancel_account">
+<TabItem value="cancel">
 
 Deletes an active account. Akamai attempts to charge the credit card on file for any remaining balance. An error occurs if this charge fails.<br /><br />&gt; 🚧<br />&gt;<br />&gt; - This operation permanently deletes your account and it _can't_ be recovered. Also, there is no warning prompt after you execute this operation.<br />&gt;<br />&gt; - Only account users with _unrestricted_ access can run this operation.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- A child account user can't remove a child account.<br /><br />- You can't remove a parent account if it has an active child account.<br /><br />- You need to work with your Akamai account team to dissolve any parent-child account relationships before you can fully remove a child or parent account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.account.account.post_cancel_account 
+EXEC linode.account.account.cancel 
 @@json=
 '{
 "comments": "{{ comments }}"

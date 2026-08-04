@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>mysql_config</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>mysql_config</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="mysql_config" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.databases.mysql_config" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>mysql_config</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_databases_mysql_config"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_mysql_config', value: 'get_databases_mysql_config' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_databases_mysql_config">
+<TabItem value="get">
 
 MySQL Managed Database advanced parameters.
 
@@ -81,7 +82,7 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_databases_mysql_config"><CopyableCode code="get_databases_mysql_config" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
@@ -109,12 +110,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_databases_mysql_config"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_mysql_config', value: 'get_databases_mysql_config' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_databases_mysql_config">
+<TabItem value="get">
 
 All advanced parameters you can apply to a MySQL Managed Database, via our partner [Aiven](https://aiven.io/docs/products/mysql/reference/advanced-params).<br /><br />&gt; 📘<br />&gt;<br />&gt; Aiven may offer other parameters, but Akamai Managed Databases only supports the ones listed in this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 

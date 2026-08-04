@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>beta_programs</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>beta_programs</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="beta_programs" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.beta_programs" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>beta_programs</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_enrolled_beta_program"
+    defaultValue="get"
     values={[
-        { label: 'get_enrolled_beta_program', value: 'get_enrolled_beta_program' },
-        { label: 'get_enrolled_beta_programs', value: 'get_enrolled_beta_programs' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_enrolled_beta_program">
+<TabItem value="get">
 
 Returns an enrolled Beta Program object for the Account.
 
@@ -84,7 +85,7 @@ Returns an enrolled Beta Program object for the Account.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_enrolled_beta_programs">
+<TabItem value="list">
 
 Returns a paginated list of all enrolled Beta Program objects for the Account.
 
@@ -148,21 +149,21 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_enrolled_beta_program"><CopyableCode code="get_enrolled_beta_program" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-betaId"><code>betaId</code></a></td>
     <td></td>
     <td>Display an enrolled Beta Program for your Account. The Beta Program may be inactive.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_enrolled_beta_programs"><CopyableCode code="get_enrolled_beta_programs" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Display all enrolled Beta Programs for your Account. Includes inactive as well as active Beta Programs.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_beta_program"><CopyableCode code="post_beta_program" /></a></td>
+    <td><a href="#enroll"><CopyableCode code="enroll" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td><a href="#parameter-id"><code>id</code></a></td>
     <td></td>
@@ -184,6 +185,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-betaId">
+    <td><CopyableCode code="betaId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Beta Program. (example: &#123;&#123;betaId&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -200,13 +206,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_enrolled_beta_program"
+    defaultValue="get"
     values={[
-        { label: 'get_enrolled_beta_program', value: 'get_enrolled_beta_program' },
-        { label: 'get_enrolled_beta_programs', value: 'get_enrolled_beta_programs' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_enrolled_beta_program">
+<TabItem value="get">
 
 Display an enrolled Beta Program for your Account. The Beta Program may be inactive.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -219,10 +225,11 @@ enrolled,
 label,
 started
 FROM linode.account.beta_programs
+WHERE betaId = '{{ betaId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_enrolled_beta_programs">
+<TabItem value="list">
 
 Display all enrolled Beta Programs for your Account. Includes inactive as well as active Beta Programs.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -246,17 +253,17 @@ AND page_size = '{{ page_size }}'
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_beta_program"
+    defaultValue="enroll"
     values={[
-        { label: 'post_beta_program', value: 'post_beta_program' }
+        { label: 'enroll', value: 'enroll' }
     ]}
 >
-<TabItem value="post_beta_program">
+<TabItem value="enroll">
 
 Enroll your Account in an active Beta Program.<br /><br />Only unrestricted Users can access this operation.<br /><br />To view active Beta Programs, run the [List beta programs](https://techdocs.akamai.com/linode-api/reference/get-beta-programs) operation.<br /><br />Active Beta Programs may have a limited number of enrollments. If a Beta Program has reached is maximum number of enrollments, an error is returned even though the request is successful.<br /><br />Beta Programs with `"greenlight_only": true` can only be enrolled by Accounts that participate in the [Greenlight](https://www.linode.com/green-light/) program.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.account.beta_programs.post_beta_program 
+EXEC linode.account.beta_programs.enroll 
 @@json=
 '{
 "id": "{{ id }}"

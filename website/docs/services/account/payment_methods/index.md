@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>payment_methods</code> resource
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>payment_methods</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="payment_methods" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.payment_methods" /></td></tr>
 </tbody></table>
@@ -32,15 +33,56 @@ Creates, updates, deletes, gets or lists a <code>payment_methods</code> resource
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_payment_method"
+    defaultValue="get"
     values={[
-        { label: 'get_payment_method', value: 'get_payment_method' },
-        { label: 'get_payment_methods', value: 'get_payment_methods' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_payment_method">
+<TabItem value="get">
 
 Returns a Payment Method Object.
+
+<table>
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+    <th>Description</th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>The unique ID of this Payment Method.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="created" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ When the Payment Method was added to the Account. (example: 2018-01-15T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="data" /></td>
+    <td><code>object</code></td>
+    <td>Credit card information. (x-linode-cli-format: json, title: Credit card, x-linode-ref-name: Credit Card)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="is_default" /></td>
+    <td><code>boolean</code></td>
+    <td>Whether this Payment Method is the default method for automatically processing service charges.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="type" /></td>
+    <td><code>string</code></td>
+    <td>The type of Payment Method. (credit_card, google_pay, paypal) (example: credit_card)</td>
+</tr>
+</tbody>
+</table>
+</TabItem>
+<TabItem value="list">
+
+Returns a paginated list of Payment Method objects.
 
 <table>
 <thead>
@@ -74,43 +116,7 @@ Returns a Payment Method Object.
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>The type of Payment Method. (example: credit_card)</td>
-</tr>
-</tbody>
-</table>
-</TabItem>
-<TabItem value="get_payment_methods">
-
-Returns a paginated list of Payment Method objects.
-
-<table>
-<thead>
-    <tr>
-    <th>Name</th>
-    <th>Datatype</th>
-    <th>Description</th>
-    </tr>
-</thead>
-<tbody>
-<tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
-</tr>
-<tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td>The type of Payment Method. (credit_card, google_pay, paypal) (example: credit_card)</td>
 </tr>
 </tbody>
 </table>
@@ -133,37 +139,37 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_payment_method"><CopyableCode code="get_payment_method" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-paymentMethodId"><code>paymentMethodId</code></a></td>
     <td></td>
     <td>View the details of the specified Payment Method.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_payment_methods"><CopyableCode code="get_payment_methods" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Returns a paginated list of Payment Methods for this Account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_payment_method"><CopyableCode code="post_payment_method" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__type"><code>data__type</code></a>, <a href="#parameter-data__data"><code>data__data</code></a>, <a href="#parameter-data__is_default"><code>data__is_default</code></a></td>
+    <td><a href="#parameter-type"><code>type</code></a>, <a href="#parameter-data"><code>data</code></a>, <a href="#parameter-is_default"><code>is_default</code></a></td>
     <td></td>
     <td>Adds a Payment Method to your Account with the option to set it as the default method.<br /><br />- Adding a default Payment Method removes the default status from any other Payment Method.<br /><br />- An Account can have up to 6 active Payment Methods.<br /><br />- Up to 60 Payment Methods can be added each day.<br /><br />- Prior to adding a Payment Method, ensure that your billing address information is up-to-date with a valid `zip` by running the [Update your account](https://techdocs.akamai.com/linode-api/reference/put-account) operation.<br /><br />- A `payment_method_add` event is generated when a payment is successfully submitted.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_payment_method"><CopyableCode code="delete_payment_method" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
-    <td></td>
+    <td><a href="#parameter-paymentMethodId"><code>paymentMethodId</code></a></td>
     <td></td>
     <td>Deactivate the specified Payment Method.<br /><br />The default Payment Method can not be deleted. To add a new default Payment Method, run the [Add a payment method](https://techdocs.akamai.com/linode-api/reference/post-payment-method) operation. To designate an existing Payment Method as the default method, run the [Set a default payment method](https://techdocs.akamai.com/linode-api/reference/post-make-payment-method-default) operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_make_payment_method_default"><CopyableCode code="post_make_payment_method_default" /></a></td>
+    <td><a href="#make_default"><CopyableCode code="make_default" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td></td>
+    <td><a href="#parameter-paymentMethodId"><code>paymentMethodId</code></a></td>
     <td></td>
     <td>Make the specified Payment Method the default method for automatically processing payments. Removes the default status from any other Payment Method.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -183,6 +189,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-paymentMethodId">
+    <td><CopyableCode code="paymentMethodId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Payment Method to make default.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -199,13 +210,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_payment_method"
+    defaultValue="get"
     values={[
-        { label: 'get_payment_method', value: 'get_payment_method' },
-        { label: 'get_payment_methods', value: 'get_payment_methods' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_payment_method">
+<TabItem value="get">
 
 View the details of the specified Payment Method.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -217,19 +228,21 @@ data,
 is_default,
 type
 FROM linode.account.payment_methods
+WHERE paymentMethodId = '{{ paymentMethodId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_payment_methods">
+<TabItem value="list">
 
 Returns a paginated list of Payment Methods for this Account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
+id,
+created,
 data,
-page,
-pages,
-results
+is_default,
+type
 FROM linode.account.payment_methods
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'
@@ -242,55 +255,57 @@ AND page_size = '{{ page_size }}'
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_payment_method"
+    defaultValue="create"
     values={[
-        { label: 'post_payment_method', value: 'post_payment_method' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_payment_method">
+<TabItem value="create">
 
 Adds a Payment Method to your Account with the option to set it as the default method.<br /><br />- Adding a default Payment Method removes the default status from any other Payment Method.<br /><br />- An Account can have up to 6 active Payment Methods.<br /><br />- Up to 60 Payment Methods can be added each day.<br /><br />- Prior to adding a Payment Method, ensure that your billing address information is up-to-date with a valid `zip` by running the [Update your account](https://techdocs.akamai.com/linode-api/reference/put-account) operation.<br /><br />- A `payment_method_add` event is generated when a payment is successfully submitted.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.account.payment_methods (
-data__data,
-data__is_default,
-data__type
+data,
+is_default,
+type
 )
 SELECT 
 '{{ data }}' /* required */,
 {{ is_default }} /* required */,
 '{{ type }}' /* required */
+RETURNING
+message
 ;
 ```
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: payment_methods
   props:
     - name: data
-      value: object
-      description: >
+      description: |
         An object representing the credit card information you have on file with Linode to make Payments against your Account.
-        
+      value:
+        card_number: "{{ card_number }}"
+        cvv: "{{ cvv }}"
+        expiry_month: {{ expiry_month }}
+        expiry_year: {{ expiry_year }}
     - name: is_default
-      value: boolean
-      description: >
+      value: {{ is_default }}
+      description: |
         Whether this Payment Method is the default method for automatically processing service charges.
-        
     - name: type
-      value: string
-      description: >
+      value: "{{ type }}"
+      description: |
         The type of Payment Method.
-
-Alternative Payment Methods including Google Pay and PayPal can be added using the Cloud Manager. See the [Manage Payment Methods](https://www.linode.com/docs/products/platform/billing/guides/payment-methods/) guide
-for details and instructions.
-        
+        Alternative Payment Methods including Google Pay and PayPal can be added using the Cloud Manager. See the [Manage Payment Methods](https://www.linode.com/docs/products/platform/billing/guides/payment-methods/) guide
+        for details and instructions.
       valid_values: ['credit_card']
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -298,17 +313,18 @@ for details and instructions.
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_payment_method"
+    defaultValue="delete"
     values={[
-        { label: 'delete_payment_method', value: 'delete_payment_method' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_payment_method">
+<TabItem value="delete">
 
 Deactivate the specified Payment Method.<br /><br />The default Payment Method can not be deleted. To add a new default Payment Method, run the [Add a payment method](https://techdocs.akamai.com/linode-api/reference/post-payment-method) operation. To designate an existing Payment Method as the default method, run the [Set a default payment method](https://techdocs.akamai.com/linode-api/reference/post-make-payment-method-default) operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.account.payment_methods
+WHERE paymentMethodId = '{{ paymentMethodId }}' --required
 ;
 ```
 </TabItem>
@@ -318,18 +334,18 @@ DELETE FROM linode.account.payment_methods
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_make_payment_method_default"
+    defaultValue="make_default"
     values={[
-        { label: 'post_make_payment_method_default', value: 'post_make_payment_method_default' }
+        { label: 'make_default', value: 'make_default' }
     ]}
 >
-<TabItem value="post_make_payment_method_default">
+<TabItem value="make_default">
 
 Make the specified Payment Method the default method for automatically processing payments. Removes the default status from any other Payment Method.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.account.payment_methods.post_make_payment_method_default 
-
+EXEC linode.account.payment_methods.make_default 
+@paymentMethodId='{{ paymentMethodId }}' --required
 ;
 ```
 </TabItem>

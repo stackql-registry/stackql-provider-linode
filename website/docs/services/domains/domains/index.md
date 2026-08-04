@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>domains</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>domains</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="domains" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.domains.domains" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>domains</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_domain"
+    defaultValue="get"
     values={[
-        { label: 'get_domain', value: 'get_domain' },
-        { label: 'get_domains', value: 'get_domains' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_domain">
+<TabItem value="get">
 
 A single Domain in Linode's DNS Manager.
 
@@ -69,7 +70,7 @@ A single Domain in Linode's DNS Manager.
 <tr>
     <td><CopyableCode code="domain" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode's platform, including across different Linode accounts; there cannot be two domains representing the same domain. (example: example.org, pattern: <code>^(\*\.)?([a-zA-Z0-9-_]&#123;1,63&#125;\.)+([a-zA-Z]&#123;2,3&#125;\.)?([a-zA-Z]&#123;2,16&#125;|xn--[a-zA-Z0-9]+)$</code>)</td>
+    <td>__Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode's platform, including across different Linode accounts; there cannot be two domains representing the same domain. (example: example.org, pattern: <code>^(\*\.)?(&#91;a-zA-Z0-9-_&#93;&#123;1,63&#125;\.)+(&#91;a-zA-Z&#93;&#123;2,3&#125;\.)?(&#91;a-zA-Z&#93;&#123;2,16&#125;|xn--&#91;a-zA-Z0-9&#93;+)$</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="expire_sec" /></td>
@@ -104,7 +105,7 @@ A single Domain in Linode's DNS Manager.
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>Used to control whether this domain is currently being rendered. (default: active, example: active)</td>
+    <td>Used to control whether this domain is currently being rendered. (disabled, active) (default: active, example: active)</td>
 </tr>
 <tr>
     <td><CopyableCode code="tags" /></td>
@@ -119,12 +120,12 @@ A single Domain in Linode's DNS Manager.
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`). (example: master)</td>
+    <td>Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`). (master, slave) (example: master)</td>
 </tr>
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_domains">
+<TabItem value="list">
 
 A paginated list of Domains you have registered.
 
@@ -138,24 +139,74 @@ A paginated list of Domains you have registered.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Read-only__ This domain's unique ID.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="axfr_ips" /></td>
     <td><code>array</code></td>
-    <td></td>
+    <td>The list of IPs that may perform a zone transfer for this domain. The total combined length of all data within this array cannot exceed 1000 characters.  &gt; 📘 &gt; &gt; This is potentially dangerous, and should be set to an empty list unless you intend to use it.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="description" /></td>
+    <td><code>string</code></td>
+    <td>A description for this domain. This is for display purposes only.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="domain" /></td>
+    <td><code>string</code></td>
+    <td>__Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode's platform, including across different Linode accounts; there cannot be two domains representing the same domain. (example: example.org, pattern: <code>^(\*\.)?(&#91;a-zA-Z0-9-_&#93;&#123;1,63&#125;\.)+(&#91;a-zA-Z&#93;&#123;2,3&#125;\.)?(&#91;a-zA-Z&#93;&#123;2,16&#125;|xn--&#91;a-zA-Z0-9&#93;+)$</code>)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
+    <td><CopyableCode code="expire_sec" /></td>
     <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td>The amount of time in seconds that may pass before this domain is no longer authoritative.  - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.  - Any other value is rounded up to the nearest valid value.  - A value of 0 is equivalent to the default value of 1209600.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="group" /></td>
+    <td><code>string</code></td>
+    <td>__Filterable__ The group this domain belongs to.  This is for display purposes only.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="master_ips" /></td>
+    <td><code>array</code></td>
+    <td>The IP addresses representing the master DNS for this domain. At least one value is required for `type` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="refresh_sec" /></td>
+    <td><code>integer</code></td>
+    <td>The amount of time in seconds before this domain should be refreshed.  - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.  - Any other value is rounded up to the nearest valid value.  - A value of 0 is equivalent to the default value of 14400.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="retry_sec" /></td>
+    <td><code>integer</code></td>
+    <td>The interval, in seconds, at which a failed refresh should be retried.  - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.  - Any other value is rounded up to the nearest valid value.  - A value of 0 is equivalent to the default value of 14400.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="soa_email" /></td>
+    <td><code>string (email)</code></td>
+    <td>Start of Authority email address. This is required for `type` master domains. (example: admin@example.org)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="status" /></td>
+    <td><code>string</code></td>
+    <td>Used to control whether this domain is currently being rendered. (disabled, active) (default: active, example: active)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="tags" /></td>
+    <td><code>array</code></td>
+    <td>__Filterable__ An array of tags applied to this object.  Tags are for organizational purposes only.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="ttl_sec" /></td>
+    <td><code>integer</code></td>
+    <td>"Time to Live" - the amount of time in seconds that this domain's records may be cached by resolvers or other domain servers.  - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.  - Any other value is rounded up to the nearest valid value.  - A value of 0 is equivalent to the default value of 86400.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="type" /></td>
+    <td><code>string</code></td>
+    <td>Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`). (master, slave) (example: master)</td>
 </tr>
 </tbody>
 </table>
@@ -178,51 +229,51 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_domain"><CopyableCode code="get_domain" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-domainId"><code>domainId</code></a></td>
     <td></td>
     <td>This is a single Domain that you have registered in Linode's DNS Manager. Linode is not a registrar, and in order for this Domain record to work you must own the domain and point your registrar at Linode's nameservers.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_domains"><CopyableCode code="get_domains" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>This is a collection of Domains that you have registered in Linode's DNS Manager.  Linode is not a registrar, and in order for these to work you must own the domains and point your registrar at Linode's nameservers.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_domain"><CopyableCode code="post_domain" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__domain"><code>data__domain</code></a>, <a href="#parameter-data__type"><code>data__type</code></a></td>
+    <td><a href="#parameter-domain"><code>domain</code></a>, <a href="#parameter-type"><code>type</code></a></td>
     <td></td>
     <td>Adds a new Domain to Linode's DNS Manager. Linode is not a registrar, and you must own the domain before adding it here. Be sure to point your registrar to Linode's nameservers so that the records hosted here are used.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_domain"><CopyableCode code="put_domain" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td></td>
+    <td><a href="#parameter-domainId"><code>domainId</code></a></td>
     <td></td>
     <td>Update information about a Domain in Linode's DNS Manager.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_domain"><CopyableCode code="delete_domain" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
-    <td></td>
+    <td><a href="#parameter-domainId"><code>domainId</code></a></td>
     <td></td>
     <td>Deletes a Domain from Linode's DNS Manager. The Domain will be removed from Linode's nameservers shortly after this operation completes. This also deletes all associated Domain Records.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_import_domain"><CopyableCode code="post_import_domain" /></a></td>
+    <td><a href="#import"><CopyableCode code="import" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td><a href="#parameter-domain"><code>domain</code></a>, <a href="#parameter-remote_nameserver"><code>remote_nameserver</code></a></td>
     <td></td>
     <td>Imports a domain zone from a remote nameserver. Your nameserver must allow zone transfers (AXFR) from the following IPs:<br /><br />- 96.126.114.97<br />- 96.126.114.98<br />- 2600:3c00::5e<br />- 2600:3c00::5f<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_clone_domain"><CopyableCode code="post_clone_domain" /></a></td>
+    <td><a href="#clone"><CopyableCode code="clone" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td><a href="#parameter-domain"><code>domain</code></a></td>
+    <td><a href="#parameter-domainId"><code>domainId</code></a>, <a href="#parameter-domain"><code>domain</code></a></td>
     <td></td>
     <td>Clones a Domain and all associated DNS records from a Domain that is registered in Linode's DNS manager.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -242,6 +293,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-domainId">
+    <td><CopyableCode code="domainId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Domain to clone. (example: &#123;&#123;domainId&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -258,13 +314,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_domain"
+    defaultValue="get"
     values={[
-        { label: 'get_domain', value: 'get_domain' },
-        { label: 'get_domains', value: 'get_domains' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_domain">
+<TabItem value="get">
 
 This is a single Domain that you have registered in Linode's DNS Manager. Linode is not a registrar, and in order for this Domain record to work you must own the domain and point your registrar at Linode's nameservers.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -285,19 +341,30 @@ tags,
 ttl_sec,
 type
 FROM linode.domains.domains
+WHERE domainId = '{{ domainId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_domains">
+<TabItem value="list">
 
 This is a collection of Domains that you have registered in Linode's DNS Manager.  Linode is not a registrar, and in order for these to work you must own the domains and point your registrar at Linode's nameservers.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+axfr_ips,
+description,
+domain,
+expire_sec,
+group,
+master_ips,
+refresh_sec,
+retry_sec,
+soa_email,
+status,
+tags,
+ttl_sec,
+type
 FROM linode.domains.domains
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'
@@ -310,31 +377,31 @@ AND page_size = '{{ page_size }}'
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_domain"
+    defaultValue="create"
     values={[
-        { label: 'post_domain', value: 'post_domain' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_domain">
+<TabItem value="create">
 
 Adds a new Domain to Linode's DNS Manager. Linode is not a registrar, and you must own the domain before adding it here. Be sure to point your registrar to Linode's nameservers so that the records hosted here are used.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.domains.domains (
-data__axfr_ips,
-data__description,
-data__domain,
-data__expire_sec,
-data__group,
-data__master_ips,
-data__refresh_sec,
-data__retry_sec,
-data__soa_email,
-data__status,
-data__tags,
-data__ttl_sec,
-data__type
+axfr_ips,
+description,
+domain,
+expire_sec,
+group,
+master_ips,
+refresh_sec,
+retry_sec,
+soa_email,
+status,
+tags,
+ttl_sec,
+type
 )
 SELECT 
 '{{ axfr_ips }}',
@@ -370,111 +437,88 @@ type
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: domains
   props:
     - name: axfr_ips
-      value: array
-      description: >
+      value:
+        - "{{ axfr_ips }}"
+      description: |
         The list of IPs that may perform a zone transfer for this domain. The total combined length of all data within this array cannot exceed 1000 characters.
-
-> 📘
->
-> This is potentially dangerous, and should be set to an empty list unless you intend to use it.
-        
+        > 📘
+        >
+        > This is potentially dangerous, and should be set to an empty list unless you intend to use it.
     - name: description
-      value: string
-      description: >
+      value: "{{ description }}"
+      description: |
         A description for this domain. This is for display purposes only.
-        
     - name: domain
-      value: string
-      description: >
+      value: "{{ domain }}"
+      description: |
         __Filterable__ The domain this domain represents. domain labels cannot be longer than 63 characters and must conform to [RFC1035](https://tools.ietf.org/html/rfc1035). domains must be unique on Linode's platform, including across different Linode accounts; there cannot be two domains representing the same domain.
-        
     - name: expire_sec
-      value: integer
-      description: >
+      value: {{ expire_sec }}
+      description: |
         The amount of time in seconds that may pass before this domain is no longer authoritative.
-
-- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
-
-- Any other value is rounded up to the nearest valid value.
-
-- A value of 0 is equivalent to the default value of 1209600.
-        
+        - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
+        - Any other value is rounded up to the nearest valid value.
+        - A value of 0 is equivalent to the default value of 1209600.
       default: 0
     - name: group
-      value: string
-      description: >
+      value: "{{ group }}"
+      description: |
         __Filterable__ The group this domain belongs to.  This is for display purposes only.
-        
     - name: master_ips
-      value: array
-      description: >
-        The IP addresses representing the master DNS for this domain. At least one value is required for `type` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.
-        
+      value:
+        - "{{ master_ips }}"
+      description: |
+        The IP addresses representing the master DNS for this domain. At least one value is required for \`type\` slave domains. The total combined length of all data within this array cannot exceed 1000 characters.
     - name: refresh_sec
-      value: integer
-      description: >
+      value: {{ refresh_sec }}
+      description: |
         The amount of time in seconds before this domain should be refreshed.
-
-- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
-
-- Any other value is rounded up to the nearest valid value.
-
-- A value of 0 is equivalent to the default value of 14400.
-        
+        - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
+        - Any other value is rounded up to the nearest valid value.
+        - A value of 0 is equivalent to the default value of 14400.
       default: 0
     - name: retry_sec
-      value: integer
-      description: >
+      value: {{ retry_sec }}
+      description: |
         The interval, in seconds, at which a failed refresh should be retried.
-
-- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
-
-- Any other value is rounded up to the nearest valid value.
-
-- A value of 0 is equivalent to the default value of 14400.
-        
+        - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
+        - Any other value is rounded up to the nearest valid value.
+        - A value of 0 is equivalent to the default value of 14400.
       default: 0
     - name: soa_email
-      value: string
-      description: >
-        Start of Authority email address. This is required for `type` master domains.
-        
+      value: "{{ soa_email }}"
+      description: |
+        Start of Authority email address. This is required for \`type\` master domains.
     - name: status
-      value: string
-      description: >
+      value: "{{ status }}"
+      description: |
         Used to control whether this domain is currently being rendered.
-        
       valid_values: ['disabled', 'active']
       default: active
     - name: tags
-      value: array
-      description: >
+      value:
+        - "{{ tags }}"
+      description: |
         __Filterable__ An array of tags applied to this object.  Tags are for organizational purposes only.
-        
     - name: ttl_sec
-      value: integer
-      description: >
+      value: {{ ttl_sec }}
+      description: |
         "Time to Live" - the amount of time in seconds that this domain's records may be cached by resolvers or other domain servers.
-
-- Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
-
-- Any other value is rounded up to the nearest valid value.
-
-- A value of 0 is equivalent to the default value of 86400.
-        
+        - Valid values are 0, 30, 120, 300, 3600, 7200, 14400, 28800, 57600, 86400, 172800, 345600, 604800, 1209600, and 2419200.
+        - Any other value is rounded up to the nearest valid value.
+        - A value of 0 is equivalent to the default value of 86400.
       default: 0
     - name: type
-      value: string
-      description: >
-        Whether this domain represents the authoritative source of information for the domain it describes (`master`), or whether it is a read-only copy of a master (`slave`).
-        
+      value: "{{ type }}"
+      description: |
+        Whether this domain represents the authoritative source of information for the domain it describes (\`master\`), or whether it is a read-only copy of a master (\`slave\`).
       valid_values: ['master', 'slave']
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -482,31 +526,33 @@ type
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_domain"
+    defaultValue="update"
     values={[
-        { label: 'put_domain', value: 'put_domain' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_domain">
+<TabItem value="update">
 
 Update information about a Domain in Linode's DNS Manager.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.domains.domains
 SET 
-data__axfr_ips = '{{ axfr_ips }}',
-data__description = '{{ description }}',
-data__domain = '{{ domain }}',
-data__expire_sec = {{ expire_sec }},
-data__group = '{{ group }}',
-data__master_ips = '{{ master_ips }}',
-data__refresh_sec = {{ refresh_sec }},
-data__retry_sec = {{ retry_sec }},
-data__soa_email = '{{ soa_email }}',
-data__status = '{{ status }}',
-data__tags = '{{ tags }}',
-data__ttl_sec = {{ ttl_sec }},
-data__type = '{{ type }}'
+axfr_ips = '{{ axfr_ips }}',
+description = '{{ description }}',
+domain = '{{ domain }}',
+expire_sec = {{ expire_sec }},
+group = '{{ group }}',
+master_ips = '{{ master_ips }}',
+refresh_sec = {{ refresh_sec }},
+retry_sec = {{ retry_sec }},
+soa_email = '{{ soa_email }}',
+status = '{{ status }}',
+tags = '{{ tags }}',
+ttl_sec = {{ ttl_sec }},
+type = '{{ type }}'
+WHERE 
+domainId = '{{ domainId }}' --required
 RETURNING
 id,
 axfr_ips,
@@ -530,17 +576,18 @@ type;
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_domain"
+    defaultValue="delete"
     values={[
-        { label: 'delete_domain', value: 'delete_domain' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_domain">
+<TabItem value="delete">
 
 Deletes a Domain from Linode's DNS Manager. The Domain will be removed from Linode's nameservers shortly after this operation completes. This also deletes all associated Domain Records.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.domains.domains
+WHERE domainId = '{{ domainId }}' --required
 ;
 ```
 </TabItem>
@@ -550,18 +597,18 @@ DELETE FROM linode.domains.domains
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_import_domain"
+    defaultValue="import"
     values={[
-        { label: 'post_import_domain', value: 'post_import_domain' },
-        { label: 'post_clone_domain', value: 'post_clone_domain' }
+        { label: 'import', value: 'import' },
+        { label: 'clone', value: 'clone' }
     ]}
 >
-<TabItem value="post_import_domain">
+<TabItem value="import">
 
 Imports a domain zone from a remote nameserver. Your nameserver must allow zone transfers (AXFR) from the following IPs:<br /><br />- 96.126.114.97<br />- 96.126.114.98<br />- 2600:3c00::5e<br />- 2600:3c00::5f<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.domains.domains.post_import_domain 
+EXEC linode.domains.domains.import 
 @@json=
 '{
 "domain": "{{ domain }}", 
@@ -570,12 +617,13 @@ EXEC linode.domains.domains.post_import_domain
 ;
 ```
 </TabItem>
-<TabItem value="post_clone_domain">
+<TabItem value="clone">
 
 Clones a Domain and all associated DNS records from a Domain that is registered in Linode's DNS manager.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.domains.domains.post_clone_domain 
+EXEC linode.domains.domains.clone 
+@domainId='{{ domainId }}' --required 
 @@json=
 '{
 "domain": "{{ domain }}"

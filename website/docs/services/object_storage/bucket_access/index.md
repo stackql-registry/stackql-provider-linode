@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>bucket_access</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>bucket_access</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="bucket_access" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.bucket_access" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>bucket_access</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_bucket_access"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_bucket_access', value: 'get_object_storage_bucket_access' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_bucket_access">
+<TabItem value="get">
 
 Access settings for the specific bucket.
 
@@ -53,7 +54,7 @@ Access settings for the specific bucket.
 <tr>
     <td><CopyableCode code="acl" /></td>
     <td><code>string</code></td>
-    <td>The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). (example: public-read)</td>
+    <td>The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). (private, public-read, authenticated-read, public-read-write, custom) (example: public-read)</td>
 </tr>
 <tr>
     <td><CopyableCode code="acl_xml" /></td>
@@ -91,23 +92,23 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_bucket_access"><CopyableCode code="get_object_storage_bucket_access" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a>, <a href="#parameter-bucket"><code>bucket</code></a></td>
     <td></td>
     <td>View the cross-origin resource sharing (CORS) and [S3 canned access control (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings for a specific Object Storage bucket.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use the S3 API to view more details on [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_object_storage_bucket_access"><CopyableCode code="post_object_storage_bucket_access" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a>, <a href="#parameter-bucket"><code>bucket</code></a></td>
     <td></td>
     <td>Apply basic cross-origin resource sharing (CORS) and [S3 canned access control list (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use the S3 API for more fine-grained control of the [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_storage_bucket_access"><CopyableCode code="put_storage_bucket_access" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a>, <a href="#parameter-bucket"><code>bucket</code></a></td>
     <td></td>
     <td>Update basic cross-origin resource sharing (CORS) and [S3 canned access control list (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use the S3 API for more fine-grained control of the [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -127,18 +128,28 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-bucket">
+    <td><CopyableCode code="bucket" /></td>
+    <td><code>string</code></td>
+    <td>The bucket name. (example: &#123;&#123;bucket&#125;&#125;)</td>
+</tr>
+<tr id="parameter-regionId">
+    <td><CopyableCode code="regionId" /></td>
+    <td><code>string</code></td>
+    <td>Identifies a region where this bucket lives.  &gt; 📘 &gt; &gt; You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_bucket_access"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_bucket_access', value: 'get_object_storage_bucket_access' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_bucket_access">
+<TabItem value="get">
 
 View the cross-origin resource sharing (CORS) and [S3 canned access control (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings for a specific Object Storage bucket.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use the S3 API to view more details on [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -149,6 +160,8 @@ acl_xml,
 cors_enabled,
 cors_xml
 FROM linode.object_storage.bucket_access
+WHERE regionId = '{{ regionId }}' -- required
+AND bucket = '{{ bucket }}' -- required
 ;
 ```
 </TabItem>
@@ -158,45 +171,57 @@ FROM linode.object_storage.bucket_access
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_object_storage_bucket_access"
+    defaultValue="create"
     values={[
-        { label: 'post_object_storage_bucket_access', value: 'post_object_storage_bucket_access' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_object_storage_bucket_access">
+<TabItem value="create">
 
 Apply basic cross-origin resource sharing (CORS) and [S3 canned access control list (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use the S3 API for more fine-grained control of the [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.object_storage.bucket_access (
-data__acl,
-data__cors_enabled
+acl,
+cors_enabled,
+regionId,
+bucket
 )
 SELECT 
 '{{ acl }}',
-{{ cors_enabled }}
+{{ cors_enabled }},
+'{{ regionId }}',
+'{{ bucket }}'
+RETURNING
+bucket,
+message,
+regionId
 ;
 ```
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: bucket_access
   props:
+    - name: regionId
+      value: "{{ regionId }}"
+      description: Required parameter for the bucket_access resource.
+    - name: bucket
+      value: "{{ bucket }}"
+      description: Required parameter for the bucket_access resource.
     - name: acl
-      value: string
-      description: >
+      value: "{{ acl }}"
+      description: |
         The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
-        
       valid_values: ['private', 'public-read', 'authenticated-read', 'public-read-write', 'custom']
     - name: cors_enabled
-      value: boolean
-      description: >
-        If `true`, cross-origin resource sharing (CORS) is enabled for all origins in the bucket.
-        
-```
+      value: {{ cors_enabled }}
+      description: |
+        If \`true\`, cross-origin resource sharing (CORS) is enabled for all origins in the bucket.
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -204,20 +229,27 @@ SELECT
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_storage_bucket_access"
+    defaultValue="update"
     values={[
-        { label: 'put_storage_bucket_access', value: 'put_storage_bucket_access' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_storage_bucket_access">
+<TabItem value="update">
 
 Update basic cross-origin resource sharing (CORS) and [S3 canned access control list (ACL)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl) settings.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use the S3 API for more fine-grained control of the [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/enabling-cors-examples.html) or [S3 canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/managing-acls.html) settings. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.object_storage.bucket_access
 SET 
-data__acl = '{{ acl }}',
-data__cors_enabled = {{ cors_enabled }};
+acl = '{{ acl }}',
+cors_enabled = {{ cors_enabled }}
+WHERE 
+regionId = '{{ regionId }}' --required
+AND bucket = '{{ bucket }}' --required
+RETURNING
+bucket,
+message,
+regionId;
 ```
 </TabItem>
 </Tabs>

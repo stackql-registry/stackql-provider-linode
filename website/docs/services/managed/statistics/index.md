@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>statistics</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>statistics</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="statistics" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.statistics" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>statistics</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_stats"
+    defaultValue="list"
     values={[
-        { label: 'get_managed_stats', value: 'get_managed_stats' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_stats">
+<TabItem value="list">
 
 A list of Managed Stats from the last 24 hours.
 
@@ -50,21 +51,6 @@ A list of Managed Stats from the last 24 hours.
     </tr>
 </thead>
 <tbody>
-<tr>
-    <td><CopyableCode code="0" /></td>
-    <td><code>string</code></td>
-    <td> (example: Graphs are not yet available.)</td>
-</tr>
-<tr>
-    <td><CopyableCode code="1" /></td>
-    <td><code>string</code></td>
-    <td> (example: Graphs are not yet available.)</td>
-</tr>
-<tr>
-    <td><CopyableCode code="2" /></td>
-    <td><code>string</code></td>
-    <td> (example: Graphs are not yet available.)</td>
-</tr>
 <tr>
     <td><CopyableCode code="cpu" /></td>
     <td><code>array</code></td>
@@ -111,11 +97,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_stats"><CopyableCode code="get_managed_stats" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
-    <td>Returns a list of Managed Stats on your Account in the form of x and y data points. You can use these data points to plot your own graph visualizations. These stats reflect the last 24 hours of combined usage across all managed Linodes on your account giving you a high-level snapshot of data for the following:<br /><br />- cpu<br />- disk<br />- swap<br />- network in<br />- network out<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a list of metrics for the Linodes on your account in arrays of coordinates (_x_-axis and _y_-axis data points). You can use these data points to plot your own graph visualizations. These metrics reflect the last 24 hours of combined usage across all managed Linodes on your account, giving you a high-level snapshot of data for the following:<br /><br />- CPU<br />- Disk I/O<br />- Swap usage<br />- Network in<br />- Network out<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -139,20 +125,17 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_stats"
+    defaultValue="list"
     values={[
-        { label: 'get_managed_stats', value: 'get_managed_stats' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_stats">
+<TabItem value="list">
 
-Returns a list of Managed Stats on your Account in the form of x and y data points. You can use these data points to plot your own graph visualizations. These stats reflect the last 24 hours of combined usage across all managed Linodes on your account giving you a high-level snapshot of data for the following:<br /><br />- cpu<br />- disk<br />- swap<br />- network in<br />- network out<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a list of metrics for the Linodes on your account in arrays of coordinates (_x_-axis and _y_-axis data points). You can use these data points to plot your own graph visualizations. These metrics reflect the last 24 hours of combined usage across all managed Linodes on your account, giving you a high-level snapshot of data for the following:<br /><br />- CPU<br />- Disk I/O<br />- Swap usage<br />- Network in<br />- Network out<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-0,
-1,
-2,
 cpu,
 disk,
 net_in,

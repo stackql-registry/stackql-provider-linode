@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>acl_configurations</code> reso
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>acl_configurations</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="acl_configurations" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.acl_configurations" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>acl_configurations</code> reso
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_bucket_acl"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_bucket_acl', value: 'get_object_storage_bucket_acl' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_bucket_acl">
+<TabItem value="get">
 
 The Object's canned ACL and policy.
 
@@ -53,7 +54,7 @@ The Object's canned ACL and policy.
 <tr>
     <td><CopyableCode code="acl" /></td>
     <td><code>string</code></td>
-    <td>The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). (example: public-read)</td>
+    <td>The S3 predefined collection of grantees and permissions set for the bucket, also referred to as a [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). (private, public-read, authenticated-read, public-read-write, custom) (example: public-read)</td>
 </tr>
 <tr>
     <td><CopyableCode code="acl_xml" /></td>
@@ -81,16 +82,16 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_bucket_acl"><CopyableCode code="get_object_storage_bucket_acl" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td><a href="#parameter-name"><code>name</code></a></td>
+    <td><a href="#parameter-name"><code>name</code></a>, <a href="#parameter-regionId"><code>regionId</code></a>, <a href="#parameter-bucket"><code>bucket</code></a></td>
     <td></td>
     <td>View a specific object's access control list (ACL) settings. ACLs define who can access your buckets and objects and specify the level of access granted to those users.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#get-object-acl) for more options. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_object_storage_bucket_acl"><CopyableCode code="put_object_storage_bucket_acl" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td><a href="#parameter-data__acl"><code>data__acl</code></a>, <a href="#parameter-data__name"><code>data__name</code></a></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a>, <a href="#parameter-bucket"><code>bucket</code></a>, <a href="#parameter-acl"><code>acl</code></a>, <a href="#parameter-name"><code>name</code></a></td>
     <td></td>
     <td>Update a specific object's access control list (ACL) settings. ACLs define who can access your buckets and objects, and specify the level of access granted to those users.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#set-object-acl) for more options. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -110,10 +111,20 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-bucket">
+    <td><CopyableCode code="bucket" /></td>
+    <td><code>string</code></td>
+    <td>The bucket name. (example: &#123;&#123;bucket&#125;&#125;)</td>
+</tr>
 <tr id="parameter-name">
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
     <td>The name of a specific object to get its access control list (ACL) details. Run the [List Object Storage bucket contents](https://techdocs.akamai.com/linode-api/reference/get-object-storage-bucket-content) operation to access all object names in a bucket. (example: &#123;&#123;name&#125;&#125;)</td>
+</tr>
+<tr id="parameter-regionId">
+    <td><CopyableCode code="regionId" /></td>
+    <td><code>string</code></td>
+    <td>Identifies a region where this bucket lives.  &gt; 📘 &gt; &gt; You can use a `clusterId` in place of `regionId` in requests for buckets that you created using the legacy version of the API. Run [List clusters](https://techdocs.akamai.com/linode-api/reference/get-object-storage-clusters) to see each cluster `id`.</td>
 </tr>
 </tbody>
 </table>
@@ -121,12 +132,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_bucket_acl"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_bucket_acl', value: 'get_object_storage_bucket_acl' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_bucket_acl">
+<TabItem value="get">
 
 View a specific object's access control list (ACL) settings. ACLs define who can access your buckets and objects and specify the level of access granted to those users.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#get-object-acl) for more options. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -136,6 +147,8 @@ acl,
 acl_xml
 FROM linode.object_storage.acl_configurations
 WHERE name = '{{ name }}' -- required
+AND regionId = '{{ regionId }}' -- required
+AND bucket = '{{ bucket }}' -- required
 ;
 ```
 </TabItem>
@@ -145,23 +158,29 @@ WHERE name = '{{ name }}' -- required
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_object_storage_bucket_acl"
+    defaultValue="update"
     values={[
-        { label: 'put_object_storage_bucket_acl', value: 'put_object_storage_bucket_acl' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_object_storage_bucket_acl">
+<TabItem value="update">
 
 Update a specific object's access control list (ACL) settings. ACLs define who can access your buckets and objects, and specify the level of access granted to those users.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can use an outside API, such as the [Ceph Object Gateway S3 API](https://docs.ceph.com/en/latest/radosgw/s3/objectops/#set-object-acl) for more options. __OAuth scopes__.<br /><br />    ```<br />    object_storage:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.object_storage.acl_configurations
 SET 
-data__acl = '{{ acl }}',
-data__name = '{{ name }}'
+acl = '{{ acl }}',
+name = '{{ name }}'
 WHERE 
-data__acl = '{{ acl }}' --required
-AND data__name = '{{ name }}' --required;
+regionId = '{{ regionId }}' --required
+AND bucket = '{{ bucket }}' --required
+AND acl = '{{ acl }}' --required
+AND name = '{{ name }}' --required
+RETURNING
+bucket,
+message,
+regionId;
 ```
 </TabItem>
 </Tabs>

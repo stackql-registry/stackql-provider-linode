@@ -1,0 +1,30 @@
+/*+ exists */
+SELECT id as volume_id
+FROM linode.volumes.volumes
+WHERE label = '{{ volume_label }}'
+
+/*+ create */
+INSERT INTO linode.volumes.volumes (
+ label,
+ region,
+ size
+)
+SELECT
+ '{{ volume_label }}',
+ '{{ region }}',
+ {{ volume_size }}
+
+/*+ statecheck, retries=10, retry_delay=10 */
+SELECT COUNT(*) as count
+FROM linode.volumes.volumes
+WHERE label = '{{ volume_label }}'
+AND status = 'active'
+
+/*+ exports */
+SELECT id as volume_id
+FROM linode.volumes.volumes
+WHERE label = '{{ volume_label }}'
+
+/*+ delete, retries=5, retry_delay=10 */
+DELETE FROM linode.volumes.volumes
+WHERE volumeId = '{{ volume_id }}'

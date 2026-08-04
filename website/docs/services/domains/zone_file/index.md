@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>zone_file</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>zone_file</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="zone_file" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.domains.zone_file" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>zone_file</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_domain_zone"
+    defaultValue="get"
     values={[
-        { label: 'get_domain_zone', value: 'get_domain_zone' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_domain_zone">
+<TabItem value="get">
 
 An array containing the lines of the domain zone file.
 
@@ -71,9 +72,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_domain_zone"><CopyableCode code="get_domain_zone" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-domainId"><code>domainId</code></a></td>
     <td></td>
     <td>Returns the zone file for the last rendered zone for the specified domain.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -93,18 +94,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-domainId">
+    <td><CopyableCode code="domainId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Domain. (example: &#123;&#123;domainId&#125;&#125;)</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_domain_zone"
+    defaultValue="get"
     values={[
-        { label: 'get_domain_zone', value: 'get_domain_zone' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_domain_zone">
+<TabItem value="get">
 
 Returns the zone file for the last rendered zone for the specified domain.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -112,6 +118,7 @@ Returns the zone file for the last rendered zone for the specified domain.<br />
 SELECT
 *
 FROM linode.domains.zone_file
+WHERE domainId = '{{ domainId }}' -- required
 ;
 ```
 </TabItem>

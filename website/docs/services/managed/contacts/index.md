@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>contacts</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>contacts</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="contacts" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.contacts" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>contacts</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_contact"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_contact', value: 'get_managed_contact' },
-        { label: 'get_managed_contacts', value: 'get_managed_contacts' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_contact">
+<TabItem value="get">
 
 The requested Managed Contact.
 
@@ -59,7 +60,7 @@ The requested Managed Contact.
 <tr>
     <td><CopyableCode code="name" /></td>
     <td><code>string</code></td>
-    <td>The name of this Contact. (example: John Doe, pattern: <code>[a-zA-Z0-9-_ ]&#123;2,64&#125;</code>)</td>
+    <td>The name of this Contact. (example: John Doe, pattern: <code>&#91;a-zA-Z0-9-_ &#93;&#123;2,64&#125;</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="email" /></td>
@@ -84,7 +85,7 @@ The requested Managed Contact.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_managed_contacts">
+<TabItem value="list">
 
 A paginated list of ManagedContacts.
 
@@ -98,24 +99,34 @@ A paginated list of ManagedContacts.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Read-only__ This Contact's unique ID.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="name" /></td>
+    <td><code>string</code></td>
+    <td>The name of this Contact. (example: John Doe, pattern: <code>&#91;a-zA-Z0-9-_ &#93;&#123;2,64&#125;</code>)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="email" /></td>
+    <td><code>string (email)</code></td>
+    <td>The address to email this Contact to alert them of issues. (example: john.doe@example.org)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="group" /></td>
+    <td><code>string</code></td>
+    <td>__Filterable__ A grouping for this Contact. This is for display purposes only. (example: on-call)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="phone" /></td>
+    <td><code>object</code></td>
+    <td>Information about how to reach this Contact by phone.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="updated" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ When this Contact was last updated. (example: 2018-01-01T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -138,39 +149,39 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_contact"><CopyableCode code="get_managed_contact" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-contactId"><code>contactId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Returns a single Managed Contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a single managed contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_managed_contacts"><CopyableCode code="get_managed_contacts" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
-    <td>Returns a paginated list of Managed Contacts on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of managed contacts on your account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_managed_contact"><CopyableCode code="post_managed_contact" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
     <td></td>
     <td></td>
-    <td>Creates a Managed Contact.  A Managed Contact is someone Linode special forces can contact in the course of attempting to resolve an issue with a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Creates a managed contact. When investigating or resolving an issue with a service monitor, Akamai Support may reach out to this contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_managed_contact"><CopyableCode code="put_managed_contact" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
+    <td><a href="#parameter-contactId"><code>contactId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Updates information about a Managed Contact. This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Updates information for a managed contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_managed_contact"><CopyableCode code="delete_managed_contact" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
+    <td><a href="#parameter-contactId"><code>contactId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Deletes a Managed Contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Deletes a managed contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -188,6 +199,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-contactId">
+    <td><CopyableCode code="contactId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the contact to access.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -204,15 +220,15 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_contact"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_contact', value: 'get_managed_contact' },
-        { label: 'get_managed_contacts', value: 'get_managed_contacts' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_contact">
+<TabItem value="get">
 
-Returns a single Managed Contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a single managed contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
@@ -223,19 +239,22 @@ group,
 phone,
 updated
 FROM linode.managed.contacts
+WHERE contactId = '{{ contactId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_managed_contacts">
+<TabItem value="list">
 
-Returns a paginated list of Managed Contacts on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a paginated list of managed contacts on your account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+name,
+email,
+group,
+phone,
+updated
 FROM linode.managed.contacts
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'
@@ -248,22 +267,22 @@ AND page_size = '{{ page_size }}'
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_managed_contact"
+    defaultValue="create"
     values={[
-        { label: 'post_managed_contact', value: 'post_managed_contact' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_managed_contact">
+<TabItem value="create">
 
-Creates a Managed Contact.  A Managed Contact is someone Linode special forces can contact in the course of attempting to resolve an issue with a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Creates a managed contact. When investigating or resolving an issue with a service monitor, Akamai Support may reach out to this contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.managed.contacts (
-data__email,
-data__group,
-data__name,
-data__phone
+email,
+group,
+name,
+phone
 )
 SELECT 
 '{{ email }}',
@@ -282,31 +301,29 @@ updated
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: contacts
   props:
     - name: email
-      value: string
-      description: >
+      value: "{{ email }}"
+      description: |
         The address to email this Contact to alert them of issues.
-        
     - name: group
-      value: string
-      description: >
+      value: "{{ group }}"
+      description: |
         __Filterable__ A grouping for this Contact. This is for display purposes only.
-        
     - name: name
-      value: string
-      description: >
+      value: "{{ name }}"
+      description: |
         The name of this Contact.
-        
     - name: phone
-      value: object
-      description: >
+      description: |
         Information about how to reach this Contact by phone.
-        
-```
+      value:
+        primary: "{{ primary }}"
+        secondary: "{{ secondary }}"
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -314,22 +331,24 @@ updated
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_managed_contact"
+    defaultValue="update"
     values={[
-        { label: 'put_managed_contact', value: 'put_managed_contact' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_managed_contact">
+<TabItem value="update">
 
-Updates information about a Managed Contact. This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Updates information for a managed contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.managed.contacts
 SET 
-data__email = '{{ email }}',
-data__group = '{{ group }}',
-data__name = '{{ name }}',
-data__phone = '{{ phone }}'
+email = '{{ email }}',
+group = '{{ group }}',
+name = '{{ name }}',
+phone = '{{ phone }}'
+WHERE 
+contactId = '{{ contactId }}' --required
 RETURNING
 id,
 name,
@@ -345,17 +364,18 @@ updated;
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_managed_contact"
+    defaultValue="delete"
     values={[
-        { label: 'delete_managed_contact', value: 'delete_managed_contact' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_managed_contact">
+<TabItem value="delete">
 
-Deletes a Managed Contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Deletes a managed contact.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.managed.contacts
+WHERE contactId = '{{ contactId }}' --required
 ;
 ```
 </TabItem>

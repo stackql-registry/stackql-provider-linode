@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>quotas</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>quotas</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="quotas" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.quotas" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>quotas</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_quota"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_quota', value: 'get_object_storage_quota' },
-        { label: 'get_object_storage_quotas', value: 'get_object_storage_quotas' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_quota">
+<TabItem value="get">
 
 A single Object Storage-related quota for your account.
 
@@ -59,7 +60,7 @@ A single Object Storage-related quota for your account.
 <tr>
     <td><CopyableCode code="quota_name" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`. (example: Number of Buckets)</td>
+    <td>__Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`. (Number of Objects, Number of Buckets, Total Capacity) (example: Number of Buckets)</td>
 </tr>
 <tr>
     <td><CopyableCode code="description" /></td>
@@ -69,7 +70,7 @@ A single Object Storage-related quota for your account.
 <tr>
     <td><CopyableCode code="endpoint_type" /></td>
     <td><code>string</code></td>
-    <td>The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information. (example: E1)</td>
+    <td>The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information. (E0, E1, E2, E3) (example: E1)</td>
 </tr>
 <tr>
     <td><CopyableCode code="quota_limit" /></td>
@@ -79,7 +80,7 @@ A single Object Storage-related quota for your account.
 <tr>
     <td><CopyableCode code="resource_metric" /></td>
     <td><code>string</code></td>
-    <td>The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:  - The Object Storage `bucket` quota for a single `s3_endpoint`  - The `object` quota for a single `s3_endpoint`  - The `byte` count quota for content in a single `s3_endpoint` (example: bucket)</td>
+    <td>The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:  - The Object Storage `bucket` quota for a single `s3_endpoint`  - The `object` quota for a single `s3_endpoint`  - The `byte` count quota for content in a single `s3_endpoint` (bucket, object, byte) (example: bucket)</td>
 </tr>
 <tr>
     <td><CopyableCode code="s3_endpoint" /></td>
@@ -89,7 +90,7 @@ A single Object Storage-related quota for your account.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_object_storage_quotas">
+<TabItem value="list">
 
 A paginated list of Object Storage-related quotas applied to your account.
 
@@ -110,7 +111,7 @@ A paginated list of Object Storage-related quotas applied to your account.
 <tr>
     <td><CopyableCode code="quota_name" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`. (example: Number of Buckets)</td>
+    <td>__Filterable__ The name of the Object Storage-related quota. This is how the quota displays in Akamai Cloud Manager. This can be `Number of Buckets`, `Number of Objects`, or `Total Capacity`. (Number of Objects, Number of Buckets, Total Capacity) (example: Number of Buckets)</td>
 </tr>
 <tr>
     <td><CopyableCode code="description" /></td>
@@ -120,7 +121,7 @@ A paginated list of Object Storage-related quotas applied to your account.
 <tr>
     <td><CopyableCode code="endpoint_type" /></td>
     <td><code>string</code></td>
-    <td>The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information. (example: E1)</td>
+    <td>The type of `s3_endpoint`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information. (E0, E1, E2, E3) (example: E1)</td>
 </tr>
 <tr>
     <td><CopyableCode code="quota_limit" /></td>
@@ -130,7 +131,7 @@ A paginated list of Object Storage-related quotas applied to your account.
 <tr>
     <td><CopyableCode code="resource_metric" /></td>
     <td><code>string</code></td>
-    <td>The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:  - The Object Storage `bucket` quota for a single `s3_endpoint`  - The `object` quota for a single `s3_endpoint`  - The `byte` count quota for content in a single `s3_endpoint` (example: bucket)</td>
+    <td>The specific Object Storage-based resource for the quota. A quota maximum may apply as follows:  - The Object Storage `bucket` quota for a single `s3_endpoint`  - The `object` quota for a single `s3_endpoint`  - The `byte` count quota for content in a single `s3_endpoint` (bucket, object, byte) (example: bucket)</td>
 </tr>
 <tr>
     <td><CopyableCode code="s3_endpoint" /></td>
@@ -158,18 +159,18 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_quota"><CopyableCode code="get_object_storage_quota" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-objQuotaId"><code>objQuotaId</code></a></td>
     <td></td>
     <td>Returns information about a specific Object Storage-related quota on your account. The operation includes any quota overrides in the response.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_object_storage_quotas"><CopyableCode code="get_object_storage_quotas" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
-    <td>Returns the active Object Storage-related quotas applied to your account. For example, you may have a quota maximum for the number of buckets you can have on a single endpoint. The operation includes any quota overrides in the response.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can't combine parameters when [filtering](https://techdocs.akamai.com/linode-api/reference//filtering-and-sorting) with this operation. Only a single filterable parameter can be used.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns the active Object Storage-related quotas applied to your account. For example, you may have a quota maximum for the number of buckets you can have on a single endpoint. The operation includes any quota overrides in the response.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can't combine parameters when [filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) with this operation. Only a single filterable parameter can be used.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -187,19 +188,24 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-objQuotaId">
+    <td><CopyableCode code="objQuotaId" /></td>
+    <td><code>string</code></td>
+    <td>The unique string that identifies the specific Object Storage-related quota to look up. This follows the pattern, `obj-<quota_type>-<s3_endpoint>`, for example, `obj-buckets-eu-central-1.linodeobjects.com`.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_quota"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_quota', value: 'get_object_storage_quota' },
-        { label: 'get_object_storage_quotas', value: 'get_object_storage_quotas' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_quota">
+<TabItem value="get">
 
 Returns information about a specific Object Storage-related quota on your account. The operation includes any quota overrides in the response.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -213,12 +219,13 @@ quota_limit,
 resource_metric,
 s3_endpoint
 FROM linode.object_storage.quotas
+WHERE objQuotaId = '{{ objQuotaId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_object_storage_quotas">
+<TabItem value="list">
 
-Returns the active Object Storage-related quotas applied to your account. For example, you may have a quota maximum for the number of buckets you can have on a single endpoint. The operation includes any quota overrides in the response.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can't combine parameters when [filtering](https://techdocs.akamai.com/linode-api/reference//filtering-and-sorting) with this operation. Only a single filterable parameter can be used.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns the active Object Storage-related quotas applied to your account. For example, you may have a quota maximum for the number of buckets you can have on a single endpoint. The operation includes any quota overrides in the response.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can't combine parameters when [filtering](https://techdocs.akamai.com/linode-api/reference/filtering-and-sorting) with this operation. Only a single filterable parameter can be used.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
