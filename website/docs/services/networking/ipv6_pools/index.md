@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>ipv6_pools</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>ipv6_pools</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="ipv6_pools" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.networking.ipv6_pools" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>ipv6_pools</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_ipv6_pools"
+    defaultValue="list"
     values={[
-        { label: 'get_ipv6_pools', value: 'get_ipv6_pools' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_ipv6_pools">
+<TabItem value="list">
 
 The IPv6 pools on your Account.
 
@@ -51,24 +52,24 @@ The IPv6 pools on your Account.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="prefix" /></td>
+    <td><code>integer</code></td>
+    <td>The prefix length of the address. The total number of addresses that can be assigned from this range is calculated as 2&lt;sup&gt;(128 - prefix length)&lt;/sup&gt;.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="range" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The IPv6 range of addresses in this pool. (example: 2600:3c01::2:5000:0)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="region" /></td>
+    <td><code>string</code></td>
+    <td>__Filterable__, __Read-only__ The region for this pool of IPv6 addresses. (example: us-east)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="route_target" /></td>
+    <td><code>string</code></td>
+    <td>The last address in this block of IPv6 addresses. (example: 2600:3c01::2:5000:f)</td>
 </tr>
 </tbody>
 </table>
@@ -91,7 +92,7 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_ipv6_pools"><CopyableCode code="get_ipv6_pools" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
@@ -129,21 +130,21 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_ipv6_pools"
+    defaultValue="list"
     values={[
-        { label: 'get_ipv6_pools', value: 'get_ipv6_pools' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_ipv6_pools">
+<TabItem value="list">
 
 Displays the IPv6 pools on your Account. A pool of IPv6 addresses are routed to all of your Linodes in a single [region](https://techdocs.akamai.com/linode-api/reference/get-regions). Any Linode on your Account may bring up any address in this pool at any time, with no external configuration required.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+prefix,
+range,
+region,
+route_target
 FROM linode.networking.ipv6_pools
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'

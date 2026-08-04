@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>linode_settings</code> resource
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>linode_settings</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="linode_settings" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.linode_settings" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>linode_settings</code> resource
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_linode_settings"
+    defaultValue="list"
     values={[
-        { label: 'get_managed_linode_settings', value: 'get_managed_linode_settings' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_linode_settings">
+<TabItem value="list">
 
 A paginated list of Managed settings for your Linodes.
 
@@ -51,24 +52,24 @@ A paginated list of Managed settings for your Linodes.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Read-only__ The ID of the Linode these Settings are for.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="group" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The group of the Linode these Settings are for. This is for display purposes only. (example: linodes)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The label of the Linode these Settings are for. (example: linode123)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="ssh" /></td>
+    <td><code>object</code></td>
+    <td>The SSH settings for this Linode.</td>
 </tr>
 </tbody>
 </table>
@@ -91,11 +92,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_linode_settings"><CopyableCode code="get_managed_linode_settings" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
-    <td>Returns a paginated list of Managed Settings for your Linodes. There will be one entry per Linode on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of managed settings for your Linodes (one entry per Linode).<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -129,21 +130,21 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_linode_settings"
+    defaultValue="list"
     values={[
-        { label: 'get_managed_linode_settings', value: 'get_managed_linode_settings' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_linode_settings">
+<TabItem value="list">
 
-Returns a paginated list of Managed Settings for your Linodes. There will be one entry per Linode on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a paginated list of managed settings for your Linodes (one entry per Linode).<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+group,
+label,
+ssh
 FROM linode.managed.linode_settings
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'

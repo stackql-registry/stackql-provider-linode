@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>plans</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>plans</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="plans" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.longview.plans" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>plans</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_longview_plan"
+    defaultValue="get"
     values={[
-        { label: 'get_longview_plan', value: 'get_longview_plan' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_longview_plan">
+<TabItem value="get">
 
 The Longview plan details for this account.
 
@@ -53,7 +54,7 @@ The Longview plan details for this account.
 <tr>
     <td><CopyableCode code="id" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The unique ID of this Subscription tier. (example: longview-10)</td>
+    <td>__Read-only__ The unique ID of this Subscription tier. (longview-3, longview-10, longview-40, longview-100) (example: longview-10)</td>
 </tr>
 <tr>
     <td><CopyableCode code="clients_included" /></td>
@@ -91,14 +92,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_longview_plan"><CopyableCode code="get_longview_plan" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
     <td>Get the details of your current Longview plan. This returns a `LongviewSubscription` object for your current Longview Pro plan, or an empty set `&#123;&#125;` if your current plan is Longview Free.<br /><br />You must have at least one of the following `global` [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) in order to run this operation:<br /><br />  - `"account_access": read_write`<br />  - `"account_access": read_only`<br />  - `"longview_subscription": true`<br />  - `"add_longview": true`<br /><br />To update your subscription plan, send a request to [Update a Longview plan](https://techdocs.akamai.com/linode-api/reference/put-longview-plan).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_longview_plan"><CopyableCode code="put_longview_plan" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
     <td></td>
     <td></td>
@@ -126,12 +127,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_longview_plan"
+    defaultValue="get"
     values={[
-        { label: 'get_longview_plan', value: 'get_longview_plan' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_longview_plan">
+<TabItem value="get">
 
 Get the details of your current Longview plan. This returns a `LongviewSubscription` object for your current Longview Pro plan, or an empty set `&#123;&#125;` if your current plan is Longview Free.<br /><br />You must have at least one of the following `global` [List a user's grants](https://techdocs.akamai.com/linode-api/reference/get-user-grants) in order to run this operation:<br /><br />  - `"account_access": read_write`<br />  - `"account_access": read_only`<br />  - `"longview_subscription": true`<br />  - `"add_longview": true`<br /><br />To update your subscription plan, send a request to [Update a Longview plan](https://techdocs.akamai.com/linode-api/reference/put-longview-plan).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -151,19 +152,19 @@ FROM linode.longview.plans
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_longview_plan"
+    defaultValue="update"
     values={[
-        { label: 'put_longview_plan', value: 'put_longview_plan' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_longview_plan">
+<TabItem value="update">
 
 Update your Longview plan to that of the given subscription ID. This returns a `LongviewSubscription` object for the updated Longview Pro plan, or an empty set `&#123;&#125;` if the updated plan is Longview Free.<br /><br />You must have `"longview_subscription": true` configured as a `global` [user grant](https://techdocs.akamai.com/linode-api/reference/get-user-grants) in order to run this operation.<br /><br />You can send a request to the [List Longview subscriptions](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) operation to receive the details, including `id`'s, of each plan.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.longview.plans
 SET 
-data__longview_subscription = '{{ longview_subscription }}'
+longview_subscription = '{{ longview_subscription }}'
 RETURNING
 id,
 clients_included,

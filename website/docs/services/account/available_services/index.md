@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>available_services</code> reso
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>available_services</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="available_services" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.available_services" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>available_services</code> reso
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_availability"
+    defaultValue="list"
     values={[
-        { label: 'get_availability', value: 'get_availability' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_availability">
+<TabItem value="list">
 
 List of regions and the services available in each.
 
@@ -86,7 +87,7 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_availability"><CopyableCode code="get_availability" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
@@ -124,12 +125,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_availability"
+    defaultValue="list"
     values={[
-        { label: 'get_availability', value: 'get_availability' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_availability">
+<TabItem value="list">
 
 Returns a paginated list of the services available to you, for all Linode regions.<br /><br />&gt; 📘<br />&gt;<br />&gt; Only authorized users can run this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 

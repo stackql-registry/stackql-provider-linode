@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>subscriptions</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>subscriptions</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="subscriptions" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.longview.subscriptions" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>subscriptions</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_longview_subscription"
+    defaultValue="get"
     values={[
-        { label: 'get_longview_subscription', value: 'get_longview_subscription' },
-        { label: 'get_longview_subscriptions', value: 'get_longview_subscriptions' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_longview_subscription">
+<TabItem value="get">
 
 The requested Longview Subscription details.
 
@@ -54,7 +55,7 @@ The requested Longview Subscription details.
 <tr>
     <td><CopyableCode code="id" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The unique ID of this Subscription tier. (example: longview-10)</td>
+    <td>__Read-only__ The unique ID of this Subscription tier. (longview-3, longview-10, longview-40, longview-100) (example: longview-10)</td>
 </tr>
 <tr>
     <td><CopyableCode code="clients_included" /></td>
@@ -74,9 +75,9 @@ The requested Longview Subscription details.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_longview_subscriptions">
+<TabItem value="list">
 
-A paginated list of Longview Subscriptions.
+A paginated list of Longview subscriptions.
 
 <table>
 <thead>
@@ -88,24 +89,24 @@ A paginated list of Longview Subscriptions.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The unique ID of this Subscription tier. (longview-3, longview-10, longview-40, longview-100) (example: longview-10)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
+    <td><CopyableCode code="clients_included" /></td>
     <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td>__Read-only__ The number of Longview Clients that may be created with this Subscription tier.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ A display name for this Subscription tier. (example: Longview Pro 10 pack)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="price" /></td>
+    <td><code>object</code></td>
+    <td>__Read-only__ Pricing information about this Subscription tier.</td>
 </tr>
 </tbody>
 </table>
@@ -128,18 +129,18 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_longview_subscription"><CopyableCode code="get_longview_subscription" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-subscriptionId"><code>subscriptionId</code></a></td>
     <td></td>
     <td>Get the Longview plan details as a single `LongviewSubscription` object for the provided subscription ID. This is a public endpoint and requires no authentication.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#get_longview_subscriptions"><CopyableCode code="get_longview_subscriptions" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
-    <td>Returns a paginated list of available Longview Subscriptions. This is a public endpoint and requires no authentication.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
+    <td>Returns a paginated list of available Longview subscriptions. This is a public endpoint and requires no authentication.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 </tbody>
 </table>
@@ -157,6 +158,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-subscriptionId">
+    <td><CopyableCode code="subscriptionId" /></td>
+    <td><code>string</code></td>
+    <td>The Longview Subscription to look up. (example: &#123;&#123;subscriptionId&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -173,13 +179,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_longview_subscription"
+    defaultValue="get"
     values={[
-        { label: 'get_longview_subscription', value: 'get_longview_subscription' },
-        { label: 'get_longview_subscriptions', value: 'get_longview_subscriptions' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_longview_subscription">
+<TabItem value="get">
 
 Get the Longview plan details as a single `LongviewSubscription` object for the provided subscription ID. This is a public endpoint and requires no authentication.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -190,19 +196,20 @@ clients_included,
 label,
 price
 FROM linode.longview.subscriptions
+WHERE subscriptionId = '{{ subscriptionId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_longview_subscriptions">
+<TabItem value="list">
 
-Returns a paginated list of available Longview Subscriptions. This is a public endpoint and requires no authentication.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
+Returns a paginated list of available Longview subscriptions. This is a public endpoint and requires no authentication.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+clients_included,
+label,
+price
 FROM linode.longview.subscriptions
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'

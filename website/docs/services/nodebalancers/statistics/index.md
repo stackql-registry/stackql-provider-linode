@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>statistics</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>statistics</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="statistics" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.nodebalancers.statistics" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>statistics</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_node_balancer_stats"
+    defaultValue="get"
     values={[
-        { label: 'get_node_balancer_stats', value: 'get_node_balancer_stats' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_node_balancer_stats">
+<TabItem value="get">
 
 The requested stats.
 
@@ -81,9 +82,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_node_balancer_stats"><CopyableCode code="get_node_balancer_stats" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-nodeBalancerId"><code>nodeBalancerId</code></a></td>
     <td></td>
     <td>Returns detailed statistics about the requested NodeBalancer. __OAuth scopes__.<br /><br />    ```<br />    nodebalancers:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -103,18 +104,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-nodeBalancerId">
+    <td><CopyableCode code="nodeBalancerId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the NodeBalancer. (example: &#123;&#123;nodeBalancerId&#125;&#125;)</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_node_balancer_stats"
+    defaultValue="get"
     values={[
-        { label: 'get_node_balancer_stats', value: 'get_node_balancer_stats' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_node_balancer_stats">
+<TabItem value="get">
 
 Returns detailed statistics about the requested NodeBalancer. __OAuth scopes__.<br /><br />    ```<br />    nodebalancers:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -123,6 +129,7 @@ SELECT
 data,
 title
 FROM linode.nodebalancers.statistics
+WHERE nodeBalancerId = '{{ nodeBalancerId }}' -- required
 ;
 ```
 </TabItem>

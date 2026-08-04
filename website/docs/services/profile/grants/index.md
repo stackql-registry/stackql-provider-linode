@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>grants</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>grants</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="grants" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.profile.grants" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>grants</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_profile_grants"
+    defaultValue="get"
     values={[
-        { label: 'get_profile_grants', value: 'get_profile_grants' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_profile_grants">
+<TabItem value="get">
 
 GrantsResponse.
 
@@ -126,7 +127,7 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_profile_grants"><CopyableCode code="get_profile_grants" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
@@ -154,12 +155,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_profile_grants"
+    defaultValue="get"
     values={[
-        { label: 'get_profile_grants', value: 'get_profile_grants' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_profile_grants">
+<TabItem value="get">
 
 This returns a GrantsResponse describing what the acting User has been granted access to.  For unrestricted users, this will return a  204 and no body because unrestricted users have access to everything without grants.  This will not return information about entities you do not have access to.  This operation is useful when writing third-party OAuth applications to see what options you should present to the acting User.<br /><br />For example, if they do not have `global.add_linodes`, you might not display a button to deploy a new Linode.<br /><br />Any client may run this operation; no OAuth scopes are required.
 

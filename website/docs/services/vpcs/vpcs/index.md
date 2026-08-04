@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>vpcs</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>vpcs</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="vpcs" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.vpcs.vpcs" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>vpcs</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_vpc"
+    defaultValue="get"
     values={[
-        { label: 'get_vpc', value: 'get_vpc' },
-        { label: 'get_vpcs', value: 'get_vpcs' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_vpc">
+<TabItem value="get">
 
 A VPC object.
 
@@ -89,7 +90,7 @@ A VPC object.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_vpcs">
+<TabItem value="list">
 
 A paginated list of VPC objects.
 
@@ -158,37 +159,37 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_vpc"><CopyableCode code="get_vpc" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-vpcId"><code>vpcId</code></a></td>
     <td></td>
     <td>Get information about a single VPC.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#get_vpcs"><CopyableCode code="get_vpcs" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Display all VPCs on your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#post_vpc"><CopyableCode code="post_vpc" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__label"><code>data__label</code></a>, <a href="#parameter-data__region"><code>data__region</code></a></td>
+    <td><a href="#parameter-label"><code>label</code></a>, <a href="#parameter-region"><code>region</code></a></td>
     <td></td>
     <td>Create a new VPC and optionally associated VPC Subnets.<br /><br />- Users must have the `add_vpc` grant to access this operation.<br />- A successful request triggers a `vpc_create` event and `subnet_create` events for any created VPC Subnets.<br /><br />Once a VPC is created, it can be attached to a Linode by assigning a VPC Subnet to one of the Linode's Configuration Profile Interfaces. This step can be accomplished with the following operations:<br /><br />- [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance)<br />- [Create a config profile](https://techdocs.akamai.com/linode-api/reference/post-add-linode-config)<br />- [Update a config profile](https://techdocs.akamai.com/linode-api/reference/put-linode-config)<br />- [Add a configuration profile interface](https://techdocs.akamai.com/linode-api/reference/post-linode-config-interface)<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_vpc"><CopyableCode code="put_vpc" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td></td>
+    <td><a href="#parameter-vpcId"><code>vpcId</code></a></td>
     <td></td>
     <td>Update an existing VPC.<br /><br />- The User accessing this operation must have `read_write` grants to the VPC.<br />- A successful request triggers a `vpc_update` event.<br /><br />To update a VPC's Subnet, run the [Update a VPC subnet](https://techdocs.akamai.com/linode-api/reference/put-vpc-subnet) operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_vpc"><CopyableCode code="delete_vpc" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
-    <td></td>
+    <td><a href="#parameter-vpcId"><code>vpcId</code></a></td>
     <td></td>
     <td>Delete a single VPC and all of its Subnets.<br /><br />- The User accessing this operation must have `read_write` grants to the VPC.<br />- A successful request triggers a `vpc_delete` event and `subnet_delete` events for each deleted VPC Subnet.<br />- All of the VPC's Subnets must be eligible for deletion. Accordingly, all Configuration Profile Interfaces that each Subnet is assigned to must first be deleted. If those Interfaces are active, the associated Linodes must first be shut down before they can be removed. If any Subnet cannot be deleted, then neither the VPC nor any of its Subnets are deleted.<br />- You can't delete a VPC if a NodeBalancer is attached to one of its subnets.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -208,6 +209,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-vpcId">
+    <td><CopyableCode code="vpcId" /></td>
+    <td><code>string</code></td>
+    <td>The `id` of the VPC.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -224,13 +230,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_vpc"
+    defaultValue="get"
     values={[
-        { label: 'get_vpc', value: 'get_vpc' },
-        { label: 'get_vpcs', value: 'get_vpcs' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_vpc">
+<TabItem value="get">
 
 Get information about a single VPC.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -244,10 +250,11 @@ region,
 subnets,
 updated
 FROM linode.vpcs.vpcs
+WHERE vpcId = '{{ vpcId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_vpcs">
+<TabItem value="list">
 
 Display all VPCs on your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -272,22 +279,22 @@ AND page_size = '{{ page_size }}'
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_vpc"
+    defaultValue="create"
     values={[
-        { label: 'post_vpc', value: 'post_vpc' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_vpc">
+<TabItem value="create">
 
 Create a new VPC and optionally associated VPC Subnets.<br /><br />- Users must have the `add_vpc` grant to access this operation.<br />- A successful request triggers a `vpc_create` event and `subnet_create` events for any created VPC Subnets.<br /><br />Once a VPC is created, it can be attached to a Linode by assigning a VPC Subnet to one of the Linode's Configuration Profile Interfaces. This step can be accomplished with the following operations:<br /><br />- [Create a Linode](https://techdocs.akamai.com/linode-api/reference/post-linode-instance)<br />- [Create a config profile](https://techdocs.akamai.com/linode-api/reference/post-add-linode-config)<br />- [Update a config profile](https://techdocs.akamai.com/linode-api/reference/put-linode-config)<br />- [Add a configuration profile interface](https://techdocs.akamai.com/linode-api/reference/post-linode-config-interface)<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.vpcs.vpcs (
-data__subnets,
-data__description,
-data__label,
-data__region
+subnets,
+description,
+label,
+region
 )
 SELECT 
 '{{ subnets }}',
@@ -307,35 +314,28 @@ updated
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: vpcs
   props:
     - name: subnets
-      value: array
-      description: >
-        A list of subnets associated with the VPC.
-        
+      value: "{{ subnets }}"
     - name: description
-      value: string
-      description: >
+      value: "{{ description }}"
+      description: |
         A written description to help distinguish the VPC.
-        
       default: 
     - name: label
-      value: string
-      description: >
+      value: "{{ label }}"
+      description: |
         __Filterable__ The VPC's label, for display purposes only.
-
-- Needs to be unique among the Account's VPCs.
-- Can only contain ASCII letters, numbers, and hyphens (`-`). You can't use two consecutive hyphens (`--`).
-        
+        - Needs to be unique among the Account's VPCs.
+        - Can only contain ASCII letters, numbers, and hyphens (\`-\`). You can't use two consecutive hyphens (\`--\`).
     - name: region
-      value: string
-      description: >
+      value: "{{ region }}"
+      description: |
         __Filterable__ The Region for the VPC.
-        
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -343,20 +343,22 @@ updated
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_vpc"
+    defaultValue="update"
     values={[
-        { label: 'put_vpc', value: 'put_vpc' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_vpc">
+<TabItem value="update">
 
 Update an existing VPC.<br /><br />- The User accessing this operation must have `read_write` grants to the VPC.<br />- A successful request triggers a `vpc_update` event.<br /><br />To update a VPC's Subnet, run the [Update a VPC subnet](https://techdocs.akamai.com/linode-api/reference/put-vpc-subnet) operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.vpcs.vpcs
 SET 
-data__description = '{{ description }}',
-data__label = '{{ label }}'
+description = '{{ description }}',
+label = '{{ label }}'
+WHERE 
+vpcId = '{{ vpcId }}' --required
 RETURNING
 id,
 created,
@@ -373,17 +375,18 @@ updated;
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_vpc"
+    defaultValue="delete"
     values={[
-        { label: 'delete_vpc', value: 'delete_vpc' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_vpc">
+<TabItem value="delete">
 
 Delete a single VPC and all of its Subnets.<br /><br />- The User accessing this operation must have `read_write` grants to the VPC.<br />- A successful request triggers a `vpc_delete` event and `subnet_delete` events for each deleted VPC Subnet.<br />- All of the VPC's Subnets must be eligible for deletion. Accordingly, all Configuration Profile Interfaces that each Subnet is assigned to must first be deleted. If those Interfaces are active, the associated Linodes must first be shut down before they can be removed. If any Subnet cannot be deleted, then neither the VPC nor any of its Subnets are deleted.<br />- You can't delete a VPC if a NodeBalancer is attached to one of its subnets.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.vpcs.vpcs
+WHERE vpcId = '{{ vpcId }}' --required
 ;
 ```
 </TabItem>

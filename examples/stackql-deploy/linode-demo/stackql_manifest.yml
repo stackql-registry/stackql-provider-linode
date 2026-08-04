@@ -1,0 +1,48 @@
+version: 1
+name: "linode-demo"
+description: Provisions a minimal Linode stack - a nanode compute instance running Debian 12 and a 10GB block storage volume.
+providers:
+  - linode
+globals:
+  - name: region
+    description: Linode region id (e.g. us-ord)
+    value: "{{ LINODE_REGION }}"
+  - name: root_password
+    description: root password for the instance, sourced from the environment
+    value: "{{ LINODE_ROOT_PASSWORD }}"
+resources:
+  - name: example_instance
+    props:
+      - name: instance_label
+        value: "{{ stack_name }}-{{ stack_env }}-vm"
+      - name: instance_type
+        values:
+          prd:
+            value: g6-standard-1
+          sit:
+            value: g6-nanode-1
+          dev:
+            value: g6-nanode-1
+      - name: instance_image
+        value: linode/debian12
+      - name: instance_tags
+        value: ["stackql-deploy", "{{ stack_name }}", "{{ stack_env }}"]
+    exports:
+      - instance_id
+      - instance_ipv4
+    protected:
+      - instance_id
+  - name: example_volume
+    props:
+      - name: volume_label
+        value: "{{ stack_name }}-{{ stack_env }}-vol"
+      - name: volume_size
+        values:
+          prd:
+            value: 20
+          sit:
+            value: 10
+          dev:
+            value: 10
+    exports:
+      - volume_id

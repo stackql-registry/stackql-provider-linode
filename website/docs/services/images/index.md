@@ -18,16 +18,19 @@ images service documentation.
 
 :::info[Service Summary]
 
-total resources: __1__  
+total resources: __5__  
 
 :::
 
 ## Resources
 <div class="row">
 <div class="providerDocColumn">
-<a href="/services/images/images/">images</a>
+<a href="/services/images/images/">images</a><br />
+<a href="/services/images/sharegroup_images/">sharegroup_images</a><br />
+<a href="/services/images/sharegroup_members/">sharegroup_members</a>
 </div>
 <div class="providerDocColumn">
-
+<a href="/services/images/sharegroup_tokens/">sharegroup_tokens</a><br />
+<a href="/services/images/sharegroups/">sharegroups</a>
 </div>
 </div>

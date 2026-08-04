@@ -1,426 +1,450 @@
 filename,path,operationId,formatted_op_id,verb,response_object,tags,formatted_tags,stackql_resource_name,stackql_method_name,stackql_verb,stackql_object_key,op_description
-account.yaml,/{apiVersion}/account/cancel,post-cancel-account,post-cancel-account,post,,Account,account,account,post_cancel_account,exec,,Delete your account
-account.yaml,/{apiVersion}/account,put-account,put-account,put,,Account,account,account,put_account,replace,,Update your account
-account.yaml,/{apiVersion}/account,get-account,get-account,get,,Account,account,account,get_account,select,,Get your account
-account.yaml,/{apiVersion}/account/agreements,post-account-agreements,post-account-agreements,post,,Account agreements,account agreements,agreements,post_account_agreements,exec,,Acknowledge agreements
-account.yaml,/{apiVersion}/account/agreements,get-account-agreements,get-account-agreements,get,,Account agreements,account agreements,agreements,get_account_agreements,select,,List agreements
-account.yaml,/{apiVersion}/account/availability/{id},get-account-availability,get-account-availability,get,,Account,account,availability,get_account_availability,select,,Get a region's service availability
-account.yaml,/{apiVersion}/account/availability,get-availability,get-availability,get,,Account availability,account availability,available_services,get_availability,select,$.data,List available services
-account.yaml,/{apiVersion}/account/betas,post-beta-program,post-beta-program,post,,Beta programs,beta programs,beta_programs,post_beta_program,exec,,Enroll in a Beta program
-account.yaml,/{apiVersion}/account/betas,get-enrolled-beta-programs,get-enrolled-beta-programs,get,,Beta programs,beta programs,beta_programs,get_enrolled_beta_programs,select,$.data,List enrolled Beta programs
-account.yaml,/{apiVersion}/account/betas/{betaId},get-enrolled-beta-program,get-enrolled-beta-program,get,,Beta programs,beta programs,beta_programs,get_enrolled_beta_program,select,,Get an enrolled Beta program
-account.yaml,/{apiVersion}/account/child-accounts/{euuid}/token,post-child-account-token,post-child-account-token,post,,Child accounts,child accounts,child_accounts,post_child_account_token,exec,,Create a proxy user token
-account.yaml,/{apiVersion}/account/child-accounts,get-child-accounts,get-child-accounts,get,,Child accounts,child accounts,child_accounts,get_child_accounts,select,,List child accounts
-account.yaml,/{apiVersion}/account/child-accounts/{euuid},get-child-account,get-child-account,get,,Child accounts,child accounts,child_accounts,get_child_account,select,,Get a child account
-account.yaml,/{apiVersion}/account/oauth-clients/{clientId}/thumbnail,put-client-thumbnail,put-client-thumbnail,put,,Client thumbnail,client thumbnail,oauth_clients,put_client_thumbnail,exec,,Update the OAuth client's thumbnail
-account.yaml,/{apiVersion}/account/oauth-clients/{clientId}/thumbnail,get-client-thumbnail,get-client-thumbnail,get,,Client thumbnail,client thumbnail,oauth_clients,get_client_thumbnail,exec,,Get the OAuth client's thumbnail
-account.yaml,/{apiVersion}/account/entity-transfers/{token},delete-entity-transfer,delete-entity-transfer,delete,,Entity transfers,entity transfers,entity_transfers,delete_entity_transfer,delete,,Cancel an entity transfer
-account.yaml,/{apiVersion}/account/entity-transfers/{token}/accept,post-accept-entity-transfer,post-accept-entity-transfer,post,,Entity transfers,entity transfers,entity_transfers,post_accept_entity_transfer,exec,,Accept an entity transfer
-account.yaml,/{apiVersion}/account/entity-transfers,post-entity-transfer,post-entity-transfer,post,,Entity transfers,entity transfers,entity_transfers,post_entity_transfer,insert,,Create an entity transfer
-account.yaml,/{apiVersion}/account/entity-transfers,get-entity-transfers,get-entity-transfers,get,,Entity transfers,entity transfers,entity_transfers,get_entity_transfers,select,$.data,List entity transfers
-account.yaml,/{apiVersion}/account/entity-transfers/{token},get-entity-transfer,get-entity-transfer,get,,Entity transfers,entity transfers,entity_transfers,get_entity_transfer,select,,Get an entity transfer
-account.yaml,/{apiVersion}/account/events/{eventId}/seen,post-event-seen,post-event-seen,post,,Events,events,events,post_event_seen,exec,,Mark an event as seen
-account.yaml,/{apiVersion}/account/events,get-events,get-events,get,,Events,events,events,get_events,select,,List events
-account.yaml,/{apiVersion}/account/events/{eventId},get-event,get-event,get,,Events,events,events,get_event,select,,Get an event
-account.yaml,/{apiVersion}/account/invoices/{invoiceId}/items,get-invoice-items,get-invoice-items,get,,Invoices,invoices,invoice_items,get_invoice_items,select,,List invoice items
-account.yaml,/{apiVersion}/account/invoices,get-invoices,get-invoices,get,,Invoices,invoices,invoices,get_invoices,select,,List invoices
-account.yaml,/{apiVersion}/account/invoices/{invoiceId},get-invoice,get-invoice,get,,Invoices,invoices,invoices,get_invoice,select,,Get an invoice
-account.yaml,/{apiVersion}/account/logins,get-account-logins,get-account-logins,get,,Logins,logins,logins,get_account_logins,select,,List user logins
-account.yaml,/{apiVersion}/account/logins/{loginId},get-account-login,get-account-login,get,,Logins,logins,logins,get_account_login,select,,Get an account login
-account.yaml,/{apiVersion}/account/maintenance,get-maintenance,get-maintenance,get,,Maintenances,maintenances,maintenances,get_maintenance,select,,List maintenances
-account.yaml,/{apiVersion}/account/transfer,get-transfer,get-transfer,get,,Account transfer,account transfer,network_usage,get_transfer,select,,Get network usage
-account.yaml,/{apiVersion}/account/notifications,get-notifications,get-notifications,get,,Notifications,notifications,notifications,get_notifications,select,,List notifications
-account.yaml,/{apiVersion}/account/oauth-clients/{clientId},delete-client,delete-client,delete,,OAuth clients,oauth clients,oauth_clients,delete_client,delete,,Delete an OAuth client
-account.yaml,/{apiVersion}/account/oauth-clients/{clientId}/reset-secret,post-reset-client-secret,post-reset-client-secret,post,,OAuth clients,oauth clients,oauth_clients,post_reset_client_secret,exec,,Reset an OAuth client secret
-account.yaml,/{apiVersion}/account/oauth-clients,post-client,post-client,post,,OAuth clients,oauth clients,oauth_clients,post_client,insert,,Create an OAuth client
-account.yaml,/{apiVersion}/account/oauth-clients/{clientId},put-client,put-client,put,,OAuth clients,oauth clients,oauth_clients,put_client,replace,,Update an OAuth client
-account.yaml,/{apiVersion}/account/oauth-clients,get-clients,get-clients,get,,OAuth clients,oauth clients,oauth_clients,get_clients,select,,List OAuth clients
-account.yaml,/{apiVersion}/account/oauth-clients/{clientId},get-client,get-client,get,,OAuth clients,oauth clients,oauth_clients,get_client,select,,Get an OAuth client
-account.yaml,/{apiVersion}/account/payment-methods/{paymentMethodId},delete-payment-method,delete-payment-method,delete,,Payment methods,payment methods,payment_methods,delete_payment_method,delete,,Delete a payment method
-account.yaml,/{apiVersion}/account/payment-methods/{paymentMethodId}/make-default,post-make-payment-method-default,post-make-payment-method-default,post,,Payment methods,payment methods,payment_methods,post_make_payment_method_default,exec,,Set a default payment method
-account.yaml,/{apiVersion}/account/payment-methods,post-payment-method,post-payment-method,post,,Payment methods,payment methods,payment_methods,post_payment_method,insert,,Add a payment method
-account.yaml,/{apiVersion}/account/payment-methods,get-payment-methods,get-payment-methods,get,,Payment methods,payment methods,payment_methods,get_payment_methods,select,,List payment methods
-account.yaml,/{apiVersion}/account/payment-methods/{paymentMethodId},get-payment-method,get-payment-method,get,,Payment methods,payment methods,payment_methods,get_payment_method,select,,Get a payment method
-account.yaml,/{apiVersion}/account/payments,post-payment,post-payment,post,,Payments,payments,payments,post_payment,exec,,Make a payment
-account.yaml,/{apiVersion}/account/payments/paypal,post-pay-pal-payment,post-pay-pal-payment,post,,Payments,payments,payments,post_pay_pal_payment,exec,,Stage a PayPal payment
-account.yaml,/{apiVersion}/account/payments/paypal/execute,post-execute-pay-pal-payment,post-execute-pay-pal-payment,post,,Payments,payments,payments,post_execute_pay_pal_payment,exec,,Execute a PayPal payment
-account.yaml,/{apiVersion}/account/credit-card,post-credit-card,post-credit-card,post,,Payments,payments,payments,post_credit_card,insert,,Add or edit a credit card
-account.yaml,/{apiVersion}/account/payments,get-payments,get-payments,get,,Payments,payments,payments,get_payments,select,,List payments
-account.yaml,/{apiVersion}/account/payments/{paymentId},get-payment,get-payment,get,,Payments,payments,payments,get_payment,select,,Get a payment
-account.yaml,/{apiVersion}/account/promo-codes,post-promo-credit,post-promo-credit,post,,Promo credits,promo credits,promo_credits,post_promo_credit,insert,,Add a promo credit
-account.yaml,/{apiVersion}/account/service-transfers/{token},delete-service-transfer,delete-service-transfer,delete,,Service transfers,service transfers,service_transfers,delete_service_transfer,delete,,Cancel a service transfer
-account.yaml,/{apiVersion}/account/service-transfers/{token}/accept,post-accept-service-transfer,post-accept-service-transfer,post,,Service transfers,service transfers,service_transfers,post_accept_service_transfer,exec,,Accept a service transfer
-account.yaml,/{apiVersion}/account/service-transfers,post-service-transfer,post-service-transfer,post,,Service transfers,service transfers,service_transfers,post_service_transfer,insert,,Request a service transfer
-account.yaml,/{apiVersion}/account/service-transfers,get-service-transfers,get-service-transfers,get,,Service transfers,service transfers,service_transfers,get_service_transfers,select,,List service transfers
-account.yaml,/{apiVersion}/account/service-transfers/{token},get-service-transfer,get-service-transfer,get,,Service transfers,service transfers,service_transfers,get_service_transfer,select,,Get a service transfer request
-account.yaml,/{apiVersion}/account/settings/managed-enable,post-enable-account-managed,post-enable-account-managed,post,,Settings,settings,settings,post_enable_account_managed,exec,,Enable Linode Managed
-account.yaml,/{apiVersion}/account/settings,put-account-settings,put-account-settings,put,,Account settings,account settings,settings,put_account_settings,replace,,Update account settings
-account.yaml,/{apiVersion}/account/settings,get-account-settings,get-account-settings,get,,Account settings,account settings,settings,get_account_settings,select,,Get account settings
-account.yaml,/{apiVersion}/account/users/{username}/grants,put-user-grants,put-user-grants,put,,Users,users,user_grants,put_user_grants,replace,,Update a user's grants
-account.yaml,/{apiVersion}/account/users/{username}/grants,get-user-grants,get-user-grants,get,,Users,users,user_grants,get_user_grants,select,,List a user's grants
-account.yaml,/{apiVersion}/account/users/{username},delete-user,delete-user,delete,,Users,users,users,delete_user,delete,,Delete a user
-account.yaml,/{apiVersion}/account/users,post-user,post-user,post,,Users,users,users,post_user,insert,,Create a user
-account.yaml,/{apiVersion}/account/users/{username},put-user,put-user,put,,Users,users,users,put_user,replace,,Update a user
-account.yaml,/{apiVersion}/account/users,get-users,get-users,get,,Users,users,users,get_users,select,,List users
-account.yaml,/{apiVersion}/account/users/{username},get-user,get-user,get,,Users,users,users,get_user,select,$.user_type,Get a user
-betas.yaml,/{apiVersion}/betas,get-beta-programs,get-beta-programs,get,,Beta programs,beta programs,beta_programs,get_beta_programs,select,$.data,List Beta programs
-betas.yaml,/{apiVersion}/betas/{betaId},get-beta-program,get-beta-program,get,,Beta programs,beta programs,beta_programs,get_beta_program,select,,Get a Beta program
-databases.yaml,/{apiVersion}/databases/engines,get-databases-engines,get-databases-engines,get,,Engines,engines,engines,get_databases_engines,select,$.data,List Managed Databases engines
-databases.yaml,/{apiVersion}/databases/engines/{engineId},get-databases-engine,get-databases-engine,get,,Engines,engines,engines,get_databases_engine,select,,Get a Managed Databases engine
-databases.yaml,/{apiVersion}/databases/instances,get-databases-instances,get-databases-instances,get,,Databases,databases,instances,get_databases_instances,select,$.data,List Managed Databases
-databases.yaml,/{apiVersion}/databases/mysql/config,get-databases-mysql-config,get-databases-mysql-config,get,,Advanced parameters,advanced parameters,mysql_config,get_databases_mysql_config,select,,List MySQL Managed Database advanced parameters
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId}/credentials/reset,post-databases-mysql-instance-credentials-reset,post-databases-mysql-instance-credentials-reset,post,,Credentials,credentials,mysql_instance_credentials,post_databases_mysql_instance_credentials_reset,exec,,Reset MySQL Managed Database credentials
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId}/credentials,get-databases-mysql-instance-credentials,get-databases-mysql-instance-credentials,get,,Credentials,credentials,mysql_instance_credentials,get_databases_mysql_instance_credentials,select,,Get MySQL Managed Database credentials
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId},delete-databases-mysql-instance,delete-databases-mysql-instance,delete,,Databases,databases,mysql_instances,delete_databases_mysql_instance,delete,,Delete a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId}/resume,resume-databases-mysql-instance,resume-databases-mysql-instance,post,,Databases,databases,mysql_instances,resume_databases_mysql_instance,exec,,Resume a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId}/suspend,suspend-databases-mysql-instance,suspend-databases-mysql-instance,post,,Databases,databases,mysql_instances,suspend_databases_mysql_instance,exec,,Suspend a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances,post-databases-mysql-instances,post-databases-mysql-instances,post,,Databases,databases,mysql_instances,post_databases_mysql_instances,insert,,Create or restore a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId},put-databases-mysql-instance,put-databases-mysql-instance,put,,Databases,databases,mysql_instances,put_databases_mysql_instance,replace,,Update a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances,get-databases-mysql-instances,get-databases-mysql-instances,get,,Databases,databases,mysql_instances,get_databases_mysql_instances,select,$.data,List MySQL Managed Databases
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId},get-databases-mysql-instance,get-databases-mysql-instance,get,,Databases,databases,mysql_instances,get_databases_mysql_instance,select,,Get a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId}/patch,post-databases-mysql-instance-patch,post-databases-mysql-instance-patch,post,,Databases,databases,mysql_instances,post_databases_mysql_instance_patch,update,,Patch a MySQL Managed Database
-databases.yaml,/{apiVersion}/databases/mysql/instances/{instanceId}/ssl,get-databases-mysql-instance-ssl,get-databases-mysql-instance-ssl,get,,SSL certificates,ssl certificates,mysql_ssl_certificates,get_databases_mysql_instance_ssl,select,,Get a MySQL Managed Database SSL certificate
-databases.yaml,/{apiVersion}/databases/postgresql/config,get-databases-postgresql-config,get-databases-postgresql-config,get,,Advanced parameters,advanced parameters,postgresql_config,get_databases_postgresql_config,select,,List PostgreSQL Managed Database advanced parameters
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId}/credentials/reset,post-databases-postgre-sql-instance-credentials-reset,post-databases-postgre-sql-instance-credentials-reset,post,,Credentials,credentials,postgresql_instance_credentials,post_databases_postgre_sql_instance_credentials_reset,exec,,Reset PostgreSQL Managed Database credentials
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId}/credentials,get-databases-postgre-sql-instance-credentials,get-databases-postgre-sql-instance-credentials,get,,Credentials,credentials,postgresql_instance_credentials,get_databases_postgre_sql_instance_credentials,select,,Get PostgreSQL Managed Database credentials
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId},delete-databases-postgre-sql-instance,delete-databases-postgre-sql-instance,delete,,Databases,databases,postgresql_instances,delete_databases_postgre_sql_instance,delete,,Delete a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId}/resume,resume-databases-postgre-sql-instance,resume-databases-postgre-sql-instance,post,,Databases,databases,postgresql_instances,resume_databases_postgre_sql_instance,exec,,Resume a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId}/suspend,suspend-databases-postgre-sql-instance,suspend-databases-postgre-sql-instance,post,,Databases,databases,postgresql_instances,suspend_databases_postgre_sql_instance,exec,,Suspend a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances,post-databases-postgre-sql-instances,post-databases-postgre-sql-instances,post,,Databases,databases,postgresql_instances,post_databases_postgre_sql_instances,insert,,Create or restore a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId},put-databases-postgre-sql-instance,put-databases-postgre-sql-instance,put,,Databases,databases,postgresql_instances,put_databases_postgre_sql_instance,replace,,Update a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances,get-databases-postgre-sql-instances,get-databases-postgre-sql-instances,get,,Databases,databases,postgresql_instances,get_databases_postgre_sql_instances,select,$.data,List PostgreSQL Managed Databases
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId},get-databases-postgre-sql-instance,get-databases-postgre-sql-instance,get,,Databases,databases,postgresql_instances,get_databases_postgre_sql_instance,select,,Get a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId}/patch,post-databases-postgre-sql-instance-patch,post-databases-postgre-sql-instance-patch,post,,Databases,databases,postgresql_instances,post_databases_postgre_sql_instance_patch,update,,Patch a PostgreSQL Managed Database
-databases.yaml,/{apiVersion}/databases/postgresql/instances/{instanceId}/ssl,get-databases-postgresql-instance-ssl,get-databases-postgresql-instance-ssl,get,,SSL certificates,ssl certificates,postgresql_ssl_certificates,get_databases_postgresql_instance_ssl,select,,Get a PostgreSQL Managed Database SSL certificate
-databases.yaml,/{apiVersion}/databases/types,get-databases-types,get-databases-types,get,,Types,types,types,get_databases_types,select,$.data,List Managed Databases types
-databases.yaml,/{apiVersion}/databases/types/{typeId},get-databases-type,get-databases-type,get,,Types,types,types,get_databases_type,select,,Get a Managed Databases type
-domains.yaml,/{apiVersion}/domains/{domainId},delete-domain,delete-domain,delete,,Domains,domains,domains,delete_domain,delete,,Delete a domain
-domains.yaml,/{apiVersion}/domains/import,post-import-domain,post-import-domain,post,,Domains,domains,domains,post_import_domain,exec,,Import a domain
-domains.yaml,/{apiVersion}/domains/{domainId}/clone,post-clone-domain,post-clone-domain,post,,Domains,domains,domains,post_clone_domain,exec,,Clone a domain
-domains.yaml,/{apiVersion}/domains,post-domain,post-domain,post,,Domains,domains,domains,post_domain,insert,,Create a domain
-domains.yaml,/{apiVersion}/domains/{domainId},put-domain,put-domain,put,,Domains,domains,domains,put_domain,replace,,Update a domain
-domains.yaml,/{apiVersion}/domains,get-domains,get-domains,get,,Domains,domains,domains,get_domains,select,,List domains
-domains.yaml,/{apiVersion}/domains/{domainId},get-domain,get-domain,get,,Domains,domains,domains,get_domain,select,,Get a domain
-domains.yaml,/{apiVersion}/domains/{domainId}/records/{recordId},delete-domain-record,delete-domain-record,delete,,Records,records,records,delete_domain_record,delete,,Delete a domain record
-domains.yaml,/{apiVersion}/domains/{domainId}/records,post-domain-record,post-domain-record,post,,Records,records,records,post_domain_record,insert,,Create a domain record
-domains.yaml,/{apiVersion}/domains/{domainId}/records/{recordId},put-domain-record,put-domain-record,put,,Records,records,records,put_domain_record,replace,,Update a domain record
-domains.yaml,/{apiVersion}/domains/{domainId}/records,get-domain-records,get-domain-records,get,,Records,records,records,get_domain_records,select,,List domain records
-domains.yaml,/{apiVersion}/domains/{domainId}/records/{recordId},get-domain-record,get-domain-record,get,,Records,records,records,get_domain_record,select,,Get a domain record
-domains.yaml,/{apiVersion}/domains/{domainId}/zone-file,get-domain-zone,get-domain-zone,get,,Domain zone file,domain zone file,zone_file,get_domain_zone,select,$.zone_file,Get a domain zone file
-images.yaml,/{apiVersion}/images/{imageId},delete-image,delete-image,delete,,Images,images,images,delete_image,delete,,Delete an image
-images.yaml,/{apiVersion}/images/upload,post-upload-image,post-upload-image,post,,Images,images,images,post_upload_image,exec,,Upload an image
-images.yaml,/{apiVersion}/images/{imageId}/regions,post-replicate-image,post-replicate-image,post,,Images,images,images,post_replicate_image,exec,,Replicate an image
-images.yaml,/{apiVersion}/images,post-image,post-image,post,,Images,images,images,post_image,insert,,Create an image
-images.yaml,/{apiVersion}/images/{imageId},put-image,put-image,put,,Images,images,images,put_image,replace,,Update an image
-images.yaml,/{apiVersion}/images,get-images,get-images,get,,Images,images,images,get_images,select,,List images
-images.yaml,/{apiVersion}/images/{imageId},get-image,get-image,get,,Images,images,images,get_image,select,,Get an image
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/backups/cancel,post-cancel-backups,post-cancel-backups,post,,Backups,backups,backups,post_cancel_backups,exec,,Cancel backups
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/backups/enable,post-enable-backups,post-enable-backups,post,,Backups,backups,backups,post_enable_backups,exec,,Enable backups
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/backups/{backupId}/restore,post-restore-backup,post-restore-backup,post,,Backups,backups,backups,post_restore_backup,exec,,Restore a backup
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/backups,post-snapshot,post-snapshot,post,,Backups,backups,backups,post_snapshot,insert,,Create a snapshot
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/backups,get-backups,get-backups,get,,Backups,backups,backups,get_backups,select,,List backups
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/backups/{backupId},get-backup,get-backup,get,,Backups,backups,backups,get_backup,select,,Get a backup
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId},delete-linode-config-interface,delete-linode-config-interface,delete,,Interfaces,interfaces,config_profile_interfaces,delete_linode_config_interface,delete,,Delete a configuration profile interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId}/interfaces/order,post-linode-config-interfaces,post-linode-config-interfaces,post,,Interfaces,interfaces,config_profile_interfaces,post_linode_config_interfaces,exec,,Reorder configuration profile interfaces
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId}/interfaces,post-linode-config-interface,post-linode-config-interface,post,,Interfaces,interfaces,config_profile_interfaces,post_linode_config_interface,insert,,Add a configuration profile interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId},put-linode-config-interface,put-linode-config-interface,put,,Interfaces,interfaces,config_profile_interfaces,put_linode_config_interface,replace,,Update a configuration profile interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId}/interfaces,get-linode-config-interfaces,get-linode-config-interfaces,get,,Interfaces,interfaces,config_profile_interfaces,get_linode_config_interfaces,select,,List configuration profile interfaces
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId},get-linode-config-interface,get-linode-config-interface,get,,Interfaces,interfaces,config_profile_interfaces,get_linode_config_interface,select,,Get a configuration profile interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId},delete-linode-config,delete-linode-config,delete,,Configurations,configurations,config_profiles,delete_linode_config,delete,,Delete a configuration profile
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs,post-add-linode-config,post-add-linode-config,post,,Configurations,configurations,config_profiles,post_add_linode_config,insert,,Create a configuration profile
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId},put-linode-config,put-linode-config,put,,Configurations,configurations,config_profiles,put_linode_config,replace,,Update a configuration profile
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs,get-linode-configs,get-linode-configs,get,,Configurations,configurations,config_profiles,get_linode_configs,select,,List configuration profiles
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/configs/{configId},get-linode-config,get-linode-config,get,,Configurations,configurations,config_profiles,get_linode_config,select,,Get a configuration profile
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks/{diskId},delete-disk,delete-disk,delete,,Disks,disks,disks,delete_disk,delete,,Delete a disk
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks/{diskId}/clone,post-clone-linode-disk,post-clone-linode-disk,post,,Disks,disks,disks,post_clone_linode_disk,exec,,Clone a disk
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks/{diskId}/password,post-reset-disk-password,post-reset-disk-password,post,,Disks,disks,disks,post_reset_disk_password,exec,,Reset a disk root password
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks/{diskId}/resize,post-resize-disk,post-resize-disk,post,,Disks,disks,disks,post_resize_disk,exec,,Resize a disk
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks,post-add-linode-disk,post-add-linode-disk,post,,Disks,disks,disks,post_add_linode_disk,insert,,Create a disk
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks/{diskId},put-disk,put-disk,put,,Disks,disks,disks,put_disk,replace,,Update a disk
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks,get-linode-disks,get-linode-disks,get,,Disks,disks,disks,get_linode_disks,select,,List disks
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/disks/{diskId},get-linode-disk,get-linode-disk,get,,Disks,disks,disks,get_linode_disk,select,,Get a disk
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/firewalls/apply,post-apply-firewalls,post-apply-firewalls,post,,Firewalls,firewalls,firewalls,post_apply_firewalls,exec,,Apply a Linode's firewalls
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/firewalls,put-linode-firewalls,put-linode-firewalls,put,,Firewalls,firewalls,firewalls,put_linode_firewalls,replace,,Update a Linode's firewalls
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/firewalls,get-linode-firewalls,get-linode-firewalls,get,,Firewalls,firewalls,firewalls,get_linode_firewalls,select,,List a Linode's firewalls
-linode.yaml,/{apiVersion}/linode/instances/{linodeId},delete-linode-instance,delete-linode-instance,delete,,Linode instances,linode instances,instances,delete_linode_instance,delete,,Delete a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/boot,post-boot-linode-instance,post-boot-linode-instance,post,,Linode instances,linode instances,instances,post_boot_linode_instance,exec,,Boot a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/clone,post-clone-linode-instance,post-clone-linode-instance,post,,Linode instances,linode instances,instances,post_clone_linode_instance,exec,,Clone a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/migrate,post-migrate-linode-instance,post-migrate-linode-instance,post,,Linode instances,linode instances,instances,post_migrate_linode_instance,exec,,Launch a DC migration/pending host migration
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/mutate,post-mutate-linode-instance,post-mutate-linode-instance,post,,Linode instances,linode instances,instances,post_mutate_linode_instance,exec,,Upgrade a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/password,post-reset-linode-password,post-reset-linode-password,post,,Linode instances,linode instances,instances,post_reset_linode_password,exec,,Reset a Linode's root password
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/reboot,post-reboot-linode-instance,post-reboot-linode-instance,post,,Linode instances,linode instances,instances,post_reboot_linode_instance,exec,,Reboot a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/rebuild,post-rebuild-linode-instance,post-rebuild-linode-instance,post,,Linode instances,linode instances,instances,post_rebuild_linode_instance,exec,,Rebuild a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/rescue,post-rescue-linode-instance,post-rescue-linode-instance,post,,Linode instances,linode instances,instances,post_rescue_linode_instance,exec,,Boot a Linode into rescue mode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/resize,post-resize-linode-instance,post-resize-linode-instance,post,,Linode instances,linode instances,instances,post_resize_linode_instance,exec,,Resize a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/shutdown,post-shutdown-linode-instance,post-shutdown-linode-instance,post,,Linode instances,linode instances,instances,post_shutdown_linode_instance,exec,,Shut down a Linode
-linode.yaml,/{apiVersion}/linode/instances,post-linode-instance,post-linode-instance,post,,Linode instances,linode instances,instances,post_linode_instance,insert,,Create a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId},put-linode-instance,put-linode-instance,put,,Linode instances,linode instances,instances,put_linode_instance,replace,,Update a Linode
-linode.yaml,/{apiVersion}/linode/instances,get-linode-instances,get-linode-instances,get,,Linode instances,linode instances,instances,get_linode_instances,select,,List Linodes
-linode.yaml,/{apiVersion}/linode/instances/{linodeId},get-linode-instance,get-linode-instance,get,,Linode instances,linode instances,instances,get_linode_instance,select,,Get a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces/{interfaceId}/firewalls,get-linode-interface-firewalls,get-linode-interface-firewalls,get,,Linode interfaces,linode interfaces,interface_firewalls,get_linode_interface_firewalls,select,$.data,List Linode interface firewalls
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces/settings,put-linode-interface-settings,put-linode-interface-settings,put,,Linode interfaces,linode interfaces,interface_settings,put_linode_interface_settings,replace,,Update Linode interface settings
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces/settings,get-linode-interface-settings,get-linode-interface-settings,get,,Linode interfaces,linode interfaces,interface_settings,get_linode_interface_settings,select,,List Linode interface settings
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces/{interfaceId},delete-linode-interface,delete-linode-interface,delete,,Linode interfaces,linode interfaces,interfaces,delete_linode_interface,delete,,Delete a Linode interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/upgrade-interfaces,post-upgrade-linode-interfaces,post-upgrade-linode-interfaces,post,,Linode interfaces,linode interfaces,interfaces,post_upgrade_linode_interfaces,exec,,Upgrade to Linode interfaces
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces,post-linode-interface,post-linode-interface,post,,Linode interfaces,linode interfaces,interfaces,post_linode_interface,insert,,Add a Linode interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces/{interfaceId},put-linode-interface,put-linode-interface,put,,Linode interfaces,linode interfaces,interfaces,put_linode_interface,replace,,Update a Linode interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces,get-linode-interfaces,get-linode-interfaces,get,,Linode interfaces,linode interfaces,interfaces,get_linode_interfaces,select,,List Linode interfaces
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/interfaces/{interfaceId},get-linode-interface,get-linode-interface,get,,Linode interfaces,linode interfaces,interfaces,get_linode_interface,select,,Get a Linode interface
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/ips/{address},delete-linode-ip,delete-linode-ip,delete,,IP addresses,ip addresses,ip_addresses,delete_linode_ip,delete,,Delete an IPv4 address
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/ips,post-add-linode-ip,post-add-linode-ip,post,,IP addresses,ip addresses,ip_addresses,post_add_linode_ip,insert,,Allocate an IPv4 address
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/ips/{address},put-linode-ip,put-linode-ip,put,,IP addresses,ip addresses,ip_addresses,put_linode_ip,replace,,Update an IP address's RDNS for a Linode
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/ips,get-linode-ips,get-linode-ips,get,,IP addresses,ip addresses,ip_addresses,get_linode_ips,select,,Get networking information
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/ips/{address},get-linode-ip,get-linode-ip,get,,IP addresses,ip addresses,ip_addresses,get_linode_ip,select,,Get a Linode's IP address
-linode.yaml,/{apiVersion}/linode/kernels,get-kernels,get-kernels,get,,Kernels,kernels,kernels,get_kernels,select,,List kernels
-linode.yaml,/{apiVersion}/linode/kernels/{kernelId},get-kernel,get-kernel,get,,Kernels,kernels,kernels,get_kernel,select,,Get a kernel
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/transfer/{year}/{month},get-linode-transfer-by-year-month,get-linode-transfer-by-year-month,get,,Network transfer statistics,network transfer statistics,network_transfer_statistics,get_linode_transfer_by_year_month,select,,Get monthly network transfer stats
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/transfer,get-linode-transfer,get-linode-transfer,get,,Network transfers,network transfers,network_transfers,get_linode_transfer,select,,Get a network transfer
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/nodebalancers,get-linode-node-balancers,get-linode-node-balancers,get,,NodeBalancers,node_balancers,node_balancers,get_linode_node_balancers,select,,List Linode NodeBalancers
-linode.yaml,/{apiVersion}/linode/stackscripts/{stackscriptId},delete-stack-script,delete-stack-script,delete,,StackScripts,stack_scripts,stack_scripts,delete_stack_script,delete,,Delete a StackScript
-linode.yaml,/{apiVersion}/linode/stackscripts,post-add-stack-script,post-add-stack-script,post,,StackScripts,stack_scripts,stack_scripts,post_add_stack_script,insert,,Create a StackScript
-linode.yaml,/{apiVersion}/linode/stackscripts/{stackscriptId},put-stack-script,put-stack-script,put,,StackScripts,stack_scripts,stack_scripts,put_stack_script,replace,,Update a StackScript
-linode.yaml,/{apiVersion}/linode/stackscripts,get-stack-scripts,get-stack-scripts,get,,StackScripts,stack_scripts,stack_scripts,get_stack_scripts,select,,List StackScripts
-linode.yaml,/{apiVersion}/linode/stackscripts/{stackscriptId},get-stack-script,get-stack-script,get,,StackScripts,stack_scripts,stack_scripts,get_stack_script,select,,Get a StackScript
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/stats,get-linode-stats,get-linode-stats,get,,Statistics,statistics,statistics,get_linode_stats,select,,Get Linode statistics
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/stats/{year}/{month},get-linode-stats-by-year-month,get-linode-stats-by-year-month,get,,Statistics,statistics,statistics,get_linode_stats_by_year_month,select,,Get monthly statistics
-linode.yaml,/{apiVersion}/linode/types,get-linode-types,get-linode-types,get,,Linode types,linode types,types,get_linode_types,select,,List types
-linode.yaml,/{apiVersion}/linode/types/{typeId},get-linode-type,get-linode-type,get,,Linode types,linode types,types,get_linode_type,select,,Get a type
-linode.yaml,/{apiVersion}/linode/instances/{linodeId}/volumes,get-linode-volumes,get-linode-volumes,get,,Volumes,volumes,volumes,get_linode_volumes,select,,List a Linode's volumes
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/api-endpoints,get-lke-cluster-api-endpoints,get-lke-cluster-api-endpoints,get,,LKE API endpoints,lke api endpoints,api_endpoints,get_lke_cluster_api_endpoints,select,,List Kubernetes API endpoints
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/dashboard,get-lke-cluster-dashboard,get-lke-cluster-dashboard,get,,Cluster dashboard,cluster dashboard,cluster_dashboard,get_lke_cluster_dashboard,select,,Get a Kubernetes cluster dashboard URL
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId},delete-lke-cluster,delete-lke-cluster,delete,,Clusters,clusters,clusters,delete_lke_cluster,delete,,Delete a Kubernetes cluster
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/recycle,post-lke-cluster-recycle,post-lke-cluster-recycle,post,,Clusters,clusters,clusters,post_lke_cluster_recycle,exec,,Recycle cluster nodes
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/regenerate,post-lke-cluster-regenerate,post-lke-cluster-regenerate,post,,Clusters,clusters,clusters,post_lke_cluster_regenerate,exec,,Regenerate a Kubernetes cluster
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/servicetoken,delete-lke-service-token,delete-lke-service-token,delete,,Service tokens,service tokens,clusters,delete_lke_service_token,exec,,Delete a service token
-lke.yaml,/{apiVersion}/lke/clusters,post-lke-cluster,post-lke-cluster,post,,Clusters,clusters,clusters,post_lke_cluster,insert,,Create a Kubernetes cluster
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId},put-lke-cluster,put-lke-cluster,put,,Clusters,clusters,clusters,put_lke_cluster,replace,,Update a Kubernetes cluster
-lke.yaml,/{apiVersion}/lke/clusters,get-lke-clusters,get-lke-clusters,get,,Clusters,clusters,clusters,get_lke_clusters,select,,List Kubernetes clusters
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId},get-lke-cluster,get-lke-cluster,get,,Clusters,clusters,clusters,get_lke_cluster,select,,Get a Kubernetes cluster
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/control_plane_acl,delete-lke-cluster-acl,delete-lke-cluster-acl,delete,,LKE Control Plane ACL,lke control plane acl,control_plane_acl,delete_lke_cluster_acl,delete,,Delete the control plane access control list
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/control_plane_acl,put-lke-cluster-acl,put-lke-cluster-acl,put,,LKE Control Plane ACL,lke control plane acl,control_plane_acl,put_lke_cluster_acl,replace,,Update the control plane access control list
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/control_plane_acl,get-lke-cluster-acl,get-lke-cluster-acl,get,,LKE Control Plane ACL,lke control plane acl,control_plane_acl,get_lke_cluster_acl,select,$.acl,Get the control plane access control list
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/kubeconfig,delete-lke-cluster-kubeconfig,delete-lke-cluster-kubeconfig,delete,,Kubeconfigs,kubeconfigs,kubeconfigs,delete_lke_cluster_kubeconfig,delete,,Delete a Kubeconfig
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/kubeconfig,get-lke-cluster-kubeconfig,get-lke-cluster-kubeconfig,get,,Kubeconfigs,kubeconfigs,kubeconfigs,get_lke_cluster_kubeconfig,select,,Get a Kubeconfig
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/pools/{poolId},delete-lke-node-pool,delete-lke-node-pool,delete,,Node pools,node pools,node_pools,delete_lke_node_pool,delete,,Delete a node pool
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/pools/{poolId}/recycle,post-lke-cluster-pool-recycle,post-lke-cluster-pool-recycle,post,,Node pools,node pools,node_pools,post_lke_cluster_pool_recycle,exec,,Recycle a node pool
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/pools,post-lke-cluster-pools,post-lke-cluster-pools,post,,Node pools,node pools,node_pools,post_lke_cluster_pools,insert,,Create a node pool
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/pools/{poolId},put-lke-node-pool,put-lke-node-pool,put,,Node pools,node pools,node_pools,put_lke_node_pool,replace,,Update a node pool
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/pools,get-lke-cluster-pools,get-lke-cluster-pools,get,,Node pools,node pools,node_pools,get_lke_cluster_pools,select,,List node pools
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/pools/{poolId},get-lke-node-pool,get-lke-node-pool,get,,Node pools,node pools,node_pools,get_lke_node_pool,select,,Get a node pool
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/nodes/{nodeId},delete-lke-cluster-node,delete-lke-cluster-node,delete,,Nodes,nodes,nodes,delete_lke_cluster_node,delete,,Delete a node
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/nodes/{nodeId}/recycle,post-lke-cluster-node-recycle,post-lke-cluster-node-recycle,post,,Nodes,nodes,nodes,post_lke_cluster_node_recycle,exec,,Recycle a node
-lke.yaml,/{apiVersion}/lke/clusters/{clusterId}/nodes/{nodeId},get-lke-cluster-node,get-lke-cluster-node,get,,Nodes,nodes,nodes,get_lke_cluster_node,select,,Get a node
-lke.yaml,/{apiVersion}/lke/versions,get-lke-versions,get-lke-versions,get,,LKE versions,lke versions,non_enterprise_versions,get_lke_versions,select,,List LKE Kubernetes versions (non-enterprise)
-lke.yaml,/{apiVersion}/lke/versions/{version},get-lke-version,get-lke-version,get,,LKE versions,lke versions,non_enterprise_versions,get_lke_version,select,,Get an LKE Kubernetes version (non-enterprise)
-lke.yaml,/{apiVersion}/lke/types,get-lke-types,get-lke-types,get,,LKE types,lke types,types,get_lke_types,select,,List Kubernetes types
-lke.yaml,/{apiVersion}/lke/tiers/{tier}/versions,get-lke-tiers-versions,get-lke-tiers-versions,get,,LKE versions,lke versions,versions,get_lke_tiers_versions,select,,List LKE Kubernetes versions (any tier)
-lke.yaml,/{apiVersion}/lke/tiers/{tier}/versions/{version},get-lke-tiers-version,get-lke-tiers-version,get,,LKE versions,lke versions,versions,get_lke_tiers_version,select,,Get an LKE Kubernetes version (any tier)
-longview.yaml,/{apiVersion}/longview/clients/{clientId},delete-longview-client,delete-longview-client,delete,,Clients,clients,clients,delete_longview_client,delete,,Delete a Longview client
-longview.yaml,/{apiVersion}/longview/clients,post-longview-client,post-longview-client,post,,Clients,clients,clients,post_longview_client,insert,,Create a Longview client
-longview.yaml,/{apiVersion}/longview/clients/{clientId},put-longview-client,put-longview-client,put,,Clients,clients,clients,put_longview_client,replace,,Update a Longview client
-longview.yaml,/{apiVersion}/longview/clients,get-longview-clients,get-longview-clients,get,,Clients,clients,clients,get_longview_clients,select,,List Longview clients
-longview.yaml,/{apiVersion}/longview/clients/{clientId},get-longview-client,get-longview-client,get,,Clients,clients,clients,get_longview_client,select,,Get a Longview client
-longview.yaml,/{apiVersion}/longview/plan,put-longview-plan,put-longview-plan,put,,Plans,plans,plans,put_longview_plan,replace,,Update a Longview plan
-longview.yaml,/{apiVersion}/longview/plan,get-longview-plan,get-longview-plan,get,,Plans,plans,plans,get_longview_plan,select,,Get a Longview plan
-longview.yaml,/{apiVersion}/longview/subscriptions,get-longview-subscriptions,get-longview-subscriptions,get,,Subscriptions,subscriptions,subscriptions,get_longview_subscriptions,select,,List Longview subscriptions
-longview.yaml,/{apiVersion}/longview/subscriptions/{subscriptionId},get-longview-subscription,get-longview-subscription,get,,Subscriptions,subscriptions,subscriptions,get_longview_subscription,select,,Get a Longview subscription
-longview.yaml,/{apiVersion}/longview/types,get-longview-types,get-longview-types,get,,Longview types,longview types,types,get_longview_types,select,,List Longview types
-managed.yaml,/{apiVersion}/managed/contacts/{contactId},delete-managed-contact,delete-managed-contact,delete,,Contacts,contacts,contacts,delete_managed_contact,delete,,Delete a managed contact
-managed.yaml,/{apiVersion}/managed/contacts,post-managed-contact,post-managed-contact,post,,Contacts,contacts,contacts,post_managed_contact,insert,,Create a managed contact
-managed.yaml,/{apiVersion}/managed/contacts/{contactId},put-managed-contact,put-managed-contact,put,,Contacts,contacts,contacts,put_managed_contact,replace,,Update a managed contact
-managed.yaml,/{apiVersion}/managed/contacts,get-managed-contacts,get-managed-contacts,get,,Contacts,contacts,contacts,get_managed_contacts,select,,List managed contacts
-managed.yaml,/{apiVersion}/managed/contacts/{contactId},get-managed-contact,get-managed-contact,get,,Contacts,contacts,contacts,get_managed_contact,select,,Get a managed contact
-managed.yaml,/{apiVersion}/managed/credentials/{credentialId}/revoke,post-managed-credential-revoke,post-managed-credential-revoke,post,,Credentials,credentials,credentials,post_managed_credential_revoke,exec,,Delete a managed credential
-managed.yaml,/{apiVersion}/managed/credentials/{credentialId}/update,post-managed-credential-username-password,post-managed-credential-username-password,post,,Credentials,credentials,credentials,post_managed_credential_username_password,exec,,Update a managed credential's username and password
-managed.yaml,/{apiVersion}/managed/credentials,post-managed-credential,post-managed-credential,post,,Credentials,credentials,credentials,post_managed_credential,insert,,Create a managed credential
-managed.yaml,/{apiVersion}/managed/credentials/{credentialId},put-managed-credential,put-managed-credential,put,,Credentials,credentials,credentials,put_managed_credential,replace,,Update a managed credential
-managed.yaml,/{apiVersion}/managed/credentials,get-managed-credentials,get-managed-credentials,get,,Credentials,credentials,credentials,get_managed_credentials,select,,List managed credentials
-managed.yaml,/{apiVersion}/managed/credentials/{credentialId},get-managed-credential,get-managed-credential,get,,Credentials,credentials,credentials,get_managed_credential,select,,Get a managed credential
-managed.yaml,/{apiVersion}/managed/issues,get-managed-issues,get-managed-issues,get,,Issues,issues,issues,get_managed_issues,select,,List managed issues
-managed.yaml,/{apiVersion}/managed/issues/{issueId},get-managed-issue,get-managed-issue,get,,Issues,issues,issues,get_managed_issue,select,,Get a managed issue
-managed.yaml,/{apiVersion}/managed/linode-settings,get-managed-linode-settings,get-managed-linode-settings,get,,Linode settings,linode settings,linode_settings,get_managed_linode_settings,select,,List managed Linode settings
-managed.yaml,/{apiVersion}/managed/credentials/sshkey,get-managed-ssh-key,get-managed-ssh-key,get,,Managed SSH keys,managed ssh keys,managed_ssh_keys,get_managed_ssh_key,select,,Get a managed SSH key
-managed.yaml,/{apiVersion}/managed/services/{serviceId},delete-managed-service,delete-managed-service,delete,,Services,services,services,delete_managed_service,delete,,Delete a managed service
-managed.yaml,/{apiVersion}/managed/services/{serviceId}/disable,post-disable-managed-service,post-disable-managed-service,post,,Services,services,services,post_disable_managed_service,exec,,Disable a managed service
-managed.yaml,/{apiVersion}/managed/services/{serviceId}/enable,post-enable-managed-service,post-enable-managed-service,post,,Services,services,services,post_enable_managed_service,exec,,Enable a managed service
-managed.yaml,/{apiVersion}/managed/services,post-managed-service,post-managed-service,post,,Services,services,services,post_managed_service,insert,,Create a managed service
-managed.yaml,/{apiVersion}/managed/services/{serviceId},put-managed-service,put-managed-service,put,,Services,services,services,put_managed_service,replace,,Update a managed service
-managed.yaml,/{apiVersion}/managed/services,get-managed-services,get-managed-services,get,,Services,services,services,get_managed_services,select,,List managed services
-managed.yaml,/{apiVersion}/managed/services/{serviceId},get-managed-service,get-managed-service,get,,Services,services,services,get_managed_service,select,,Get a managed service
-managed.yaml,/{apiVersion}/managed/linode-settings/{linodeId},put-managed-linode-setting,put-managed-linode-setting,put,,Managed settings,managed settings,settings,put_managed_linode_setting,replace,,Update a Linode's managed settings
-managed.yaml,/{apiVersion}/managed/linode-settings/{linodeId},get-managed-linode-setting,get-managed-linode-setting,get,,Managed settings,managed settings,settings,get_managed_linode_setting,select,,Get a Linode's managed settings
-managed.yaml,/{apiVersion}/managed/stats,get-managed-stats,get-managed-stats,get,,Statistics,statistics,statistics,get_managed_stats,select,$.data,List managed stats
-monitor.yaml,/{apiVersion}/monitor/alert-channels,get-alert-channels,get-alert-channels,get,,Alerts,alerts,alert_channels,get_alert_channels,select,,List alert channels
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/alert-definitions/{alert_id},delete-alert-definition,delete-alert-definition,delete,,Alerts,alerts,alert_definitions,delete_alert_definition,delete,,Delete an alert definition
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/alert-definitions,post-alert-definition-for-service-type,post-alert-definition-for-service-type,post,,Alerts,alerts,alert_definitions,post_alert_definition_for_service_type,insert,,Create an alert definition
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/alert-definitions/{alert_id},put-alert-definition,put-alert-definition,put,,Alerts,alerts,alert_definitions,put_alert_definition,replace,,Update an alert definition
-monitor.yaml,/{apiVersion}/monitor/alert-definitions,get-alert-definitions,get-alert-definitions,get,,Alerts,alerts,alert_definitions,get_alert_definitions,select,,List alert definitions
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/alert-definitions,get-alert-definitions-for-service-type,get-alert-definitions-for-service-type,get,,Alerts,alerts,alert_definitions,get_alert_definitions_for_service_type,select,,List alert definitions for a service type
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/alert-definitions/{alert_id},get-alert-definition,get-alert-definition,get,,Alerts,alerts,alert_definitions,get_alert_definition,select,,Get an alert definition
-monitor.yaml,/{apiVersion}/monitor/dashboards,get-dashboards-all,get-dashboards-all,get,,Metrics,metrics,dashboards,get_dashboards_all,select,$.data,List dashboards
-monitor.yaml,/{apiVersion}/monitor/dashboards/{dashboard_id},get-dashboards-by-id,get-dashboards-by-id,get,,Metrics,metrics,dashboards,get_dashboards_by_id,select,,Get a dashboard
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/dashboards,get-dashboards,get-dashboards,get,,Metrics,metrics,dashboards,get_dashboards,select,,List dashboards for a service type
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/metrics,post-read-metric,post-read-metric,post,,Metrics,metrics,metrics,post_read_metric,exec,,Get an entity's metrics
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/token,post-get-token,post-get-token,post,,Metrics,metrics,metrics,post_get_token,exec,,Create a token for a service type
-monitor.yaml,/{apiVersion}/monitor/services/{service_type}/metric-definitions,get-monitor-information,get-monitor-information,get,,Metrics,metrics,metrics,get_monitor_information,select,,List metrics for a service type
-monitor.yaml,/{apiVersion}/monitor/services,get-monitor-services,get-monitor-services,get,,Metrics,metrics,monitor_services,get_monitor_services,select,,List supported service types
-monitor.yaml,/{apiVersion}/monitor/services/{service_type},get-monitor-services-for-service-type,get-monitor-services-for-service-type,get,,Metrics,metrics,monitor_services,get_monitor_services_for_service_type,select,,Get details for a supported service type
-networking.yaml,/{apiVersion}/network-transfer/prices,get-network-transfer-prices,get-network-transfer-prices,get,,Network transfer prices,network transfer prices,network_transfer_prices,get_network_transfer_prices,select,,List network transfer prices
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/devices/{deviceId},delete-firewall-device,delete-firewall-device,delete,,Devices,devices,firewall_devices,delete_firewall_device,delete,,Delete a firewall device
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/devices,post-firewall-device,post-firewall-device,post,,Devices,devices,firewall_devices,post_firewall_device,insert,,Create a firewall device
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/devices,get-firewall-devices,get-firewall-devices,get,,Devices,devices,firewall_devices,get_firewall_devices,select,,List firewall devices
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/devices/{deviceId},get-firewall-device,get-firewall-device,get,,Devices,devices,firewall_devices,get_firewall_device,select,,Get a firewall device
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/history,get-firewall-rule-versions,get-firewall-rule-versions,get,,Firewalls,firewalls,firewall_rule_versions,get_firewall_rule_versions,select,,List firewall rule versions
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/history/rules/{version},get-firewall-rule-version,get-firewall-rule-version,get,,Firewalls,firewalls,firewall_rule_versions,get_firewall_rule_version,select,,Get a firewall rule version
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/rules,put-firewall-rules,put-firewall-rules,put,,Firewalls,firewalls,firewall_rules,put_firewall_rules,replace,,Update firewall rules
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId}/rules,get-firewall-rules,get-firewall-rules,get,,Firewalls,firewalls,firewall_rules,get_firewall_rules,select,,List firewall rules
-networking.yaml,/{apiVersion}/networking/firewalls/settings,put-firewall-settings,put-firewall-settings,put,,Firewall settings,firewall settings,firewall_settings,put_firewall_settings,replace,,Update default firewalls
-networking.yaml,/{apiVersion}/networking/firewalls/settings,get-firewall-settings,get-firewall-settings,get,,Firewall settings,firewall settings,firewall_settings,get_firewall_settings,select,$.default_firewall_ids,List default firewalls
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId},delete-firewall,delete-firewall,delete,,Firewalls,firewalls,firewalls,delete_firewall,delete,,Delete a firewall
-networking.yaml,/{apiVersion}/networking/firewalls,post-firewalls,post-firewalls,post,,Firewalls,firewalls,firewalls,post_firewalls,insert,,Create a firewall
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId},put-firewall,put-firewall,put,,Firewalls,firewalls,firewalls,put_firewall,replace,,Update a firewall
-networking.yaml,/{apiVersion}/networking/firewalls,get-firewalls,get-firewalls,get,,Firewalls,firewalls,firewalls,get_firewalls,select,,List firewalls
-networking.yaml,/{apiVersion}/networking/firewalls/{firewallId},get-firewall,get-firewall,get,,Firewalls,firewalls,firewalls,get_firewall,select,,Get a firewall
-networking.yaml,/{apiVersion}/networking/ips,post-allocate-ip,post-allocate-ip,post,,IP addresses,ip addresses,ip_addresses,post_allocate_ip,exec,,Allocate an IP address
-networking.yaml,/{apiVersion}/networking/ips/assign,post-assign-ips,post-assign-ips,post,,IP addresses,ip addresses,ip_addresses,post_assign_ips,exec,,Assign IP addresses
-networking.yaml,/{apiVersion}/networking/ips/share,post-share-ips,post-share-ips,post,,IP addresses,ip addresses,ip_addresses,post_share_ips,exec,,Share IP addresses
-networking.yaml,/{apiVersion}/networking/ips/{address},put-ip,put-ip,put,,IP addresses,ip addresses,ip_addresses,put_ip,replace,,Update an IP address's RDNS
-networking.yaml,/{apiVersion}/networking/ips,get-ips,get-ips,get,,IP addresses,ip addresses,ip_addresses,get_ips,select,$.data,List IP addresses
-networking.yaml,/{apiVersion}/networking/ips/{address},get-ip,get-ip,get,,IP addresses,ip addresses,ip_addresses,get_ip,select,,Get an IP address
-networking.yaml,/{apiVersion}/networking/ipv4/assign,post-assign-ipv4s,post-assign-ipv4s,post,,IPv4 addresses,ipv4 addresses,ipv4_addresses,post_assign_ipv4s,insert,,Assign IPv4s to Linodes
-networking.yaml,/{apiVersion}/networking/ipv4/share,post-share-ipv4s,post-share-ipv4s,post,,IPv4 addresses,ipv4 addresses,ipv4_addresses,post_share_ipv4s,insert,,Configure IPv4 sharing
-networking.yaml,/{apiVersion}/networking/ipv6/pools,get-ipv6-pools,get-ipv6-pools,get,,IPv6 pools,ipv6 pools,ipv6_pools,get_ipv6_pools,select,,List IPv6 pools
-networking.yaml,/{apiVersion}/networking/ipv6/ranges/{range},delete-ipv6-range,delete-ipv6-range,delete,,IPv6 ranges,ipv6 ranges,ipv6_ranges,delete_ipv6_range,delete,,Delete an IPv6 range
-networking.yaml,/{apiVersion}/networking/ipv6/ranges,post-ipv6-range,post-ipv6-range,post,,IPv6 ranges,ipv6 ranges,ipv6_ranges,post_ipv6_range,insert,,Create an IPv6 range
-networking.yaml,/{apiVersion}/networking/ipv6/ranges,get-ipv6-ranges,get-ipv6-ranges,get,,IPv6 ranges,ipv6 ranges,ipv6_ranges,get_ipv6_ranges,select,,List IPv6 ranges
-networking.yaml,/{apiVersion}/networking/ipv6/ranges/{range},get-ipv6-range,get-ipv6-range,get,,IPv6 ranges,ipv6 ranges,ipv6_ranges,get_ipv6_range,select,,Get an IPv6 range
-networking.yaml,/{apiVersion}/networking/firewalls/templates,get-firewall-templates,get-firewall-templates,get,,Templates,templates,templates,get_firewall_templates,select,,List firewall templates
-networking.yaml,/{apiVersion}/networking/firewalls/templates/{slug},get-firewall-template,get-firewall-template,get,,Templates,templates,templates,get_firewall_template,select,,Get a firewall template
-networking.yaml,/{apiVersion}/networking/vlans/{regionId}/{label},delete-vlan,delete-vlan,delete,,VLANs,vlans,vlans,delete_vlan,delete,,Delete a VLAN
-networking.yaml,/{apiVersion}/networking/vlans,get-vlans,get-vlans,get,,VLANs,vlans,vlans,get_vlans,select,,List VLANs
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId},delete-node-balancer-config,delete-node-balancer-config,delete,,Configurations,configurations,configurations,delete_node_balancer_config,delete,,Delete a config
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs,post-node-balancer-config,post-node-balancer-config,post,,Configurations,configurations,configurations,post_node_balancer_config,insert,,Create a config
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId}/rebuild,post-rebuild-node-balancer-config,post-rebuild-node-balancer-config,post,,Configurations,configurations,configurations,post_rebuild_node_balancer_config,exec,,Rebuild a config
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId},put-node-balancer-config,put-node-balancer-config,put,,Configurations,configurations,configurations,put_node_balancer_config,replace,,Update a config
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs,get-node-balancer-configs,get-node-balancer-configs,get,,Configurations,configurations,configurations,get_node_balancer_configs,select,,List configs
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId},get-node-balancer-config,get-node-balancer-config,get,,Configurations,configurations,configurations,get_node_balancer_config,select,,Get a config
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/firewalls,put-node-balancer-firewalls,put-node-balancer-firewalls,put,,Firewalls,firewalls,firewalls,put_node_balancer_firewalls,replace,,Update a NodeBalancer's firewalls
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/firewalls,get-node-balancer-firewalls,get-node-balancer-firewalls,get,,Firewalls,firewalls,firewalls,get_node_balancer_firewalls,select,$.data,List NodeBalancer firewalls
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId},delete-node-balancer,delete-node-balancer,delete,,NodeBalancers,node_balancers,node_balancers,delete_node_balancer,delete,,Delete a NodeBalancer
-nodebalancers.yaml,/{apiVersion}/nodebalancers,post-node-balancer,post-node-balancer,post,,NodeBalancers,node_balancers,node_balancers,post_node_balancer,insert,,Create a NodeBalancer
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId},put-node-balancer,put-node-balancer,put,,NodeBalancers,node_balancers,node_balancers,put_node_balancer,replace,,Update a NodeBalancer
-nodebalancers.yaml,/{apiVersion}/nodebalancers,get-node-balancers,get-node-balancers,get,,NodeBalancers,node_balancers,node_balancers,get_node_balancers,select,,List NodeBalancers
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId},get-node-balancer,get-node-balancer,get,,NodeBalancers,node_balancers,node_balancers,get_node_balancer,select,,Get a NodeBalancer
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId},delete-node-balancer-config-node,delete-node-balancer-config-node,delete,,Nodes,nodes,nodes,delete_node_balancer_config_node,delete,,Delete a NodeBalancer's node
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes,post-node-balancer-node,post-node-balancer-node,post,,Nodes,nodes,nodes,post_node_balancer_node,insert,,Create a node
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId},put-node-balancer-node,put-node-balancer-node,put,,Nodes,nodes,nodes,put_node_balancer_node,replace,,Update a node
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes,get-node-balancer-config-nodes,get-node-balancer-config-nodes,get,,Nodes,nodes,nodes,get_node_balancer_config_nodes,select,,List nodes
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId},get-node-balancer-node,get-node-balancer-node,get,,Nodes,nodes,nodes,get_node_balancer_node,select,,Get a NodeBalancer's node
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/stats,get-node-balancer-stats,get-node-balancer-stats,get,,Statistics,statistics,statistics,get_node_balancer_stats,select,,Get NodeBalancer statistics
-nodebalancers.yaml,/{apiVersion}/nodebalancers/types,get-node-balancer-types,get-node-balancer-types,get,,NodeBalancer types,node_balancer types,types,get_node_balancer_types,select,,List NodeBalancer types
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/vpcs,get-node-balancer-vpcs,get-node-balancer-vpcs,get,,VPCs,vpcs,vpc_configs,get_node_balancer_vpcs,select,,List VPC configurations
-nodebalancers.yaml,/{apiVersion}/nodebalancers/{nodeBalancerId}/vpcs/{nodeBalancerVpcConfigId},get-node-balancer-vpc-config,get-node-balancer-vpc-config,get,,VPCs,vpcs,vpc_configs,get_node_balancer_vpc_config,select,,Get a VPC configuration
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/object-acl,put-object-storage-bucket-acl,put-object-storage-bucket-acl,put,,ACL configurations,acl configurations,acl_configurations,put_object_storage_bucket_acl,replace,,Update an object's ACL configuration
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/object-acl,get-object-storage-bucket-acl,get-object-storage-bucket-acl,get,,ACL configurations,acl configurations,acl_configurations,get_object_storage_bucket_acl,select,,Get an Object Storage object ACL configuration
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/access,post-object-storage-bucket-access,post-object-storage-bucket-access,post,,Bucket access,bucket access,bucket_access,post_object_storage_bucket_access,insert,,Allow access to an Object Storage bucket
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/access,put-storage-bucket-access,put-storage-bucket-access,put,,Bucket access,bucket access,bucket_access,put_storage_bucket_access,replace,,Update access to an Object Storage bucket
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/access,get-object-storage-bucket-access,get-object-storage-bucket-access,get,,Bucket access,bucket access,bucket_access,get_object_storage_bucket_access,select,,Get Object Storage bucket access
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/object-list,get-object-storage-bucket-content,get-object-storage-bucket-content,get,,Bucket contents,bucket contents,bucket_contents,get_object_storage_bucket_content,select,,List Object Storage bucket contents
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket},delete-object-storage-bucket,delete-object-storage-bucket,delete,,Buckets,buckets,buckets,delete_object_storage_bucket,delete,,Remove an Object Storage bucket
-object_storage.yaml,/{apiVersion}/object-storage/buckets,post-object-storage-bucket,post-object-storage-bucket,post,,Buckets,buckets,buckets,post_object_storage_bucket,insert,,Create an Object Storage bucket
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/object-url,post-object-storage-object-url,post-object-storage-object-url,post,,Buckets,buckets,buckets,post_object_storage_object_url,exec,,Create a URL for an object
-object_storage.yaml,/{apiVersion}/object-storage/buckets,get-object-storage-buckets,get-object-storage-buckets,get,,Buckets,buckets,buckets,get_object_storage_buckets,select,,List Object Storage buckets
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId},get-object-storage-bucketin-cluster,get-object-storage-bucketin-cluster,get,,Buckets,buckets,buckets,get_object_storage_bucketin_cluster,select,,List Object Storage buckets per region
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket},get-object-storage-bucket,get-object-storage-bucket,get,,Buckets,buckets,buckets,get_object_storage_bucket,select,,Get an Object Storage bucket
-object_storage.yaml,/{apiVersion}/object-storage/clusters,get-object-storage-clusters,get-object-storage-clusters,get,,Clusters,clusters,clusters,get_object_storage_clusters,select,,List clusters
-object_storage.yaml,/{apiVersion}/object-storage/clusters/{clusterId},get-object-storage-cluster,get-object-storage-cluster,get,,Clusters,clusters,clusters,get_object_storage_cluster,select,,Get a cluster
-object_storage.yaml,/{apiVersion}/object-storage/endpoints,get-object-storage-endpoints,get-object-storage-endpoints,get,,Endpoints,endpoints,endpoints,get_object_storage_endpoints,select,$.data,List Object Storage endpoints
-object_storage.yaml,/{apiVersion}/object-storage/keys/{keyId},delete-object-storage-key,delete-object-storage-key,delete,,Keys,keys,keys,delete_object_storage_key,delete,,Revoke an Object Storage key
-object_storage.yaml,/{apiVersion}/object-storage/keys,post-object-storage-keys,post-object-storage-keys,post,,Keys,keys,keys,post_object_storage_keys,insert,,Create an Object Storage key
-object_storage.yaml,/{apiVersion}/object-storage/keys/{keyId},put-object-storage-key,put-object-storage-key,put,,Keys,keys,keys,put_object_storage_key,replace,,Update an Object Storage key
-object_storage.yaml,/{apiVersion}/object-storage/keys,get-object-storage-keys,get-object-storage-keys,get,,Keys,keys,keys,get_object_storage_keys,select,,List Object Storage keys
-object_storage.yaml,/{apiVersion}/object-storage/keys/{keyId},get-object-storage-key,get-object-storage-key,get,,Keys,keys,keys,get_object_storage_key,select,,Get an Object Storage key
-object_storage.yaml,/{apiVersion}/object-storage/cancel,post-cancel-object-storage,post-cancel-object-storage,post,,Object Storage,object storage,object_storage,post_cancel_object_storage,exec,,Cancel Object Storage
-object_storage.yaml,/{apiVersion}/object-storage/transfer,get-object-storage-transfer,get-object-storage-transfer,get,,Object Storage,object storage,object_storage,get_object_storage_transfer,select,,Get Object Storage transfer data
-object_storage.yaml,/{apiVersion}/object-storage/quotas,get-object-storage-quotas,get-object-storage-quotas,get,,Object Storage quotas,object storage quotas,quotas,get_object_storage_quotas,select,$.data,List Object Storage quotas
-object_storage.yaml,/{apiVersion}/object-storage/quotas/{object_storage-quotaId},get-object-storage-quota,get-object-storage-quota,get,,Object Storage quotas,object storage quotas,quotas,get_object_storage_quota,select,,Get an Object Storage quota
-object_storage.yaml,/{apiVersion}/object-storage/quotas/{object_storage-quotaId}/usage,get-object-storage-quota-usage,get-object-storage-quota-usage,get,,Object Storage quotas,object storage quotas,quota_usage,get_object_storage_quota_usage,select,,Get Object Storage quota usage data
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/ssl,delete-object-storage-ssl,delete-object-storage-ssl,delete,,TLS/SSL certificates,tls/ssl certificates,ssl_certificates,delete_object_storage_ssl,delete,,Delete an Object Storage TLS/SSL certificate
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/ssl,post-object-storage-ssl,post-object-storage-ssl,post,,TLS/SSL certificates,tls/ssl certificates,ssl_certificates,post_object_storage_ssl,insert,,Upload an Object Storage TLS/SSL certificate
-object_storage.yaml,/{apiVersion}/object-storage/buckets/{regionId}/{bucket}/ssl,get-object-storage-ssl,get-object-storage-ssl,get,,TLS/SSL certificates,tls/ssl certificates,ssl_certificates,get_object_storage_ssl,select,,Get an Object Storage TLS/SSL certificate
-object_storage.yaml,/{apiVersion}/object-storage/types,get-object-storage-types,get-object-storage-types,get,,Object Storage types,object storage types,types,get_object_storage_types,select,,List Object Storage types
-placement.yaml,/{apiVersion}/placement/groups/{groupId},delete-placement-group,delete-placement-group,delete,,Placement groups,placement groups,placement_groups,delete_placement_group,delete,,Delete a placement group
-placement.yaml,/{apiVersion}/placement/groups,post-placement-group,post-placement-group,post,,Placement groups,placement groups,placement_groups,post_placement_group,insert,,Create placement group
-placement.yaml,/{apiVersion}/placement/groups/{groupId}/assign,post-group-add-linode,post-group-add-linode,post,,Placement groups,placement groups,placement_groups,post_group_add_linode,exec,,Assign a placement group
-placement.yaml,/{apiVersion}/placement/groups/{groupId}/unassign,post-group-unassign,post-group-unassign,post,,Placement groups,placement groups,placement_groups,post_group_unassign,exec,,Unassign a placement group
-placement.yaml,/{apiVersion}/placement/groups/{groupId},put-placement-group,put-placement-group,put,,Placement groups,placement groups,placement_groups,put_placement_group,replace,,Update a placement group
-placement.yaml,/{apiVersion}/placement/groups,get-placement-groups,get-placement-groups,get,,Placement groups,placement groups,placement_groups,get_placement_groups,select,,List placement groups
-placement.yaml,/{apiVersion}/placement/groups/{groupId},get-placement-group,get-placement-group,get,,Placement groups,placement groups,placement_groups,get_placement_group,select,,Get a placement group
-profile.yaml,/{apiVersion}/profile/apps/{appId},delete-profile-app,delete-profile-app,delete,,Apps,apps,apps,delete_profile_app,delete,,Revoke app access
-profile.yaml,/{apiVersion}/profile/apps,get-profile-apps,get-profile-apps,get,,Apps,apps,apps,get_profile_apps,select,,List authorized apps
-profile.yaml,/{apiVersion}/profile/apps/{appId},get-profile-app,get-profile-app,get,,Apps,apps,apps,get_profile_app,select,,Get an authorized app
-profile.yaml,/{apiVersion}/profile/devices/{deviceId},delete-trusted-device,delete-trusted-device,delete,,Devices,devices,trusted_devices,delete_trusted_device,delete,,Revoke a trusted device
-profile.yaml,/{apiVersion}/profile/devices,get-devices,get-devices,get,,Devices,devices,trusted_devices,get_devices,select,,List trusted devices
-profile.yaml,/{apiVersion}/profile/devices/{deviceId},get-trusted-device,get-trusted-device,get,,Devices,devices,trusted_devices,get_trusted_device,select,,Get a trusted device
-profile.yaml,/{apiVersion}/profile/grants,get-profile-grants,get-profile-grants,get,,Grants,grants,grants,get_profile_grants,select,,List grants
-profile.yaml,/{apiVersion}/profile/logins,get-profile-logins,get-profile-logins,get,,Logins,logins,logins,get_profile_logins,select,,List logins
-profile.yaml,/{apiVersion}/profile/logins/{loginId},get-profile-login,get-profile-login,get,,Logins,logins,logins,get_profile_login,select,,Get a profile's login
-profile.yaml,/{apiVersion}/profile/tokens/{tokenId},delete-personal-access-token,delete-personal-access-token,delete,,Personal access tokens,personal access tokens,personal_access_tokens,delete_personal_access_token,delete,,Revoke a personal access token
-profile.yaml,/{apiVersion}/profile/tokens,post-personal-access-token,post-personal-access-token,post,,Personal access tokens,personal access tokens,personal_access_tokens,post_personal_access_token,insert,,Create a personal access token
-profile.yaml,/{apiVersion}/profile/tokens/{tokenId},put-personal-access-token,put-personal-access-token,put,,Personal access tokens,personal access tokens,personal_access_tokens,put_personal_access_token,replace,,Update a personal access token
-profile.yaml,/{apiVersion}/profile/tokens,get-personal-access-tokens,get-personal-access-tokens,get,,Personal access tokens,personal access tokens,personal_access_tokens,get_personal_access_tokens,select,,List personal access tokens
-profile.yaml,/{apiVersion}/profile/tokens/{tokenId},get-personal-access-token,get-personal-access-token,get,,Personal access tokens,personal access tokens,personal_access_tokens,get_personal_access_token,select,,Get a personal access token
-profile.yaml,/{apiVersion}/profile/phone-number,delete-profile-phone-number,delete-profile-phone-number,delete,,Phone number,phone number,phone_number,delete_profile_phone_number,delete,,Delete a phone number
-profile.yaml,/{apiVersion}/profile/phone-number,post-profile-phone-number,post-profile-phone-number,post,,Phone number,phone number,phone_number,post_profile_phone_number,exec,,Send a phone number verification code
-profile.yaml,/{apiVersion}/profile/phone-number/verify,post-profile-phone-number-verify,post-profile-phone-number-verify,post,,Phone number,phone number,phone_number,post_profile_phone_number_verify,exec,,Verify a phone number
-profile.yaml,/{apiVersion}/profile/preferences,put-user-preferences,put-user-preferences,put,,Preferences,preferences,profile,put_user_preferences,exec,,Update a user's preferences
-profile.yaml,/{apiVersion}/profile/preferences,get-user-preferences,get-user-preferences,get,,Preferences,preferences,profile,get_user_preferences,exec,,Get user preferences
-profile.yaml,/{apiVersion}/profile,put-profile,put-profile,put,,Profile,profile,profile,put_profile,replace,,Update a profile
-profile.yaml,/{apiVersion}/profile,get-profile,get-profile,get,,Profile,profile,profile,get_profile,select,,Get a profile
-profile.yaml,/{apiVersion}/profile/security-questions,post-security-questions,post-security-questions,post,,Security questions,security questions,security_questions,post_security_questions,exec,,Answer security questions
-profile.yaml,/{apiVersion}/profile/security-questions,get-security-questions,get-security-questions,get,,Security questions,security questions,security_questions,get_security_questions,select,$.security_questions,List security questions
-profile.yaml,/{apiVersion}/profile/sshkeys/{sshKeyId},delete-ssh-key,delete-ssh-key,delete,,SSH keys,ssh keys,ssh_keys,delete_ssh_key,delete,,Delete an SSH key
-profile.yaml,/{apiVersion}/profile/sshkeys,post-add-ssh-key,post-add-ssh-key,post,,SSH keys,ssh keys,ssh_keys,post_add_ssh_key,insert,,Add an SSH key
-profile.yaml,/{apiVersion}/profile/sshkeys/{sshKeyId},put-ssh-key,put-ssh-key,put,,SSH keys,ssh keys,ssh_keys,put_ssh_key,replace,,Update an SSH key
-profile.yaml,/{apiVersion}/profile/sshkeys,get-ssh-keys,get-ssh-keys,get,,SSH keys,ssh keys,ssh_keys,get_ssh_keys,select,,List SSH keys
-profile.yaml,/{apiVersion}/profile/sshkeys/{sshKeyId},get-ssh-key,get-ssh-key,get,,SSH keys,ssh keys,ssh_keys,get_ssh_key,select,,Get an SSH key
-profile.yaml,/{apiVersion}/profile/tfa-disable,post-tfa-disable,post-tfa-disable,post,,Two factor authentication,two factor authentication,two_factor_authentication,post_tfa_disable,exec,,Disable two factor authentication
-profile.yaml,/{apiVersion}/profile/tfa-enable,post-tfa-enable,post-tfa-enable,post,,Two factor authentication,two factor authentication,two_factor_authentication,post_tfa_enable,exec,,Create a two factor secret
-profile.yaml,/{apiVersion}/profile/tfa-enable-confirm,post-tfa-confirm,post-tfa-confirm,post,,Two factor authentication,two factor authentication,two_factor_authentication,post_tfa_confirm,exec,,Enable two factor authentication
-regions.yaml,/{apiVersion}/regions,get-regions,get-regions,get,,Regions,regions,regions,get_regions,select,,List regions
-regions.yaml,/{apiVersion}/regions/availability,get-regions-availability,get-regions-availability,get,,Regions,regions,availability,get_regions_availability,select,$.data,List regions' availability
-regions.yaml,/{apiVersion}/regions/{regionId},get-region,get-region,get,,Regions,regions,regions,get_region,select,,Get a region
-regions.yaml,/{apiVersion}/regions/{regionId}/availability,get-region-availability,get-region-availability,get,,Regions,regions,availability,get_region_availability,select,,Get a region's availability
-support.yaml,/{apiVersion}/support/tickets/{ticketId}/attachments,post-ticket-attachment,post-ticket-attachment,post,,Attachments,attachments,tickets,post_ticket_attachment,exec,,Create a support ticket attachment
-support.yaml,/{apiVersion}/support/tickets/{ticketId}/replies,post-ticket-reply,post-ticket-reply,post,,Replies,replies,ticket_replies,post_ticket_reply,insert,,Create a reply
-support.yaml,/{apiVersion}/support/tickets/{ticketId}/replies,get-ticket-replies,get-ticket-replies,get,,Replies,replies,ticket_replies,get_ticket_replies,select,,List replies
-support.yaml,/{apiVersion}/support/tickets,post-ticket,post-ticket,post,,Support tickets,support tickets,tickets,post_ticket,insert,,Open a support ticket
-support.yaml,/{apiVersion}/support/tickets/{ticketId}/close,post-close-ticket,post-close-ticket,post,,Support tickets,support tickets,tickets,post_close_ticket,delete,,Close a support ticket
-support.yaml,/{apiVersion}/support/tickets,get-tickets,get-tickets,get,,Support tickets,support tickets,tickets,get_tickets,select,,List support tickets
-support.yaml,/{apiVersion}/support/tickets/{ticketId},get-ticket,get-ticket,get,,Support tickets,support tickets,tickets,get_ticket,select,,Get a support ticket
-tags.yaml,/{apiVersion}/tags/{tagLabel},delete-tag,delete-tag,delete,,Tags,tags,tags,delete_tag,delete,,Delete a tag
-tags.yaml,/{apiVersion}/tags,post-tag,post-tag,post,,Tags,tags,tags,post_tag,insert,,Create a tag
-tags.yaml,/{apiVersion}/tags,get-tags,get-tags,get,,Tags,tags,tags,get_tags,select,,List tags
-tags.yaml,/{apiVersion}/tags/{tagLabel},get-tagged-objects,get-tagged-objects,get,,Tags,tags,tagged_objects,get_tagged_objects,select,,List tagged objects
-volumes.yaml,/{apiVersion}/volumes/types,get-volume-types,get-volume-types,get,,Volume types,volume types,types,get_volume_types,select,,List volume types
-volumes.yaml,/{apiVersion}/volumes/{volumeId},delete-volume,delete-volume,delete,,Volumes,volumes,volumes,delete_volume,delete,,Delete a volume
-volumes.yaml,/{apiVersion}/volumes,post-volume,post-volume,post,,Volumes,volumes,volumes,post_volume,insert,,Create a volume
-volumes.yaml,/{apiVersion}/volumes/{volumeId}/attach,post-attach-volume,post-attach-volume,post,,Volumes,volumes,volumes,post_attach_volume,exec,,Attach a volume
-volumes.yaml,/{apiVersion}/volumes/{volumeId}/clone,post-clone-volume,post-clone-volume,post,,Volumes,volumes,volumes,post_clone_volume,exec,,Clone a volume
-volumes.yaml,/{apiVersion}/volumes/{volumeId}/detach,post-detach-volume,post-detach-volume,post,,Volumes,volumes,volumes,post_detach_volume,exec,,Detach a volume
-volumes.yaml,/{apiVersion}/volumes/{volumeId}/resize,post-resize-volume,post-resize-volume,post,,Volumes,volumes,volumes,post_resize_volume,exec,,Resize a volume
-volumes.yaml,/{apiVersion}/volumes/{volumeId},put-volume,put-volume,put,,Volumes,volumes,volumes,put_volume,replace,,Update a volume
-volumes.yaml,/{apiVersion}/volumes,get-volumes,get-volumes,get,,Volumes,volumes,volumes,get_volumes,select,,List volumes
-volumes.yaml,/{apiVersion}/volumes/{volumeId},get-volume,get-volume,get,,Volumes,volumes,volumes,get_volume,select,,Get a volume
-vpcs.yaml,/{apiVersion}/vpcs/ips,get-vpcs-ips,get-vpcs-ips,get,,IP addresses,ip addresses,ip_addresses,get_vpcs_ips,select,$.data,List VPC IP addresses
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId}/ips,get-vpc-ips,get-vpc-ips,get,,IP addresses,ip addresses,ip_addresses,get_vpc_ips,select,$.data,List a VPC's IP addresses
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId}/subnets/{vpcSubnetId},delete-vpc-subnet,delete-vpc-subnet,delete,,VPC subnets,vpc subnets,subnets,delete_vpc_subnet,delete,,Delete a VPC subnet
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId}/subnets,post-vpc-subnet,post-vpc-subnet,post,,VPC subnets,vpc subnets,subnets,post_vpc_subnet,insert,,Create a VPC subnet
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId}/subnets/{vpcSubnetId},put-vpc-subnet,put-vpc-subnet,put,,VPC subnets,vpc subnets,subnets,put_vpc_subnet,replace,,Update a VPC subnet
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId}/subnets,get-vpc-subnets,get-vpc-subnets,get,,VPC subnets,vpc subnets,subnets,get_vpc_subnets,select,$.data,List VPC subnets
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId}/subnets/{vpcSubnetId},get-vpc-subnet,get-vpc-subnet,get,,VPC subnets,vpc subnets,subnets,get_vpc_subnet,select,,Get a VPC subnet
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId},delete-vpc,delete-vpc,delete,,VPCs,vpcs,vpcs,delete_vpc,delete,,Delete a VPC
-vpcs.yaml,/{apiVersion}/vpcs,post-vpc,post-vpc,post,,VPCs,vpcs,vpcs,post_vpc,insert,,Create a VPC
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId},put-vpc,put-vpc,put,,VPCs,vpcs,vpcs,put_vpc,replace,,Update a VPC
-vpcs.yaml,/{apiVersion}/vpcs,get-vpcs,get-vpcs,get,,VPCs,vpcs,vpcs,get_vpcs,select,$.data,List VPCs
-vpcs.yaml,/{apiVersion}/vpcs/{vpcId},get-vpc,get-vpc,get,,VPCs,vpcs,vpcs,get_vpc,select,,Get a VPC
+account.yaml,/account/cancel,post-cancel-account,post-cancel-account,post,,Account,account,account,cancel,exec,,Delete your account
+account.yaml,/account,put-account,put-account,put,,Account,account,account,update,replace,,Update your account
+account.yaml,/account,get-account,get-account,get,,Account,account,account,get,select,,Get your account
+account.yaml,/account/agreements,post-account-agreements,post-account-agreements,post,,Account agreements,account agreements,agreements,acknowledge,exec,,Acknowledge agreements
+account.yaml,/account/agreements,get-account-agreements,get-account-agreements,get,,Account agreements,account agreements,agreements,get,select,,List agreements
+account.yaml,/account/availability/{regionId},get-account-availability,get-account-availability,get,,Account,account,availability,get,select,,Get a region's service availability
+account.yaml,/account/availability,get-availability,get-availability,get,,Account availability,account availability,available_services,list,select,$.data,List available services
+account.yaml,/account/betas,post-beta-program,post-beta-program,post,,Beta programs,beta programs,beta_programs,enroll,exec,,Enroll in a Beta program
+account.yaml,/account/betas,get-enrolled-beta-programs,get-enrolled-beta-programs,get,,Beta programs,beta programs,beta_programs,list,select,$.data,List enrolled Beta programs
+account.yaml,/account/betas/{betaId},get-enrolled-beta-program,get-enrolled-beta-program,get,,Beta programs,beta programs,beta_programs,get,select,,Get an enrolled Beta program
+account.yaml,/account/child-accounts/{euuId}/token,post-child-account-token,post-child-account-token,post,,Child accounts,child accounts,child_accounts,create_proxy_token,exec,,Create a proxy user token
+account.yaml,/account/child-accounts,get-child-accounts,get-child-accounts,get,,Child accounts,child accounts,child_accounts,list,select,$.data,List child accounts
+account.yaml,/account/child-accounts/{euuId},get-child-account,get-child-account,get,,Child accounts,child accounts,child_accounts,get,select,,Get a child account
+account.yaml,/account/oauth-clients/{clientId}/thumbnail,put-client-thumbnail,put-client-thumbnail,put,,Client thumbnail,client thumbnail,oauth_clients,update_thumbnail,exec,,Update the OAuth client's thumbnail
+account.yaml,/account/oauth-clients/{clientId}/thumbnail,get-client-thumbnail,get-client-thumbnail,get,,Client thumbnail,client thumbnail,oauth_clients,get_thumbnail,exec,,Get the OAuth client's thumbnail
+account.yaml,/account/entity-transfers/{token},delete-entity-transfer,delete-entity-transfer,delete,,Entity transfers,entity transfers,entity_transfers,delete,delete,,Cancel an entity transfer
+account.yaml,/account/entity-transfers/{token}/accept,post-accept-entity-transfer,post-accept-entity-transfer,post,,Entity transfers,entity transfers,entity_transfers,accept,exec,,Accept an entity transfer
+account.yaml,/account/entity-transfers,post-entity-transfer,post-entity-transfer,post,,Entity transfers,entity transfers,entity_transfers,create,insert,,Create an entity transfer
+account.yaml,/account/entity-transfers,get-entity-transfers,get-entity-transfers,get,,Entity transfers,entity transfers,entity_transfers,list,select,$.data,List entity transfers
+account.yaml,/account/entity-transfers/{token},get-entity-transfer,get-entity-transfer,get,,Entity transfers,entity transfers,entity_transfers,get,select,,Get an entity transfer
+account.yaml,/account/events/{eventId}/seen,post-event-seen,post-event-seen,post,,Events,events,events,mark_seen,exec,,Mark an event as seen
+account.yaml,/account/events,get-events,get-events,get,,Events,events,events,list,select,$.data,List events
+account.yaml,/account/events/{eventId},get-event,get-event,get,,Events,events,events,get,select,,Get an event
+account.yaml,/account/invoices/{invoiceId}/items,get-invoice-items,get-invoice-items,get,,Invoices,invoices,invoice_items,list,select,$.data,List invoice items
+account.yaml,/account/invoices,get-invoices,get-invoices,get,,Invoices,invoices,invoices,list,select,$.data,List invoices
+account.yaml,/account/invoices/{invoiceId},get-invoice,get-invoice,get,,Invoices,invoices,invoices,get,select,,Get an invoice
+account.yaml,/account/logins,get-account-logins,get-account-logins,get,,Logins,logins,logins,list,select,$.data,List user logins
+account.yaml,/account/logins/{loginId},get-account-login,get-account-login,get,,Logins,logins,logins,get,select,,Get an account login
+account.yaml,/account/maintenance,get-maintenance,get-maintenance,get,,Maintenances,maintenances,maintenances,list,select,$.data,List maintenances
+account.yaml,/account/transfer,get-transfer,get-transfer,get,,Account transfer,account transfer,network_usage,get,select,,Get network usage
+account.yaml,/account/notifications,get-notifications,get-notifications,get,,Notifications,notifications,notifications,list,select,$.data,List notifications
+account.yaml,/account/oauth-clients/{clientId},delete-client,delete-client,delete,,OAuth clients,oauth clients,oauth_clients,delete,delete,,Delete an OAuth client
+account.yaml,/account/oauth-clients/{clientId}/reset-secret,post-reset-client-secret,post-reset-client-secret,post,,OAuth clients,oauth clients,oauth_clients,reset_secret,exec,,Reset an OAuth client secret
+account.yaml,/account/oauth-clients,post-client,post-client,post,,OAuth clients,oauth clients,oauth_clients,create,insert,,Create an OAuth client
+account.yaml,/account/oauth-clients/{clientId},put-client,put-client,put,,OAuth clients,oauth clients,oauth_clients,update,replace,,Update an OAuth client
+account.yaml,/account/oauth-clients,get-clients,get-clients,get,,OAuth clients,oauth clients,oauth_clients,list,select,$.data,List OAuth clients
+account.yaml,/account/oauth-clients/{clientId},get-client,get-client,get,,OAuth clients,oauth clients,oauth_clients,get,select,,Get an OAuth client
+account.yaml,/account/payment-methods/{paymentMethodId},delete-payment-method,delete-payment-method,delete,,Payment methods,payment methods,payment_methods,delete,delete,,Delete a payment method
+account.yaml,/account/payment-methods/{paymentMethodId}/make-default,post-make-payment-method-default,post-make-payment-method-default,post,,Payment methods,payment methods,payment_methods,make_default,exec,,Set a default payment method
+account.yaml,/account/payment-methods,post-payment-method,post-payment-method,post,,Payment methods,payment methods,payment_methods,create,insert,,Add a payment method
+account.yaml,/account/payment-methods,get-payment-methods,get-payment-methods,get,,Payment methods,payment methods,payment_methods,list,select,$.data,List payment methods
+account.yaml,/account/payment-methods/{paymentMethodId},get-payment-method,get-payment-method,get,,Payment methods,payment methods,payment_methods,get,select,,Get a payment method
+account.yaml,/account/payments,post-payment,post-payment,post,,Payments,payments,payments,make_payment,exec,,Make a payment
+account.yaml,/account/payments/paypal,post-pay-pal-payment,post-pay-pal-payment,post,,Payments,payments,payments,stage_paypal_payment,exec,,Stage a PayPal payment
+account.yaml,/account/payments/paypal/execute,post-execute-pay-pal-payment,post-execute-pay-pal-payment,post,,Payments,payments,payments,execute_paypal_payment,exec,,Execute a PayPal payment
+account.yaml,/account/credit-card,post-credit-card,post-credit-card,post,,Payments,payments,payments,create,insert,,Add or edit a credit card
+account.yaml,/account/payments,get-payments,get-payments,get,,Payments,payments,payments,list,select,$.data,List payments
+account.yaml,/account/payments/{paymentId},get-payment,get-payment,get,,Payments,payments,payments,get,select,,Get a payment
+account.yaml,/account/promo-codes,post-promo-credit,post-promo-credit,post,,Promo credits,promo credits,promo_credits,create,insert,,Add a promo credit
+account.yaml,/account/service-transfers/{token},delete-service-transfer,delete-service-transfer,delete,,Service transfers,service transfers,service_transfers,delete,delete,,Cancel a service transfer
+account.yaml,/account/service-transfers/{token}/accept,post-accept-service-transfer,post-accept-service-transfer,post,,Service transfers,service transfers,service_transfers,accept,exec,,Accept a service transfer
+account.yaml,/account/service-transfers,post-service-transfer,post-service-transfer,post,,Service transfers,service transfers,service_transfers,create,insert,,Request a service transfer
+account.yaml,/account/service-transfers,get-service-transfers,get-service-transfers,get,,Service transfers,service transfers,service_transfers,list,select,$.data,List service transfers
+account.yaml,/account/service-transfers/{token},get-service-transfer,get-service-transfer,get,,Service transfers,service transfers,service_transfers,get,select,,Get a service transfer request
+account.yaml,/account/settings/managed-enable,post-enable-account-managed,post-enable-account-managed,post,,Settings,settings,settings,enable_managed,exec,,Enable Linode Managed
+account.yaml,/account/settings,put-account-settings,put-account-settings,put,,Account settings,account settings,settings,update,replace,,Update account settings
+account.yaml,/account/settings,get-account-settings,get-account-settings,get,,Account settings,account settings,settings,get,select,,Get account settings
+account.yaml,/account/users/{username}/grants,put-user-grants,put-user-grants,put,,Users,users,user_grants,update,replace,,Update a user's grants
+account.yaml,/account/users/{username}/grants,get-user-grants,get-user-grants,get,,Users,users,user_grants,get,select,,List a user's grants
+account.yaml,/account/users/{username},delete-user,delete-user,delete,,Users,users,users,delete,delete,,Delete a user
+account.yaml,/account/users,post-user,post-user,post,,Users,users,users,create,insert,,Create a user
+account.yaml,/account/users/{username},put-user,put-user,put,,Users,users,users,update,replace,,Update a user
+account.yaml,/account/users,get-users,get-users,get,,Users,users,users,list,select,$.data,List users
+account.yaml,/account/users/{username},get-user,get-user,get,,Users,users,users,get,select,$.user_type,Get a user
+betas.yaml,/betas,get-beta-programs,get-beta-programs,get,,Beta programs,beta programs,beta_programs,list,select,$.data,List Beta programs
+betas.yaml,/betas/{betaId},get-beta-program,get-beta-program,get,,Beta programs,beta programs,beta_programs,get,select,,Get a Beta program
+databases.yaml,/databases/engines,get-databases-engines,get-databases-engines,get,,Engines,engines,engines,list,select,$.data,List Managed Databases engines
+databases.yaml,/databases/engines/{engineId},get-databases-engine,get-databases-engine,get,,Engines,engines,engines,get,select,,Get a Managed Databases engine
+databases.yaml,/databases/instances,get-databases-instances,get-databases-instances,get,,Databases,databases,instances,list,select,$.data,List Managed Databases
+databases.yaml,/databases/mysql/config,get-databases-mysql-config,get-databases-mysql-config,get,,Advanced parameters,advanced parameters,mysql_config,get,select,,List MySQL Managed Database advanced parameters
+databases.yaml,/databases/mysql/instances/{instanceId}/credentials/reset,post-databases-mysql-instance-credentials-reset,post-databases-mysql-instance-credentials-reset,post,,Credentials,credentials,mysql_instance_credentials,reset_credentials,exec,,Reset MySQL Managed Database credentials
+databases.yaml,/databases/mysql/instances/{instanceId}/credentials,get-databases-mysql-instance-credentials,get-databases-mysql-instance-credentials,get,,Credentials,credentials,mysql_instance_credentials,get,select,,Get MySQL Managed Database credentials
+databases.yaml,/databases/mysql/instances/{instanceId},delete-databases-mysql-instance,delete-databases-mysql-instance,delete,,Databases,databases,mysql_instances,delete,delete,,Delete a MySQL Managed Database
+databases.yaml,/databases/mysql/instances/{instanceId}/resume,resume-databases-mysql-instance,resume-databases-mysql-instance,post,,Databases,databases,mysql_instances,resume,exec,,Resume a MySQL Managed Database
+databases.yaml,/databases/mysql/instances/{instanceId}/suspend,suspend-databases-mysql-instance,suspend-databases-mysql-instance,post,,Databases,databases,mysql_instances,suspend,exec,,Suspend a MySQL Managed Database
+databases.yaml,/databases/mysql/instances,post-databases-mysql-instances,post-databases-mysql-instances,post,,Databases,databases,mysql_instances,create,insert,,Create or restore a MySQL Managed Database
+databases.yaml,/databases/mysql/instances/{instanceId},put-databases-mysql-instance,put-databases-mysql-instance,put,,Databases,databases,mysql_instances,update,replace,,Update a MySQL Managed Database
+databases.yaml,/databases/mysql/instances,get-databases-mysql-instances,get-databases-mysql-instances,get,,Databases,databases,mysql_instances,list,select,$.data,List MySQL Managed Databases
+databases.yaml,/databases/mysql/instances/{instanceId},get-databases-mysql-instance,get-databases-mysql-instance,get,,Databases,databases,mysql_instances,get,select,,Get a MySQL Managed Database
+databases.yaml,/databases/mysql/instances/{instanceId}/patch,post-databases-mysql-instance-patch,post-databases-mysql-instance-patch,post,,Databases,databases,mysql_instances,patch,update,,Patch a MySQL Managed Database
+databases.yaml,/databases/mysql/instances/{instanceId}/ssl,get-databases-mysql-instance-ssl,get-databases-mysql-instance-ssl,get,,SSL certificates,ssl certificates,mysql_ssl_certificates,get,select,,Get a MySQL Managed Database SSL certificate
+databases.yaml,/databases/postgresql/config,get-databases-postgresql-config,get-databases-postgresql-config,get,,Advanced parameters,advanced parameters,postgresql_config,get,select,,List PostgreSQL Managed Database advanced parameters
+databases.yaml,/databases/postgresql/instances/{instanceId}/credentials/reset,post-databases-postgre-sql-instance-credentials-reset,post-databases-postgre-sql-instance-credentials-reset,post,,Credentials,credentials,postgresql_instance_credentials,reset_credentials,exec,,Reset PostgreSQL Managed Database credentials
+databases.yaml,/databases/postgresql/instances/{instanceId}/credentials,get-databases-postgre-sql-instance-credentials,get-databases-postgre-sql-instance-credentials,get,,Credentials,credentials,postgresql_instance_credentials,get,select,,Get PostgreSQL Managed Database credentials
+databases.yaml,/databases/postgresql/instances/{instanceId},delete-databases-postgre-sql-instance,delete-databases-postgre-sql-instance,delete,,Databases,databases,postgresql_instances,delete,delete,,Delete a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances/{instanceId}/resume,resume-databases-postgre-sql-instance,resume-databases-postgre-sql-instance,post,,Databases,databases,postgresql_instances,resume,exec,,Resume a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances/{instanceId}/suspend,suspend-databases-postgre-sql-instance,suspend-databases-postgre-sql-instance,post,,Databases,databases,postgresql_instances,suspend,exec,,Suspend a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances,post-databases-postgre-sql-instances,post-databases-postgre-sql-instances,post,,Databases,databases,postgresql_instances,create,insert,,Create or restore a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances/{instanceId},put-databases-postgre-sql-instance,put-databases-postgre-sql-instance,put,,Databases,databases,postgresql_instances,update,replace,,Update a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances,get-databases-postgre-sql-instances,get-databases-postgre-sql-instances,get,,Databases,databases,postgresql_instances,list,select,$.data,List PostgreSQL Managed Databases
+databases.yaml,/databases/postgresql/instances/{instanceId},get-databases-postgre-sql-instance,get-databases-postgre-sql-instance,get,,Databases,databases,postgresql_instances,get,select,,Get a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances/{instanceId}/patch,post-databases-postgre-sql-instance-patch,post-databases-postgre-sql-instance-patch,post,,Databases,databases,postgresql_instances,patch,update,,Patch a PostgreSQL Managed Database
+databases.yaml,/databases/postgresql/instances/{instanceId}/ssl,get-databases-postgresql-instance-ssl,get-databases-postgresql-instance-ssl,get,,SSL certificates,ssl certificates,postgresql_ssl_certificates,get,select,,Get a PostgreSQL Managed Database SSL certificate
+databases.yaml,/databases/types,get-databases-types,get-databases-types,get,,Types,types,types,list,select,$.data,List Managed Databases types
+databases.yaml,/databases/types/{typeId},get-databases-type,get-databases-type,get,,Types,types,types,get,select,,Get a Managed Databases type
+domains.yaml,/domains/{domainId},delete-domain,delete-domain,delete,,Domains,domains,domains,delete,delete,,Delete a domain
+domains.yaml,/domains/import,post-import-domain,post-import-domain,post,,Domains,domains,domains,import,exec,,Import a domain
+domains.yaml,/domains/{domainId}/clone,post-clone-domain,post-clone-domain,post,,Domains,domains,domains,clone,exec,,Clone a domain
+domains.yaml,/domains,post-domain,post-domain,post,,Domains,domains,domains,create,insert,,Create a domain
+domains.yaml,/domains/{domainId},put-domain,put-domain,put,,Domains,domains,domains,update,replace,,Update a domain
+domains.yaml,/domains,get-domains,get-domains,get,,Domains,domains,domains,list,select,$.data,List domains
+domains.yaml,/domains/{domainId},get-domain,get-domain,get,,Domains,domains,domains,get,select,,Get a domain
+domains.yaml,/domains/{domainId}/records/{recordId},delete-domain-record,delete-domain-record,delete,,Records,records,records,delete,delete,,Delete a domain record
+domains.yaml,/domains/{domainId}/records,post-domain-record,post-domain-record,post,,Records,records,records,create,insert,,Create a domain record
+domains.yaml,/domains/{domainId}/records/{recordId},put-domain-record,put-domain-record,put,,Records,records,records,update,replace,,Update a domain record
+domains.yaml,/domains/{domainId}/records,get-domain-records,get-domain-records,get,,Records,records,records,list,select,$.data,List domain records
+domains.yaml,/domains/{domainId}/records/{recordId},get-domain-record,get-domain-record,get,,Records,records,records,get,select,,Get a domain record
+domains.yaml,/domains/{domainId}/zone-file,get-domain-zone,get-domain-zone,get,,Domain zone file,domain zone file,zone_file,get,select,$.zone_file,Get a domain zone file
+images.yaml,/images/{imageId},delete-image,delete-image,delete,,Images,images,images,delete,delete,,Delete an image
+images.yaml,/images/upload,post-upload-image,post-upload-image,post,,Images,images,images,upload,exec,,Upload an image
+images.yaml,/images/{imageId}/regions,post-replicate-image,post-replicate-image,post,,Images,images,images,replicate,exec,,Replicate an image
+images.yaml,/images,post-image,post-image,post,,Images,images,images,create,insert,,Create an image
+images.yaml,/images/{imageId},put-image,put-image,put,,Images,images,images,update,replace,,Update an image
+images.yaml,/images,get-images,get-images,get,,Images,images,images,list,select,$.data,List images
+images.yaml,/images/{imageId},get-image,get-image,get,,Images,images,images,get,select,,Get an image
+linode.yaml,/linode/instances/{linodeId}/backups/cancel,post-cancel-backups,post-cancel-backups,post,,Backups,backups,backups,cancel,exec,,Cancel backups
+linode.yaml,/linode/instances/{linodeId}/backups/enable,post-enable-backups,post-enable-backups,post,,Backups,backups,backups,enable,exec,,Enable backups
+linode.yaml,/linode/instances/{linodeId}/backups/{backupId}/restore,post-restore-backup,post-restore-backup,post,,Backups,backups,backups,restore,exec,,Restore a backup
+linode.yaml,/linode/instances/{linodeId}/backups,post-snapshot,post-snapshot,post,,Backups,backups,backups,create_snapshot,insert,,Create a snapshot
+linode.yaml,/linode/instances/{linodeId}/backups,get-backups,get-backups,get,,Backups,backups,backups,list,select,,List backups
+linode.yaml,/linode/instances/{linodeId}/backups/{backupId},get-backup,get-backup,get,,Backups,backups,backups,get,select,,Get a backup
+linode.yaml,/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId},delete-linode-config-interface,delete-linode-config-interface,delete,,Interfaces,interfaces,config_profile_interfaces,delete,delete,,Delete a configuration profile interface
+linode.yaml,/linode/instances/{linodeId}/configs/{configId}/interfaces/order,post-linode-config-interfaces,post-linode-config-interfaces,post,,Interfaces,interfaces,config_profile_interfaces,reorder,exec,,Reorder configuration profile interfaces
+linode.yaml,/linode/instances/{linodeId}/configs/{configId}/interfaces,post-linode-config-interface,post-linode-config-interface,post,,Interfaces,interfaces,config_profile_interfaces,create,insert,,Add a configuration profile interface
+linode.yaml,/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId},put-linode-config-interface,put-linode-config-interface,put,,Interfaces,interfaces,config_profile_interfaces,update,replace,,Update a configuration profile interface
+linode.yaml,/linode/instances/{linodeId}/configs/{configId}/interfaces,get-linode-config-interfaces,get-linode-config-interfaces,get,,Interfaces,interfaces,config_profile_interfaces,list,select,,List configuration profile interfaces
+linode.yaml,/linode/instances/{linodeId}/configs/{configId}/interfaces/{interfaceId},get-linode-config-interface,get-linode-config-interface,get,,Interfaces,interfaces,config_profile_interfaces,get,select,,Get a configuration profile interface
+linode.yaml,/linode/instances/{linodeId}/configs/{configId},delete-linode-config,delete-linode-config,delete,,Configurations,configurations,config_profiles,delete,delete,,Delete a configuration profile
+linode.yaml,/linode/instances/{linodeId}/configs,post-add-linode-config,post-add-linode-config,post,,Configurations,configurations,config_profiles,create,insert,,Create a configuration profile
+linode.yaml,/linode/instances/{linodeId}/configs/{configId},put-linode-config,put-linode-config,put,,Configurations,configurations,config_profiles,update,replace,,Update a configuration profile
+linode.yaml,/linode/instances/{linodeId}/configs,get-linode-configs,get-linode-configs,get,,Configurations,configurations,config_profiles,list,select,$.data,List configuration profiles
+linode.yaml,/linode/instances/{linodeId}/configs/{configId},get-linode-config,get-linode-config,get,,Configurations,configurations,config_profiles,get,select,,Get a configuration profile
+linode.yaml,/linode/instances/{linodeId}/disks/{diskId},delete-disk,delete-disk,delete,,Disks,disks,disks,delete,delete,,Delete a disk
+linode.yaml,/linode/instances/{linodeId}/disks/{diskId}/clone,post-clone-linode-disk,post-clone-linode-disk,post,,Disks,disks,disks,clone,exec,,Clone a disk
+linode.yaml,/linode/instances/{linodeId}/disks/{diskId}/password,post-reset-disk-password,post-reset-disk-password,post,,Disks,disks,disks,reset_password,exec,,Reset a disk root password
+linode.yaml,/linode/instances/{linodeId}/disks/{diskId}/resize,post-resize-disk,post-resize-disk,post,,Disks,disks,disks,resize,exec,,Resize a disk
+linode.yaml,/linode/instances/{linodeId}/disks,post-add-linode-disk,post-add-linode-disk,post,,Disks,disks,disks,create,insert,,Create a disk
+linode.yaml,/linode/instances/{linodeId}/disks/{diskId},put-disk,put-disk,put,,Disks,disks,disks,update,replace,,Update a disk
+linode.yaml,/linode/instances/{linodeId}/disks,get-linode-disks,get-linode-disks,get,,Disks,disks,disks,list,select,$.data,List disks
+linode.yaml,/linode/instances/{linodeId}/disks/{diskId},get-linode-disk,get-linode-disk,get,,Disks,disks,disks,get,select,,Get a disk
+linode.yaml,/linode/instances/{linodeId}/firewalls/apply,post-apply-firewalls,post-apply-firewalls,post,,Firewalls,firewalls,firewalls,apply,exec,,Apply a Linode's firewalls
+linode.yaml,/linode/instances/{linodeId}/firewalls,put-linode-firewalls,put-linode-firewalls,put,,Firewalls,firewalls,firewalls,update,replace,,Update a Linode's firewalls
+linode.yaml,/linode/instances/{linodeId}/firewalls,get-linode-firewalls,get-linode-firewalls,get,,Firewalls,firewalls,firewalls,list,select,$.data,List a Linode's firewalls
+linode.yaml,/linode/instances/{linodeId},delete-linode-instance,delete-linode-instance,delete,,Linode instances,linode instances,instances,delete,delete,,Delete a Linode
+linode.yaml,/linode/instances/{linodeId}/boot,post-boot-linode-instance,post-boot-linode-instance,post,,Linode instances,linode instances,instances,boot,exec,,Boot a Linode
+linode.yaml,/linode/instances/{linodeId}/clone,post-clone-linode-instance,post-clone-linode-instance,post,,Linode instances,linode instances,instances,clone,exec,,Clone a Linode
+linode.yaml,/linode/instances/{linodeId}/migrate,post-migrate-linode-instance,post-migrate-linode-instance,post,,Linode instances,linode instances,instances,migrate,exec,,Launch a DC migration/pending host migration
+linode.yaml,/linode/instances/{linodeId}/mutate,post-mutate-linode-instance,post-mutate-linode-instance,post,,Linode instances,linode instances,instances,mutate,exec,,Upgrade a Linode
+linode.yaml,/linode/instances/{linodeId}/password,post-reset-linode-password,post-reset-linode-password,post,,Linode instances,linode instances,instances,reset_password,exec,,Reset a Linode's root password
+linode.yaml,/linode/instances/{linodeId}/reboot,post-reboot-linode-instance,post-reboot-linode-instance,post,,Linode instances,linode instances,instances,reboot,exec,,Reboot a Linode
+linode.yaml,/linode/instances/{linodeId}/rebuild,post-rebuild-linode-instance,post-rebuild-linode-instance,post,,Linode instances,linode instances,instances,rebuild,exec,,Rebuild a Linode
+linode.yaml,/linode/instances/{linodeId}/rescue,post-rescue-linode-instance,post-rescue-linode-instance,post,,Linode instances,linode instances,instances,rescue,exec,,Boot a Linode into rescue mode
+linode.yaml,/linode/instances/{linodeId}/resize,post-resize-linode-instance,post-resize-linode-instance,post,,Linode instances,linode instances,instances,resize,exec,,Resize a Linode
+linode.yaml,/linode/instances/{linodeId}/shutdown,post-shutdown-linode-instance,post-shutdown-linode-instance,post,,Linode instances,linode instances,instances,shutdown,exec,,Shut down a Linode
+linode.yaml,/linode/instances,post-linode-instance,post-linode-instance,post,,Linode instances,linode instances,instances,create,insert,,Create a Linode
+linode.yaml,/linode/instances/{linodeId},put-linode-instance,put-linode-instance,put,,Linode instances,linode instances,instances,update,replace,,Update a Linode
+linode.yaml,/linode/instances,get-linode-instances,get-linode-instances,get,,Linode instances,linode instances,instances,list,select,$.data,List Linodes
+linode.yaml,/linode/instances/{linodeId},get-linode-instance,get-linode-instance,get,,Linode instances,linode instances,instances,get,select,,Get a Linode
+linode.yaml,/linode/instances/{linodeId}/interfaces/{interfaceId}/firewalls,get-linode-interface-firewalls,get-linode-interface-firewalls,get,,Linode interfaces,linode interfaces,interface_firewalls,list,select,$.data,List Linode interface firewalls
+linode.yaml,/linode/instances/{linodeId}/interfaces/settings,put-linode-interface-settings,put-linode-interface-settings,put,,Linode interfaces,linode interfaces,interface_settings,update,replace,,Update Linode interface settings
+linode.yaml,/linode/instances/{linodeId}/interfaces/settings,get-linode-interface-settings,get-linode-interface-settings,get,,Linode interfaces,linode interfaces,interface_settings,get,select,,List Linode interface settings
+linode.yaml,/linode/instances/{linodeId}/interfaces/{interfaceId},delete-linode-interface,delete-linode-interface,delete,,Linode interfaces,linode interfaces,interfaces,delete,delete,,Delete a Linode interface
+linode.yaml,/linode/instances/{linodeId}/upgrade-interfaces,post-upgrade-linode-interfaces,post-upgrade-linode-interfaces,post,,Linode interfaces,linode interfaces,interfaces,upgrade,exec,,Upgrade to Linode interfaces
+linode.yaml,/linode/instances/{linodeId}/interfaces,post-linode-interface,post-linode-interface,post,,Linode interfaces,linode interfaces,interfaces,create,insert,,Add a Linode interface
+linode.yaml,/linode/instances/{linodeId}/interfaces/{interfaceId},put-linode-interface,put-linode-interface,put,,Linode interfaces,linode interfaces,interfaces,update,replace,,Update a Linode interface
+linode.yaml,/linode/instances/{linodeId}/interfaces,get-linode-interfaces,get-linode-interfaces,get,,Linode interfaces,linode interfaces,interfaces,list,select,,List Linode interfaces
+linode.yaml,/linode/instances/{linodeId}/interfaces/{interfaceId},get-linode-interface,get-linode-interface,get,,Linode interfaces,linode interfaces,interfaces,get,select,,Get a Linode interface
+linode.yaml,/linode/instances/{linodeId}/ips/{address},delete-linode-ip,delete-linode-ip,delete,,IP addresses,ip addresses,ip_addresses,delete,delete,,Delete an IPv4 address
+linode.yaml,/linode/instances/{linodeId}/ips,post-add-linode-ip,post-add-linode-ip,post,,IP addresses,ip addresses,ip_addresses,create,insert,,Allocate an IPv4 address
+linode.yaml,/linode/instances/{linodeId}/ips/{address},put-linode-ip,put-linode-ip,put,,IP addresses,ip addresses,ip_addresses,update,replace,,Update an IP address's RDNS for a Linode
+linode.yaml,/linode/instances/{linodeId}/ips,get-linode-ips,get-linode-ips,get,,IP addresses,ip addresses,ip_addresses,list,select,,Get networking information
+linode.yaml,/linode/instances/{linodeId}/ips/{address},get-linode-ip,get-linode-ip,get,,IP addresses,ip addresses,ip_addresses,get,select,,Get a Linode's IP address
+linode.yaml,/linode/kernels,get-kernels,get-kernels,get,,Kernels,kernels,kernels,list,select,$.data,List kernels
+linode.yaml,/linode/kernels/{kernelId},get-kernel,get-kernel,get,,Kernels,kernels,kernels,get,select,,Get a kernel
+linode.yaml,/linode/instances/{linodeId}/transfer/{year}/{month},get-linode-transfer-by-year-month,get-linode-transfer-by-year-month,get,,Network transfer statistics,network transfer statistics,network_transfer_statistics,get,select,,Get monthly network transfer stats
+linode.yaml,/linode/instances/{linodeId}/transfer,get-linode-transfer,get-linode-transfer,get,,Network transfers,network transfers,network_transfers,get,select,,Get a network transfer
+linode.yaml,/linode/instances/{linodeId}/nodebalancers,get-linode-node-balancers,get-linode-node-balancers,get,,NodeBalancers,node_balancers,node_balancers,list,select,$.data,List Linode NodeBalancers
+linode.yaml,/linode/stackscripts/{stackscriptId},delete-stack-script,delete-stack-script,delete,,StackScripts,stack_scripts,stack_scripts,delete,delete,,Delete a StackScript
+linode.yaml,/linode/stackscripts,post-add-stack-script,post-add-stack-script,post,,StackScripts,stack_scripts,stack_scripts,create,insert,,Create a StackScript
+linode.yaml,/linode/stackscripts/{stackscriptId},put-stack-script,put-stack-script,put,,StackScripts,stack_scripts,stack_scripts,update,replace,,Update a StackScript
+linode.yaml,/linode/stackscripts,get-stack-scripts,get-stack-scripts,get,,StackScripts,stack_scripts,stack_scripts,list,select,$.data,List StackScripts
+linode.yaml,/linode/stackscripts/{stackscriptId},get-stack-script,get-stack-script,get,,StackScripts,stack_scripts,stack_scripts,get,select,,Get a StackScript
+linode.yaml,/linode/instances/{linodeId}/stats,get-linode-stats,get-linode-stats,get,,Statistics,statistics,statistics,get,select,,Get Linode statistics
+linode.yaml,/linode/instances/{linodeId}/stats/{year}/{month},get-linode-stats-by-year-month,get-linode-stats-by-year-month,get,,Statistics,statistics,statistics,get_by_year_month,select,,Get monthly statistics
+linode.yaml,/linode/types,get-linode-types,get-linode-types,get,,Linode types,linode types,types,list,select,$.data,List types
+linode.yaml,/linode/types/{typeId},get-linode-type,get-linode-type,get,,Linode types,linode types,types,get,select,,Get a type
+linode.yaml,/linode/instances/{linodeId}/volumes,get-linode-volumes,get-linode-volumes,get,,Volumes,volumes,volumes,list,select,$.data,List a Linode's volumes
+lke.yaml,/lke/clusters/{clusterId}/api-endpoints,get-lke-cluster-api-endpoints,get-lke-cluster-api-endpoints,get,,LKE API endpoints,lke api endpoints,api_endpoints,list,select,$.data,List Kubernetes API endpoints
+lke.yaml,/lke/clusters/{clusterId}/dashboard,get-lke-cluster-dashboard,get-lke-cluster-dashboard,get,,Cluster dashboard,cluster dashboard,cluster_dashboard,get,select,,Get a Kubernetes cluster dashboard URL
+lke.yaml,/lke/clusters/{clusterId},delete-lke-cluster,delete-lke-cluster,delete,,Clusters,clusters,clusters,delete,delete,,Delete a Kubernetes cluster
+lke.yaml,/lke/clusters/{clusterId}/recycle,post-lke-cluster-recycle,post-lke-cluster-recycle,post,,Clusters,clusters,clusters,recycle,exec,,Recycle cluster nodes
+lke.yaml,/lke/clusters/{clusterId}/regenerate,post-lke-cluster-regenerate,post-lke-cluster-regenerate,post,,Clusters,clusters,clusters,regenerate,exec,,Regenerate a Kubernetes cluster
+lke.yaml,/lke/clusters/{clusterId}/servicetoken,delete-lke-service-token,delete-lke-service-token,delete,,Service tokens,service tokens,clusters,delete_service_token,exec,,Delete a service token
+lke.yaml,/lke/clusters,post-lke-cluster,post-lke-cluster,post,,Clusters,clusters,clusters,create,insert,,Create a Kubernetes cluster
+lke.yaml,/lke/clusters/{clusterId},put-lke-cluster,put-lke-cluster,put,,Clusters,clusters,clusters,update,replace,,Update a Kubernetes cluster
+lke.yaml,/lke/clusters,get-lke-clusters,get-lke-clusters,get,,Clusters,clusters,clusters,list,select,$.data,List Kubernetes clusters
+lke.yaml,/lke/clusters/{clusterId},get-lke-cluster,get-lke-cluster,get,,Clusters,clusters,clusters,get,select,,Get a Kubernetes cluster
+lke.yaml,/lke/clusters/{clusterId}/control_plane_acl,delete-lke-cluster-acl,delete-lke-cluster-acl,delete,,LKE Control Plane ACL,lke control plane acl,control_plane_acl,delete,delete,,Delete the control plane access control list
+lke.yaml,/lke/clusters/{clusterId}/control_plane_acl,put-lke-cluster-acl,put-lke-cluster-acl,put,,LKE Control Plane ACL,lke control plane acl,control_plane_acl,update,replace,,Update the control plane access control list
+lke.yaml,/lke/clusters/{clusterId}/control_plane_acl,get-lke-cluster-acl,get-lke-cluster-acl,get,,LKE Control Plane ACL,lke control plane acl,control_plane_acl,get,select,$.acl,Get the control plane access control list
+lke.yaml,/lke/clusters/{clusterId}/kubeconfig,delete-lke-cluster-kubeconfig,delete-lke-cluster-kubeconfig,delete,,Kubeconfigs,kubeconfigs,kubeconfigs,delete,delete,,Delete a Kubeconfig
+lke.yaml,/lke/clusters/{clusterId}/kubeconfig,get-lke-cluster-kubeconfig,get-lke-cluster-kubeconfig,get,,Kubeconfigs,kubeconfigs,kubeconfigs,get,select,,Get a Kubeconfig
+lke.yaml,/lke/clusters/{clusterId}/pools/{poolId},delete-lke-node-pool,delete-lke-node-pool,delete,,Node pools,node pools,node_pools,delete,delete,,Delete a node pool
+lke.yaml,/lke/clusters/{clusterId}/pools/{poolId}/recycle,post-lke-cluster-pool-recycle,post-lke-cluster-pool-recycle,post,,Node pools,node pools,node_pools,recycle,exec,,Recycle a node pool
+lke.yaml,/lke/clusters/{clusterId}/pools,post-lke-cluster-pools,post-lke-cluster-pools,post,,Node pools,node pools,node_pools,create,insert,,Create a node pool
+lke.yaml,/lke/clusters/{clusterId}/pools/{poolId},put-lke-node-pool,put-lke-node-pool,put,,Node pools,node pools,node_pools,update,replace,,Update a node pool
+lke.yaml,/lke/clusters/{clusterId}/pools,get-lke-cluster-pools,get-lke-cluster-pools,get,,Node pools,node pools,node_pools,list,select,$.data,List node pools
+lke.yaml,/lke/clusters/{clusterId}/pools/{poolId},get-lke-node-pool,get-lke-node-pool,get,,Node pools,node pools,node_pools,get,select,,Get a node pool
+lke.yaml,/lke/clusters/{clusterId}/nodes/{nodeId},delete-lke-cluster-node,delete-lke-cluster-node,delete,,Nodes,nodes,nodes,delete,delete,,Delete a node
+lke.yaml,/lke/clusters/{clusterId}/nodes/{nodeId}/recycle,post-lke-cluster-node-recycle,post-lke-cluster-node-recycle,post,,Nodes,nodes,nodes,recycle,exec,,Recycle a node
+lke.yaml,/lke/clusters/{clusterId}/nodes/{nodeId},get-lke-cluster-node,get-lke-cluster-node,get,,Nodes,nodes,nodes,get,select,,Get a node
+lke.yaml,/lke/versions,get-lke-versions,get-lke-versions,get,,LKE versions,lke versions,non_enterprise_versions,list,select,$.data,List LKE Kubernetes versions (non-enterprise)
+lke.yaml,/lke/versions/{version},get-lke-version,get-lke-version,get,,LKE versions,lke versions,non_enterprise_versions,get,select,,Get an LKE Kubernetes version (non-enterprise)
+lke.yaml,/lke/types,get-lke-types,get-lke-types,get,,LKE types,lke types,types,list,select,$.data,List Kubernetes types
+lke.yaml,/lke/tiers/{tier}/versions,get-lke-tiers-versions,get-lke-tiers-versions,get,,LKE versions,lke versions,versions,list,select,$.data,List LKE Kubernetes versions (any tier)
+lke.yaml,/lke/tiers/{tier}/versions/{version},get-lke-tiers-version,get-lke-tiers-version,get,,LKE versions,lke versions,versions,get,select,,Get an LKE Kubernetes version (any tier)
+longview.yaml,/longview/clients/{clientId},delete-longview-client,delete-longview-client,delete,,Clients,clients,clients,delete,delete,,Delete a Longview client
+longview.yaml,/longview/clients,post-longview-client,post-longview-client,post,,Clients,clients,clients,create,insert,,Create a Longview client
+longview.yaml,/longview/clients/{clientId},put-longview-client,put-longview-client,put,,Clients,clients,clients,update,replace,,Update a Longview client
+longview.yaml,/longview/clients,get-longview-clients,get-longview-clients,get,,Clients,clients,clients,list,select,$.data,List Longview clients
+longview.yaml,/longview/clients/{clientId},get-longview-client,get-longview-client,get,,Clients,clients,clients,get,select,,Get a Longview client
+longview.yaml,/longview/plan,put-longview-plan,put-longview-plan,put,,Plans,plans,plans,update,replace,,Update a Longview plan
+longview.yaml,/longview/plan,get-longview-plan,get-longview-plan,get,,Plans,plans,plans,get,select,,Get a Longview plan
+longview.yaml,/longview/subscriptions,get-longview-subscriptions,get-longview-subscriptions,get,,Subscriptions,subscriptions,subscriptions,list,select,$.data,List Longview subscriptions
+longview.yaml,/longview/subscriptions/{subscriptionId},get-longview-subscription,get-longview-subscription,get,,Subscriptions,subscriptions,subscriptions,get,select,,Get a Longview subscription
+longview.yaml,/longview/types,get-longview-types,get-longview-types,get,,Longview types,longview types,types,list,select,$.data,List Longview types
+managed.yaml,/managed/contacts/{contactId},delete-managed-contact,delete-managed-contact,delete,,Contacts,contacts,contacts,delete,delete,,Delete a managed contact
+managed.yaml,/managed/contacts,post-managed-contact,post-managed-contact,post,,Contacts,contacts,contacts,create,insert,,Create a managed contact
+managed.yaml,/managed/contacts/{contactId},put-managed-contact,put-managed-contact,put,,Contacts,contacts,contacts,update,replace,,Update a managed contact
+managed.yaml,/managed/contacts,get-managed-contacts,get-managed-contacts,get,,Contacts,contacts,contacts,list,select,$.data,List managed contacts
+managed.yaml,/managed/contacts/{contactId},get-managed-contact,get-managed-contact,get,,Contacts,contacts,contacts,get,select,,Get a managed contact
+managed.yaml,/managed/credentials/{credentialId}/revoke,post-managed-credential-revoke,post-managed-credential-revoke,post,,Credentials,credentials,credentials,revoke,exec,,Delete a managed credential
+managed.yaml,/managed/credentials/{credentialId}/update,post-managed-credential-username-password,post-managed-credential-username-password,post,,Credentials,credentials,credentials,update_username_password,exec,,Update a managed credential's username and password
+managed.yaml,/managed/credentials,post-managed-credential,post-managed-credential,post,,Credentials,credentials,credentials,create,insert,,Create a managed credential
+managed.yaml,/managed/credentials/{credentialId},put-managed-credential,put-managed-credential,put,,Credentials,credentials,credentials,update,replace,,Update a managed credential
+managed.yaml,/managed/credentials,get-managed-credentials,get-managed-credentials,get,,Credentials,credentials,credentials,list,select,$.data,List managed credentials
+managed.yaml,/managed/credentials/{credentialId},get-managed-credential,get-managed-credential,get,,Credentials,credentials,credentials,get,select,,Get a managed credential
+managed.yaml,/managed/issues,get-managed-issues,get-managed-issues,get,,Issues,issues,issues,list,select,$.data,List managed issues
+managed.yaml,/managed/issues/{issueId},get-managed-issue,get-managed-issue,get,,Issues,issues,issues,get,select,,Get a managed issue
+managed.yaml,/managed/linode-settings,get-managed-linode-settings,get-managed-linode-settings,get,,Linode settings,linode settings,linode_settings,list,select,$.data,List managed Linode settings
+managed.yaml,/managed/credentials/sshkey,get-managed-ssh-key,get-managed-ssh-key,get,,Managed SSH keys,managed ssh keys,managed_ssh_keys,get,select,,Get a managed SSH key
+managed.yaml,/managed/services/{serviceId},delete-managed-service,delete-managed-service,delete,,Services,services,services,delete,delete,,Delete a managed service
+managed.yaml,/managed/services/{serviceId}/disable,post-disable-managed-service,post-disable-managed-service,post,,Services,services,services,disable,exec,,Disable a managed service
+managed.yaml,/managed/services/{serviceId}/enable,post-enable-managed-service,post-enable-managed-service,post,,Services,services,services,enable,exec,,Enable a managed service
+managed.yaml,/managed/services,post-managed-service,post-managed-service,post,,Services,services,services,create,insert,,Create a managed service
+managed.yaml,/managed/services/{serviceId},put-managed-service,put-managed-service,put,,Services,services,services,update,replace,,Update a managed service
+managed.yaml,/managed/services,get-managed-services,get-managed-services,get,,Services,services,services,list,select,$.data,List managed services
+managed.yaml,/managed/services/{serviceId},get-managed-service,get-managed-service,get,,Services,services,services,get,select,,Get a managed service
+managed.yaml,/managed/linode-settings/{linodeId},put-managed-linode-setting,put-managed-linode-setting,put,,Managed settings,managed settings,settings,update,replace,,Update a Linode's managed settings
+managed.yaml,/managed/linode-settings/{linodeId},get-managed-linode-setting,get-managed-linode-setting,get,,Managed settings,managed settings,settings,get,select,,Get a Linode's managed settings
+managed.yaml,/managed/stats,get-managed-stats,get-managed-stats,get,,Statistics,statistics,statistics,list,select,$.data,List managed stats
+monitor.yaml,/monitor/alert-channels,get-alert-channels,get-alert-channels,get,,Alerts,alerts,alert_channels,list,select,$.data,List alert channels
+monitor.yaml,/monitor/services/{serviceType}/alert-definitions/{alertId},delete-alert-definition,delete-alert-definition,delete,,Alerts,alerts,alert_definitions,delete,delete,,Delete an alert definition
+monitor.yaml,/monitor/services/{serviceType}/alert-definitions,post-alert-definition-for-service-type,post-alert-definition-for-service-type,post,,Alerts,alerts,alert_definitions,create,insert,,Create an alert definition
+monitor.yaml,/monitor/services/{serviceType}/alert-definitions/{alertId},put-alert-definition,put-alert-definition,put,,Alerts,alerts,alert_definitions,update,replace,,Update an alert definition
+monitor.yaml,/monitor/alert-definitions,get-alert-definitions,get-alert-definitions,get,,Alerts,alerts,alert_definitions,list,select,$.data,List alert definitions
+monitor.yaml,/monitor/services/{serviceType}/alert-definitions,get-alert-definitions-for-service-type,get-alert-definitions-for-service-type,get,,Alerts,alerts,alert_definitions,list_by_service_type,select,$.data,List alert definitions for a service type
+monitor.yaml,/monitor/services/{serviceType}/alert-definitions/{alertId},get-alert-definition,get-alert-definition,get,,Alerts,alerts,alert_definitions,get,select,,Get an alert definition
+monitor.yaml,/monitor/dashboards,get-dashboards-all,get-dashboards-all,get,,Metrics,metrics,dashboards,list,select,$.data,List dashboards
+monitor.yaml,/monitor/dashboards/{dashboardId},get-dashboards-by-id,get-dashboards-by-id,get,,Metrics,metrics,dashboards,get,select,,Get a dashboard
+monitor.yaml,/monitor/services/{serviceType}/dashboards,get-dashboards,get-dashboards,get,,Metrics,metrics,dashboards,list_by_service_type,select,$.data,List dashboards for a service type
+monitor.yaml,/monitor/services/{serviceType}/metrics,post-read-metric,post-read-metric,post,,Metrics,metrics,metrics,read,exec,,Get an entity's metrics
+monitor.yaml,/monitor/services/{serviceType}/token,post-get-token,post-get-token,post,,Metrics,metrics,metrics,create_token,exec,,Create a token for a service type
+monitor.yaml,/monitor/services/{serviceType}/metric-definitions,get-monitor-information,get-monitor-information,get,,Metrics,metrics,metrics,list,select,$.data,List metrics for a service type
+monitor.yaml,/monitor/services,get-monitor-services,get-monitor-services,get,,Metrics,metrics,monitor_services,list,select,$.data,List supported service types
+monitor.yaml,/monitor/services/{serviceType},get-monitor-services-for-service-type,get-monitor-services-for-service-type,get,,Metrics,metrics,monitor_services,list_by_service_type,select,$.data,Get details for a supported service type
+networking.yaml,/network-transfer/prices,get-network-transfer-prices,get-network-transfer-prices,get,,Network transfer prices,network transfer prices,network_transfer_prices,list,select,$.data,List network transfer prices
+networking.yaml,/networking/firewalls/{firewallId}/devices/{deviceId},delete-firewall-device,delete-firewall-device,delete,,Devices,devices,firewall_devices,delete,delete,,Delete a firewall device
+networking.yaml,/networking/firewalls/{firewallId}/devices,post-firewall-device,post-firewall-device,post,,Devices,devices,firewall_devices,create,insert,,Create a firewall device
+networking.yaml,/networking/firewalls/{firewallId}/devices,get-firewall-devices,get-firewall-devices,get,,Devices,devices,firewall_devices,list,select,$.data,List firewall devices
+networking.yaml,/networking/firewalls/{firewallId}/devices/{deviceId},get-firewall-device,get-firewall-device,get,,Devices,devices,firewall_devices,get,select,,Get a firewall device
+networking.yaml,/networking/firewalls/{firewallId}/history,get-firewall-rule-versions,get-firewall-rule-versions,get,,Firewalls,firewalls,firewall_rule_versions,list,select,,List firewall rule versions
+networking.yaml,/networking/firewalls/{firewallId}/history/rules/{version},get-firewall-rule-version,get-firewall-rule-version,get,,Firewalls,firewalls,firewall_rule_versions,get,select,,Get a firewall rule version
+networking.yaml,/networking/firewalls/{firewallId}/rules,put-firewall-rules,put-firewall-rules,put,,Firewalls,firewalls,firewall_rules,update,replace,,Update firewall rules
+networking.yaml,/networking/firewalls/{firewallId}/rules,get-firewall-rules,get-firewall-rules,get,,Firewalls,firewalls,firewall_rules,get,select,,List firewall rules
+networking.yaml,/networking/firewalls/settings,put-firewall-settings,put-firewall-settings,put,,Firewall settings,firewall settings,firewall_settings,update,replace,,Update default firewalls
+networking.yaml,/networking/firewalls/settings,get-firewall-settings,get-firewall-settings,get,,Firewall settings,firewall settings,firewall_settings,get,select,$.default_firewall_ids,List default firewalls
+networking.yaml,/networking/firewalls/{firewallId},delete-firewall,delete-firewall,delete,,Firewalls,firewalls,firewalls,delete,delete,,Delete a firewall
+networking.yaml,/networking/firewalls,post-firewalls,post-firewalls,post,,Firewalls,firewalls,firewalls,create,insert,,Create a firewall
+networking.yaml,/networking/firewalls/{firewallId},put-firewall,put-firewall,put,,Firewalls,firewalls,firewalls,update,replace,,Update a firewall
+networking.yaml,/networking/firewalls,get-firewalls,get-firewalls,get,,Firewalls,firewalls,firewalls,list,select,$.data,List firewalls
+networking.yaml,/networking/firewalls/{firewallId},get-firewall,get-firewall,get,,Firewalls,firewalls,firewalls,get,select,,Get a firewall
+networking.yaml,/networking/ips,post-allocate-ip,post-allocate-ip,post,,IP addresses,ip addresses,ip_addresses,allocate,exec,,Allocate an IP address
+networking.yaml,/networking/ips/assign,post-assign-ips,post-assign-ips,post,,IP addresses,ip addresses,ip_addresses,assign,exec,,Assign IP addresses
+networking.yaml,/networking/ips/share,post-share-ips,post-share-ips,post,,IP addresses,ip addresses,ip_addresses,share,exec,,Share IP addresses
+networking.yaml,/networking/ips/{address},put-ip,put-ip,put,,IP addresses,ip addresses,ip_addresses,update,replace,,Update an IP address's RDNS
+networking.yaml,/networking/ips,get-ips,get-ips,get,,IP addresses,ip addresses,ip_addresses,list,select,$.data,List IP addresses
+networking.yaml,/networking/ips/{address},get-ip,get-ip,get,,IP addresses,ip addresses,ip_addresses,get,select,,Get an IP address
+networking.yaml,/networking/ipv4/assign,post-assign-ipv4s,post-assign-ipv4s,post,,IPv4 addresses,ipv4 addresses,ipv4_addresses,assign,insert,,Assign IPv4s to Linodes
+networking.yaml,/networking/ipv4/share,post-share-ipv4s,post-share-ipv4s,post,,IPv4 addresses,ipv4 addresses,ipv4_addresses,share,insert,,Configure IPv4 sharing
+networking.yaml,/networking/ipv6/pools,get-ipv6-pools,get-ipv6-pools,get,,IPv6 pools,ipv6 pools,ipv6_pools,list,select,$.data,List IPv6 pools
+networking.yaml,/networking/ipv6/ranges/{range},delete-ipv6-range,delete-ipv6-range,delete,,IPv6 ranges,ipv6 ranges,ipv6_ranges,delete,delete,,Delete an IPv6 range
+networking.yaml,/networking/ipv6/ranges,post-ipv6-range,post-ipv6-range,post,,IPv6 ranges,ipv6 ranges,ipv6_ranges,create,insert,,Create an IPv6 range
+networking.yaml,/networking/ipv6/ranges,get-ipv6-ranges,get-ipv6-ranges,get,,IPv6 ranges,ipv6 ranges,ipv6_ranges,list,select,$.data,List IPv6 ranges
+networking.yaml,/networking/ipv6/ranges/{range},get-ipv6-range,get-ipv6-range,get,,IPv6 ranges,ipv6 ranges,ipv6_ranges,get,select,,Get an IPv6 range
+networking.yaml,/networking/firewalls/templates,get-firewall-templates,get-firewall-templates,get,,Templates,templates,templates,list,select,$.data,List firewall templates
+networking.yaml,/networking/firewalls/templates/{slug},get-firewall-template,get-firewall-template,get,,Templates,templates,templates,get,select,,Get a firewall template
+networking.yaml,/networking/vlans/{regionId}/{label},delete-vlan,delete-vlan,delete,,VLANs,vlans,vlans,delete,delete,,Delete a VLAN
+networking.yaml,/networking/vlans,get-vlans,get-vlans,get,,VLANs,vlans,vlans,list,select,$.data,List VLANs
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId},delete-node-balancer-config,delete-node-balancer-config,delete,,Configurations,configurations,configurations,delete,delete,,Delete a config
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs,post-node-balancer-config,post-node-balancer-config,post,,Configurations,configurations,configurations,create,insert,,Create a config
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId}/rebuild,post-rebuild-node-balancer-config,post-rebuild-node-balancer-config,post,,Configurations,configurations,configurations,rebuild,exec,,Rebuild a config
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId},put-node-balancer-config,put-node-balancer-config,put,,Configurations,configurations,configurations,update,replace,,Update a config
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs,get-node-balancer-configs,get-node-balancer-configs,get,,Configurations,configurations,configurations,list,select,,List configs
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId},get-node-balancer-config,get-node-balancer-config,get,,Configurations,configurations,configurations,get,select,,Get a config
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/firewalls,put-node-balancer-firewalls,put-node-balancer-firewalls,put,,Firewalls,firewalls,firewalls,update,replace,,Update a NodeBalancer's firewalls
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/firewalls,get-node-balancer-firewalls,get-node-balancer-firewalls,get,,Firewalls,firewalls,firewalls,list,select,$.data,List NodeBalancer firewalls
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId},delete-node-balancer,delete-node-balancer,delete,,NodeBalancers,node_balancers,node_balancers,delete,delete,,Delete a NodeBalancer
+nodebalancers.yaml,/nodebalancers,post-node-balancer,post-node-balancer,post,,NodeBalancers,node_balancers,node_balancers,create,insert,,Create a NodeBalancer
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId},put-node-balancer,put-node-balancer,put,,NodeBalancers,node_balancers,node_balancers,update,replace,,Update a NodeBalancer
+nodebalancers.yaml,/nodebalancers,get-node-balancers,get-node-balancers,get,,NodeBalancers,node_balancers,node_balancers,list,select,$.data,List NodeBalancers
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId},get-node-balancer,get-node-balancer,get,,NodeBalancers,node_balancers,node_balancers,get,select,,Get a NodeBalancer
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId},delete-node-balancer-config-node,delete-node-balancer-config-node,delete,,Nodes,nodes,nodes,delete,delete,,Delete a NodeBalancer's node
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes,post-node-balancer-node,post-node-balancer-node,post,,Nodes,nodes,nodes,create,insert,,Create a node
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId},put-node-balancer-node,put-node-balancer-node,put,,Nodes,nodes,nodes,update,replace,,Update a node
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes,get-node-balancer-config-nodes,get-node-balancer-config-nodes,get,,Nodes,nodes,nodes,list,select,$.data,List nodes
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/configs/{configId}/nodes/{nodeId},get-node-balancer-node,get-node-balancer-node,get,,Nodes,nodes,nodes,get,select,,Get a NodeBalancer's node
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/stats,get-node-balancer-stats,get-node-balancer-stats,get,,Statistics,statistics,statistics,get,select,,Get NodeBalancer statistics
+nodebalancers.yaml,/nodebalancers/types,get-node-balancer-types,get-node-balancer-types,get,,NodeBalancer types,node_balancer types,types,list,select,$.data,List NodeBalancer types
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/vpcs,get-node-balancer-vpcs,get-node-balancer-vpcs,get,,VPCs,vpcs,vpc_configs,list,select,$.data,List VPC configurations
+nodebalancers.yaml,/nodebalancers/{nodeBalancerId}/vpcs/{nodeBalancerVpcConfigId},get-node-balancer-vpc-config,get-node-balancer-vpc-config,get,,VPCs,vpcs,vpc_configs,get,select,,Get a VPC configuration
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/object-acl,put-object-storage-bucket-acl,put-object-storage-bucket-acl,put,,ACL configurations,acl configurations,acl_configurations,update,replace,,Update an object's ACL configuration
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/object-acl,get-object-storage-bucket-acl,get-object-storage-bucket-acl,get,,ACL configurations,acl configurations,acl_configurations,get,select,,Get an Object Storage object ACL configuration
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/access,post-object-storage-bucket-access,post-object-storage-bucket-access,post,,Bucket access,bucket access,bucket_access,create,insert,,Allow access to an Object Storage bucket
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/access,put-storage-bucket-access,put-storage-bucket-access,put,,Bucket access,bucket access,bucket_access,update,replace,,Update access to an Object Storage bucket
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/access,get-object-storage-bucket-access,get-object-storage-bucket-access,get,,Bucket access,bucket access,bucket_access,get,select,,Get Object Storage bucket access
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/object-list,get-object-storage-bucket-content,get-object-storage-bucket-content,get,,Bucket contents,bucket contents,bucket_contents,list,select,$.data,List Object Storage bucket contents
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket},delete-object-storage-bucket,delete-object-storage-bucket,delete,,Buckets,buckets,buckets,delete,delete,,Remove an Object Storage bucket
+object_storage.yaml,/object-storage/buckets,post-object-storage-bucket,post-object-storage-bucket,post,,Buckets,buckets,buckets,create,insert,,Create an Object Storage bucket
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/object-url,post-object-storage-object-url,post-object-storage-object-url,post,,Buckets,buckets,buckets,create_object_url,exec,,Create a URL for an object
+object_storage.yaml,/object-storage/buckets,get-object-storage-buckets,get-object-storage-buckets,get,,Buckets,buckets,buckets,list,select,$.data,List Object Storage buckets
+object_storage.yaml,/object-storage/buckets/{regionId},get-object-storage-bucketin-cluster,get-object-storage-bucketin-cluster,get,,Buckets,buckets,buckets,list_by_region,select,$.data,List Object Storage buckets per region
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket},get-object-storage-bucket,get-object-storage-bucket,get,,Buckets,buckets,buckets,get,select,,Get an Object Storage bucket
+object_storage.yaml,/object-storage/clusters,get-object-storage-clusters,get-object-storage-clusters,get,,Clusters,clusters,clusters,list,select,$.data,List clusters
+object_storage.yaml,/object-storage/clusters/{clusterId},get-object-storage-cluster,get-object-storage-cluster,get,,Clusters,clusters,clusters,get,select,,Get a cluster
+object_storage.yaml,/object-storage/endpoints,get-object-storage-endpoints,get-object-storage-endpoints,get,,Endpoints,endpoints,endpoints,list,select,$.data,List Object Storage endpoints
+object_storage.yaml,/object-storage/keys/{keyId},delete-object-storage-key,delete-object-storage-key,delete,,Keys,keys,keys,delete,delete,,Revoke an Object Storage key
+object_storage.yaml,/object-storage/keys,post-object-storage-keys,post-object-storage-keys,post,,Keys,keys,keys,create,insert,,Create an Object Storage key
+object_storage.yaml,/object-storage/keys/{keyId},put-object-storage-key,put-object-storage-key,put,,Keys,keys,keys,update,replace,,Update an Object Storage key
+object_storage.yaml,/object-storage/keys,get-object-storage-keys,get-object-storage-keys,get,,Keys,keys,keys,list,select,$.data,List Object Storage keys
+object_storage.yaml,/object-storage/keys/{keyId},get-object-storage-key,get-object-storage-key,get,,Keys,keys,keys,get,select,,Get an Object Storage key
+object_storage.yaml,/object-storage/cancel,post-cancel-object-storage,post-cancel-object-storage,post,,Object Storage,object storage,object_storage,cancel,exec,,Cancel Object Storage
+object_storage.yaml,/object-storage/transfer,get-object-storage-transfer,get-object-storage-transfer,get,,Object Storage,object storage,object_storage,get,select,,Get Object Storage transfer data
+object_storage.yaml,/object-storage/quotas,get-object-storage-quotas,get-object-storage-quotas,get,,Object Storage quotas,object storage quotas,quotas,list,select,$.data,List Object Storage quotas
+object_storage.yaml,/object-storage/quotas/{objQuotaId},get-object-storage-quota,get-object-storage-quota,get,,Object Storage quotas,object storage quotas,quotas,get,select,,Get an Object Storage quota
+object_storage.yaml,/object-storage/quotas/{objQuotaId}/usage,get-object-storage-quota-usage,get-object-storage-quota-usage,get,,Object Storage quotas,object storage quotas,quota_usage,get,select,,Get Object Storage quota usage data
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/ssl,delete-object-storage-ssl,delete-object-storage-ssl,delete,,TLS/SSL certificates,tls/ssl certificates,ssl_certificates,delete,delete,,Delete an Object Storage TLS/SSL certificate
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/ssl,post-object-storage-ssl,post-object-storage-ssl,post,,TLS/SSL certificates,tls/ssl certificates,ssl_certificates,create,insert,,Upload an Object Storage TLS/SSL certificate
+object_storage.yaml,/object-storage/buckets/{regionId}/{bucket}/ssl,get-object-storage-ssl,get-object-storage-ssl,get,,TLS/SSL certificates,tls/ssl certificates,ssl_certificates,get,select,,Get an Object Storage TLS/SSL certificate
+object_storage.yaml,/object-storage/types,get-object-storage-types,get-object-storage-types,get,,Object Storage types,object storage types,types,list,select,$.data,List Object Storage types
+placement.yaml,/placement/groups/{groupId},delete-placement-group,delete-placement-group,delete,,Placement groups,placement groups,placement_groups,delete,delete,,Delete a placement group
+placement.yaml,/placement/groups,post-placement-group,post-placement-group,post,,Placement groups,placement groups,placement_groups,create,insert,,Create placement group
+placement.yaml,/placement/groups/{groupId}/assign,post-group-add-linode,post-group-add-linode,post,,Placement groups,placement groups,placement_groups,assign,exec,,Assign a placement group
+placement.yaml,/placement/groups/{groupId}/unassign,post-group-unassign,post-group-unassign,post,,Placement groups,placement groups,placement_groups,unassign,exec,,Unassign a placement group
+placement.yaml,/placement/groups/{groupId},put-placement-group,put-placement-group,put,,Placement groups,placement groups,placement_groups,update,replace,,Update a placement group
+placement.yaml,/placement/groups,get-placement-groups,get-placement-groups,get,,Placement groups,placement groups,placement_groups,list,select,$.data,List placement groups
+placement.yaml,/placement/groups/{groupId},get-placement-group,get-placement-group,get,,Placement groups,placement groups,placement_groups,get,select,,Get a placement group
+profile.yaml,/profile/apps/{appId},delete-profile-app,delete-profile-app,delete,,Apps,apps,apps,delete,delete,,Revoke app access
+profile.yaml,/profile/apps,get-profile-apps,get-profile-apps,get,,Apps,apps,apps,list,select,$.data,List authorized apps
+profile.yaml,/profile/apps/{appId},get-profile-app,get-profile-app,get,,Apps,apps,apps,get,select,,Get an authorized app
+profile.yaml,/profile/devices/{deviceId},delete-trusted-device,delete-trusted-device,delete,,Devices,devices,trusted_devices,delete,delete,,Revoke a trusted device
+profile.yaml,/profile/devices,get-devices,get-devices,get,,Devices,devices,trusted_devices,list,select,$.data,List trusted devices
+profile.yaml,/profile/devices/{deviceId},get-trusted-device,get-trusted-device,get,,Devices,devices,trusted_devices,get,select,,Get a trusted device
+profile.yaml,/profile/grants,get-profile-grants,get-profile-grants,get,,Grants,grants,grants,get,select,,List grants
+profile.yaml,/profile/logins,get-profile-logins,get-profile-logins,get,,Logins,logins,logins,list,select,$.data,List logins
+profile.yaml,/profile/logins/{loginId},get-profile-login,get-profile-login,get,,Logins,logins,logins,get,select,,Get a profile's login
+profile.yaml,/profile/tokens/{tokenId},delete-personal-access-token,delete-personal-access-token,delete,,Personal access tokens,personal access tokens,personal_access_tokens,delete,delete,,Revoke a personal access token
+profile.yaml,/profile/tokens,post-personal-access-token,post-personal-access-token,post,,Personal access tokens,personal access tokens,personal_access_tokens,create,insert,,Create a personal access token
+profile.yaml,/profile/tokens/{tokenId},put-personal-access-token,put-personal-access-token,put,,Personal access tokens,personal access tokens,personal_access_tokens,update,replace,,Update a personal access token
+profile.yaml,/profile/tokens,get-personal-access-tokens,get-personal-access-tokens,get,,Personal access tokens,personal access tokens,personal_access_tokens,list,select,$.data,List personal access tokens
+profile.yaml,/profile/tokens/{tokenId},get-personal-access-token,get-personal-access-token,get,,Personal access tokens,personal access tokens,personal_access_tokens,get,select,,Get a personal access token
+profile.yaml,/profile/phone-number,delete-profile-phone-number,delete-profile-phone-number,delete,,Phone number,phone number,phone_number,delete,delete,,Delete a phone number
+profile.yaml,/profile/phone-number,post-profile-phone-number,post-profile-phone-number,post,,Phone number,phone number,phone_number,send_verification_code,exec,,Send a phone number verification code
+profile.yaml,/profile/phone-number/verify,post-profile-phone-number-verify,post-profile-phone-number-verify,post,,Phone number,phone number,phone_number,verify,exec,,Verify a phone number
+profile.yaml,/profile/preferences,put-user-preferences,put-user-preferences,put,,Preferences,preferences,profile,update_preferences,exec,,Update a user's preferences
+profile.yaml,/profile/preferences,get-user-preferences,get-user-preferences,get,,Preferences,preferences,profile,get_preferences,exec,,Get user preferences
+profile.yaml,/profile,put-profile,put-profile,put,,Profile,profile,profile,update,replace,,Update a profile
+profile.yaml,/profile,get-profile,get-profile,get,,Profile,profile,profile,get,select,,Get a profile
+profile.yaml,/profile/security-questions,post-security-questions,post-security-questions,post,,Security questions,security questions,security_questions,answer,exec,,Answer security questions
+profile.yaml,/profile/security-questions,get-security-questions,get-security-questions,get,,Security questions,security questions,security_questions,get,select,$.security_questions,List security questions
+profile.yaml,/profile/sshkeys/{sshKeyId},delete-ssh-key,delete-ssh-key,delete,,SSH keys,ssh keys,ssh_keys,delete,delete,,Delete an SSH key
+profile.yaml,/profile/sshkeys,post-add-ssh-key,post-add-ssh-key,post,,SSH keys,ssh keys,ssh_keys,create,insert,,Add an SSH key
+profile.yaml,/profile/sshkeys/{sshKeyId},put-ssh-key,put-ssh-key,put,,SSH keys,ssh keys,ssh_keys,update,replace,,Update an SSH key
+profile.yaml,/profile/sshkeys,get-ssh-keys,get-ssh-keys,get,,SSH keys,ssh keys,ssh_keys,list,select,$.data,List SSH keys
+profile.yaml,/profile/sshkeys/{sshKeyId},get-ssh-key,get-ssh-key,get,,SSH keys,ssh keys,ssh_keys,get,select,,Get an SSH key
+profile.yaml,/profile/tfa-disable,post-tfa-disable,post-tfa-disable,post,,Two factor authentication,two factor authentication,two_factor_authentication,disable,exec,,Disable two factor authentication
+profile.yaml,/profile/tfa-enable,post-tfa-enable,post-tfa-enable,post,,Two factor authentication,two factor authentication,two_factor_authentication,enable,exec,,Create a two factor secret
+profile.yaml,/profile/tfa-enable-confirm,post-tfa-confirm,post-tfa-confirm,post,,Two factor authentication,two factor authentication,two_factor_authentication,confirm,exec,,Enable two factor authentication
+regions.yaml,/regions,get-regions,get-regions,get,,Regions,regions,regions,list,select,$.data,List regions
+regions.yaml,/regions/availability,get-regions-availability,get-regions-availability,get,,Regions,regions,availability,list,select,$.data,List regions' availability
+regions.yaml,/regions/{regionId},get-region,get-region,get,,Regions,regions,regions,get,select,,Get a region
+regions.yaml,/regions/{regionId}/availability,get-region-availability,get-region-availability,get,,Regions,regions,availability,get,select,,Get a region's availability
+support.yaml,/support/tickets/{ticketId}/attachments,post-ticket-attachment,post-ticket-attachment,post,,Attachments,attachments,tickets,upload_attachment,exec,,Create a support ticket attachment
+support.yaml,/support/tickets/{ticketId}/replies,post-ticket-reply,post-ticket-reply,post,,Replies,replies,ticket_replies,create,insert,,Create a reply
+support.yaml,/support/tickets/{ticketId}/replies,get-ticket-replies,get-ticket-replies,get,,Replies,replies,ticket_replies,list,select,$.data,List replies
+support.yaml,/support/tickets,post-ticket,post-ticket,post,,Support tickets,support tickets,tickets,create,insert,,Open a support ticket
+support.yaml,/support/tickets/{ticketId}/close,post-close-ticket,post-close-ticket,post,,Support tickets,support tickets,tickets,delete,delete,,Close a support ticket
+support.yaml,/support/tickets,get-tickets,get-tickets,get,,Support tickets,support tickets,tickets,list,select,$.data,List support tickets
+support.yaml,/support/tickets/{ticketId},get-ticket,get-ticket,get,,Support tickets,support tickets,tickets,get,select,,Get a support ticket
+tags.yaml,/tags/{tagLabel},delete-tag,delete-tag,delete,,Tags,tags,tags,delete,delete,,Delete a tag
+tags.yaml,/tags,post-tag,post-tag,post,,Tags,tags,tags,create,insert,,Create a tag
+tags.yaml,/tags,get-tags,get-tags,get,,Tags,tags,tags,list,select,$.data,List tags
+tags.yaml,/tags/{tagLabel},get-tagged-objects,get-tagged-objects,get,,Tags,tags,tagged_objects,list,select,$.data,List tagged objects
+volumes.yaml,/volumes/types,get-volume-types,get-volume-types,get,,Volume types,volume types,types,list,select,$.data,List volume types
+volumes.yaml,/volumes/{volumeId},delete-volume,delete-volume,delete,,Volumes,volumes,volumes,delete,delete,,Delete a volume
+volumes.yaml,/volumes,post-volume,post-volume,post,,Volumes,volumes,volumes,create,insert,,Create a volume
+volumes.yaml,/volumes/{volumeId}/attach,post-attach-volume,post-attach-volume,post,,Volumes,volumes,volumes,attach,exec,,Attach a volume
+volumes.yaml,/volumes/{volumeId}/clone,post-clone-volume,post-clone-volume,post,,Volumes,volumes,volumes,clone,exec,,Clone a volume
+volumes.yaml,/volumes/{volumeId}/detach,post-detach-volume,post-detach-volume,post,,Volumes,volumes,volumes,detach,exec,,Detach a volume
+volumes.yaml,/volumes/{volumeId}/resize,post-resize-volume,post-resize-volume,post,,Volumes,volumes,volumes,resize,exec,,Resize a volume
+volumes.yaml,/volumes/{volumeId},put-volume,put-volume,put,,Volumes,volumes,volumes,update,replace,,Update a volume
+volumes.yaml,/volumes,get-volumes,get-volumes,get,,Volumes,volumes,volumes,list,select,$.data,List volumes
+volumes.yaml,/volumes/{volumeId},get-volume,get-volume,get,,Volumes,volumes,volumes,get,select,,Get a volume
+vpcs.yaml,/vpcs/ips,get-vpcs-ips,get-vpcs-ips,get,,IP addresses,ip addresses,ip_addresses,list,select,$.data,List VPC IP addresses
+vpcs.yaml,/vpcs/{vpcId}/ips,get-vpc-ips,get-vpc-ips,get,,IP addresses,ip addresses,ip_addresses,list_by_vpc,select,$.data,List a VPC's IP addresses
+vpcs.yaml,/vpcs/{vpcId}/subnets/{vpcSubnetId},delete-vpc-subnet,delete-vpc-subnet,delete,,VPC subnets,vpc subnets,subnets,delete,delete,,Delete a VPC subnet
+vpcs.yaml,/vpcs/{vpcId}/subnets,post-vpc-subnet,post-vpc-subnet,post,,VPC subnets,vpc subnets,subnets,create,insert,,Create a VPC subnet
+vpcs.yaml,/vpcs/{vpcId}/subnets/{vpcSubnetId},put-vpc-subnet,put-vpc-subnet,put,,VPC subnets,vpc subnets,subnets,update,replace,,Update a VPC subnet
+vpcs.yaml,/vpcs/{vpcId}/subnets,get-vpc-subnets,get-vpc-subnets,get,,VPC subnets,vpc subnets,subnets,list,select,$.data,List VPC subnets
+vpcs.yaml,/vpcs/{vpcId}/subnets/{vpcSubnetId},get-vpc-subnet,get-vpc-subnet,get,,VPC subnets,vpc subnets,subnets,get,select,,Get a VPC subnet
+vpcs.yaml,/vpcs/{vpcId},delete-vpc,delete-vpc,delete,,VPCs,vpcs,vpcs,delete,delete,,Delete a VPC
+vpcs.yaml,/vpcs,post-vpc,post-vpc,post,,VPCs,vpcs,vpcs,create,insert,,Create a VPC
+vpcs.yaml,/vpcs/{vpcId},put-vpc,put-vpc,put,,VPCs,vpcs,vpcs,update,replace,,Update a VPC
+vpcs.yaml,/vpcs,get-vpcs,get-vpcs,get,,VPCs,vpcs,vpcs,list,select,$.data,List VPCs
+vpcs.yaml,/vpcs/{vpcId},get-vpc,get-vpc,get,,VPCs,vpcs,vpcs,get,select,,Get a VPC
+images.yaml,/images/sharegroups,post-sharegroups,post_sharegroups,post,,Image sharing,image sharing,sharegroups,create,insert,,Create a share group
+images.yaml,/images/sharegroups,get-sharegroups,get_sharegroups,get,,Image sharing,image sharing,sharegroups,list,select,$.data,List share groups
+images.yaml,/images/sharegroups/tokens,post-sharegroup-tokens,post_sharegroup_tokens,post,,Image sharing,image sharing,sharegroup_tokens,create,insert,,Create a token
+images.yaml,/images/sharegroups/tokens,get-user-tokens,get_user_tokens,get,,Image sharing,image sharing,sharegroup_tokens,list,select,$.data,List a user's tokens
+images.yaml,/images/sharegroups/tokens/{tokenUuid},get-sharegroup-token,get_sharegroup_token,get,,Image sharing,image sharing,sharegroup_tokens,get,select,,Get a token
+images.yaml,/images/sharegroups/tokens/{tokenUuid},put-sharegroup-token,put_sharegroup_token,put,,Image sharing,image sharing,sharegroup_tokens,update,replace,,Update a token
+images.yaml,/images/sharegroups/tokens/{tokenUuid},delete-sharegroup-token,delete_sharegroup_token,delete,,Image sharing,image sharing,sharegroup_tokens,delete,delete,,Delete a token
+images.yaml,/images/sharegroups/tokens/{tokenUuid}/sharegroup,get-sharegroup-by-token,get_sharegroup_by_token,get,,Image sharing,image sharing,sharegroups,get_by_token,select,,Get a token's share group
+images.yaml,/images/sharegroups/tokens/{tokenUuid}/sharegroup/images,get-sharegroup-images-by-token,get_sharegroup_images_by_token,get,,Image sharing,image sharing,sharegroup_images,list_by_token,select,$.data,List images by token
+images.yaml,/images/sharegroups/{sharegroupId},get-sharegroup,get_sharegroup,get,,Image sharing,image sharing,sharegroups,get,select,,Get a share group
+images.yaml,/images/sharegroups/{sharegroupId},put-sharegroup,put_sharegroup,put,,Image sharing,image sharing,sharegroups,update,replace,,Update a share group
+images.yaml,/images/sharegroups/{sharegroupId},delete-sharegroup,delete_sharegroup,delete,,Image sharing,image sharing,sharegroups,delete,delete,,Delete a share group
+images.yaml,/images/sharegroups/{sharegroupId}/images,post-sharegroup-images,post_sharegroup_images,post,,Image sharing,image sharing,sharegroup_images,create,insert,,Add images to a share group
+images.yaml,/images/sharegroups/{sharegroupId}/images,get-sharegroup-images,get_sharegroup_images,get,,Image sharing,image sharing,sharegroup_images,list,select,$.data,List shared images by group
+images.yaml,/images/sharegroups/{sharegroupId}/images/{imageId},put-sharegroup-imageshare,put_sharegroup_imageshare,put,,Image sharing,image sharing,sharegroup_images,update,replace,,Update a shared image
+images.yaml,/images/sharegroups/{sharegroupId}/images/{imageId},delete-sharegroup-imageshare,delete_sharegroup_imageshare,delete,,Image sharing,image sharing,sharegroup_images,delete,delete,,Revoke access to a shared image
+images.yaml,/images/sharegroups/{sharegroupId}/members,post-sharegroup-members,post_sharegroup_members,post,,Image sharing,image sharing,sharegroup_members,create,insert,,Add members to a share group
+images.yaml,/images/sharegroups/{sharegroupId}/members,get-sharegroup-members,get_sharegroup_members,get,,Image sharing,image sharing,sharegroup_members,list,select,$.data,List members by share group
+images.yaml,/images/sharegroups/{sharegroupId}/members/{tokenUuid},get-sharegroup-member-token,get_sharegroup_member_token,get,,Image sharing,image sharing,sharegroup_members,get,select,,Get a membership token
+images.yaml,/images/sharegroups/{sharegroupId}/members/{tokenUuid},put-sharegroup-member-token,put_sharegroup_member_token,put,,Image sharing,image sharing,sharegroup_members,update,replace,,Update a membership token
+images.yaml,/images/sharegroups/{sharegroupId}/members/{tokenUuid},delete-sharegroup-member-token,delete_sharegroup_member_token,delete,,Image sharing,image sharing,sharegroup_members,delete,delete,,Revoke a membership token
+images.yaml,/images/{imageId}/sharegroups,get-images-sharegroups-image,get_images_sharegroups_image,get,,Image sharing,image sharing,sharegroups,list_by_image,select,$.data,List share groups by image
+linode.yaml,/linode/instances/{linodeId}/interfaces/history,get-linode-interface-history,get_linode_interface_history,get,,Linode interfaces,linode interfaces,interface_history,list,select,$.data,List a Linode's network interface history
+maintenance.yaml,/maintenance/policies,get-maintenance-policies,get_maintenance_policies,get,,Maintenance policies,maintenance policies,policies,list,select,$.data,List maintenance policies

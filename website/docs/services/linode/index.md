@@ -18,7 +18,7 @@ linode service documentation.
 
 :::info[Service Summary]
 
-total resources: __18__  
+total resources: __19__  
 
 :::
 
@@ -32,6 +32,7 @@ total resources: __18__
 <a href="/services/linode/firewalls/">firewalls</a><br />
 <a href="/services/linode/instances/">instances</a><br />
 <a href="/services/linode/interface_firewalls/">interface_firewalls</a><br />
+<a href="/services/linode/interface_history/">interface_history</a><br />
 <a href="/services/linode/interface_settings/">interface_settings</a><br />
 <a href="/services/linode/interfaces/">interfaces</a>
 </div>

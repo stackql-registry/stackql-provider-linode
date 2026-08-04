@@ -1,0 +1,37 @@
+/*+ exists */
+SELECT id as instance_id
+FROM linode.linode.instances
+WHERE label = '{{ instance_label }}'
+
+/*+ create */
+INSERT INTO linode.linode.instances (
+ label,
+ region,
+ type,
+ image,
+ root_pass,
+ tags
+)
+SELECT
+ '{{ instance_label }}',
+ '{{ region }}',
+ '{{ instance_type }}',
+ '{{ instance_image }}',
+ '{{ root_password }}',
+ '{{ instance_tags }}'
+
+/*+ statecheck, retries=10, retry_delay=15 */
+SELECT COUNT(*) as count
+FROM linode.linode.instances
+WHERE label = '{{ instance_label }}'
+AND status = 'running'
+
+/*+ exports */
+SELECT id as instance_id,
+ipv4 as instance_ipv4
+FROM linode.linode.instances
+WHERE label = '{{ instance_label }}'
+
+/*+ delete, retries=5, retry_delay=10 */
+DELETE FROM linode.linode.instances
+WHERE linodeId = '{{ instance_id }}'

@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>beta_programs</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>beta_programs</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="beta_programs" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.betas.beta_programs" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>beta_programs</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_beta_program"
+    defaultValue="get"
     values={[
-        { label: 'get_beta_program', value: 'get_beta_program' },
-        { label: 'get_beta_programs', value: 'get_beta_programs' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_beta_program">
+<TabItem value="get">
 
 Returns a paginated list of all available Beta Program objects.
 
@@ -89,7 +90,7 @@ Returns a paginated list of all available Beta Program objects.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_beta_programs">
+<TabItem value="list">
 
 Returns a paginated list of all available Beta Program objects.
 
@@ -158,14 +159,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_beta_program"><CopyableCode code="get_beta_program" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-betaId"><code>betaId</code></a></td>
     <td></td>
     <td>Display information about a Beta Program. This operation can be used to access inactive as well as active Beta Programs.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)</td>
 </tr>
 <tr>
-    <td><a href="#get_beta_programs"><CopyableCode code="get_beta_programs" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
@@ -187,6 +188,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-betaId">
+    <td><CopyableCode code="betaId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Beta Program. (example: &#123;&#123;betaId&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -203,13 +209,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_beta_program"
+    defaultValue="get"
     values={[
-        { label: 'get_beta_program', value: 'get_beta_program' },
-        { label: 'get_beta_programs', value: 'get_beta_programs' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_beta_program">
+<TabItem value="get">
 
 Display information about a Beta Program. This operation can be used to access inactive as well as active Beta Programs.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 
@@ -223,10 +229,11 @@ label,
 more_info,
 started
 FROM linode.betas.beta_programs
+WHERE betaId = '{{ betaId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_beta_programs">
+<TabItem value="list">
 
 Display all active Beta Programs.<br /><br />Only unrestricted Users can access this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)
 

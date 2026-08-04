@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>tagged_objects</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>tagged_objects</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="tagged_objects" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.tags.tagged_objects" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>tagged_objects</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_tagged_objects"
+    defaultValue="list"
     values={[
-        { label: 'get_tagged_objects', value: 'get_tagged_objects' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_tagged_objects">
+<TabItem value="list">
 
 A paginated list of objects, organized by type, that have been tagged with the requested tag.
 
@@ -52,23 +53,13 @@ A paginated list of objects, organized by type, that have been tagged with the r
 <tbody>
 <tr>
     <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><code></code></td>
+    <td>Details on the the specific object `type` the tag is assigned to.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="type" /></td>
+    <td><code>string</code></td>
+    <td>The type of object the tag is applied to. (domain, linode, nodebalancer, volume) (example: linode)</td>
 </tr>
 </tbody>
 </table>
@@ -91,11 +82,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_tagged_objects"><CopyableCode code="get_tagged_objects" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-tagLabel"><code>tagLabel</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
-    <td>Returns a paginated list of all objects you've tagged with the specified tag. The response includes a mixed collection of all object types.<br /><br />&gt; 📘<br />&gt;<br />&gt; This operation can only be accessed by account users with _unrestricted_ access. __OAuth scopes__.<br /><br />    ```<br />    account:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of all objects you've tagged with the specified tag. The response includes a mixed collection of all object types.<br /><br />&gt; 📘<br />&gt;<br />&gt; This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management. __OAuth scopes__.<br /><br />    ```<br />    account:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -113,6 +104,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-tagLabel">
+    <td><CopyableCode code="tagLabel" /></td>
+    <td><code>string</code></td>
+    <td>The `label` of the tag to access. (example: &#123;&#123;tagLabel&#125;&#125;)</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -129,23 +125,22 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_tagged_objects"
+    defaultValue="list"
     values={[
-        { label: 'get_tagged_objects', value: 'get_tagged_objects' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_tagged_objects">
+<TabItem value="list">
 
-Returns a paginated list of all objects you've tagged with the specified tag. The response includes a mixed collection of all object types.<br /><br />&gt; 📘<br />&gt;<br />&gt; This operation can only be accessed by account users with _unrestricted_ access. __OAuth scopes__.<br /><br />    ```<br />    account:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a paginated list of all objects you've tagged with the specified tag. The response includes a mixed collection of all object types.<br /><br />&gt; 📘<br />&gt;<br />&gt; This operation can only be accessed by account users with _unrestricted_ access. Talk to your local account administrator about access management. __OAuth scopes__.<br /><br />    ```<br />    account:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
 data,
-page,
-pages,
-results
+type
 FROM linode.tags.tagged_objects
-WHERE page = '{{ page }}'
+WHERE tagLabel = '{{ tagLabel }}' -- required
+AND page = '{{ page }}'
 AND page_size = '{{ page_size }}'
 ;
 ```

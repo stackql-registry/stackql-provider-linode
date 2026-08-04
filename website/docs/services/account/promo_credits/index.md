@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>promo_credits</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>promo_credits</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="promo_credits" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.promo_credits" /></td></tr>
 </tbody></table>
@@ -50,9 +51,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#post_promo_credit"><CopyableCode code="post_promo_credit" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__promo_code"><code>data__promo_code</code></a></td>
+    <td><a href="#parameter-promo_code"><code>promo_code</code></a></td>
     <td></td>
     <td>Adds an expiring Promo Credit to your account. The following restrictions apply:<br /><br />- Your account needs to be less than 90 days old.<br /><br />- You can't already have a Promo Credit on your account.<br /><br />- The user making the request needs to be unrestricted. You can run the [Update a user](https://techdocs.akamai.com/linode-api/reference/put-user) operation to change a user's restricted status.<br /><br />- The `promo_code` needs to be valid and unexpired.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -78,19 +79,19 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_promo_credit"
+    defaultValue="create"
     values={[
-        { label: 'post_promo_credit', value: 'post_promo_credit' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_promo_credit">
+<TabItem value="create">
 
 Adds an expiring Promo Credit to your account. The following restrictions apply:<br /><br />- Your account needs to be less than 90 days old.<br /><br />- You can't already have a Promo Credit on your account.<br /><br />- The user making the request needs to be unrestricted. You can run the [Update a user](https://techdocs.akamai.com/linode-api/reference/put-user) operation to change a user's restricted status.<br /><br />- The `promo_code` needs to be valid and unexpired.<br /><br />__Parent and child accounts__<br /><br />In a [parent and child account](https://www.linode.com/docs/guides/parent-child-accounts/) environment, the following apply:<br /><br />- Child account users can't run this operation. These users don't have access to billing-related operations.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.account.promo_credits (
-data__promo_code
+promo_code
 )
 SELECT 
 '{{ promo_code }}' /* required */
@@ -108,15 +109,14 @@ this_month_credit_remaining
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: promo_credits
   props:
     - name: promo_code
-      value: string
-      description: >
+      value: "{{ promo_code }}"
+      description: |
         The Promo Code.
-        
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>

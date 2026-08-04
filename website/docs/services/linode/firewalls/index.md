@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>firewalls</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>firewalls</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="firewalls" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.linode.firewalls" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>firewalls</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_linode_firewalls"
+    defaultValue="list"
     values={[
-        { label: 'get_linode_firewalls', value: 'get_linode_firewalls' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_linode_firewalls">
+<TabItem value="list">
 
 Returns a paginated list of Firewalls assigned to this Linode.
 
@@ -51,24 +52,44 @@ Returns a paginated list of Firewalls assigned to this Linode.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Filterable__, __Read-only__ The Firewall's unique ID.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="created" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2025-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="entities" /></td>
     <td><code>array</code></td>
-    <td></td>
+    <td>__Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^&#91;a-zA-Z&#93;((?!--|__|\.\.)&#91;a-zA-Z0-9-_.&#93;)+$</code>)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="rules" /></td>
+    <td><code>object</code></td>
+    <td>The inbound and outbound access rules to apply to the Firewall.  A Firewall may have up to 25 rules across its inbound and outbound rulesets.  Multiple rules are applied in order. If two rules conflict, the first rule takes precedence. For example, if the first rule accepts inbound traffic from an address, and the second rule drops inbound traffic the same address, the first rule applies and inbound traffic from that address is accepted.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="status" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (enabled, disabled, deleted) (example: enabled)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="tags" /></td>
+    <td><code>array</code></td>
+    <td>__Filterable__ An array of tags applied to this object. Tags are for organizational purposes only.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="updated" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -91,23 +112,23 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_linode_firewalls"><CopyableCode code="get_linode_firewalls" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>View Firewall information for Firewalls assigned to this Linode.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_linode_firewalls"><CopyableCode code="put_linode_firewalls" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td><a href="#parameter-data__firewall_ids"><code>data__firewall_ids</code></a></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a>, <a href="#parameter-firewall_ids"><code>firewall_ids</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Replace the current list of assigned firewalls with a new list, or provide an empty list to remove all firewalls from this Linode.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_apply_firewalls"><CopyableCode code="post_apply_firewalls" /></a></td>
+    <td><a href="#apply"><CopyableCode code="apply" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a></td>
     <td></td>
     <td>Reapply assigned firewalls to a Linode in case they were not applied successfully.<br /><br />The `firewall_apply` event indicates if the firewalls were applied.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -127,6 +148,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-linodeId">
+    <td><CopyableCode code="linodeId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Linode.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -143,23 +169,28 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_linode_firewalls"
+    defaultValue="list"
     values={[
-        { label: 'get_linode_firewalls', value: 'get_linode_firewalls' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_linode_firewalls">
+<TabItem value="list">
 
 View Firewall information for Firewalls assigned to this Linode.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+created,
+entities,
+label,
+rules,
+status,
+tags,
+updated
 FROM linode.linode.firewalls
-WHERE page = '{{ page }}'
+WHERE linodeId = '{{ linodeId }}' -- required
+AND page = '{{ page }}'
 AND page_size = '{{ page_size }}'
 ;
 ```
@@ -170,21 +201,22 @@ AND page_size = '{{ page_size }}'
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_linode_firewalls"
+    defaultValue="update"
     values={[
-        { label: 'put_linode_firewalls', value: 'put_linode_firewalls' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_linode_firewalls">
+<TabItem value="update">
 
 Replace the current list of assigned firewalls with a new list, or provide an empty list to remove all firewalls from this Linode.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.linode.firewalls
 SET 
-data__firewall_ids = '{{ firewall_ids }}'
+firewall_ids = '{{ firewall_ids }}'
 WHERE 
-data__firewall_ids = '{{ firewall_ids }}' --required
+linodeId = '{{ linodeId }}' --required
+AND firewall_ids = '{{ firewall_ids }}' --required
 AND page = '{{ page}}'
 AND page_size = '{{ page_size}}'
 RETURNING
@@ -200,18 +232,18 @@ results;
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_apply_firewalls"
+    defaultValue="apply"
     values={[
-        { label: 'post_apply_firewalls', value: 'post_apply_firewalls' }
+        { label: 'apply', value: 'apply' }
     ]}
 >
-<TabItem value="post_apply_firewalls">
+<TabItem value="apply">
 
 Reapply assigned firewalls to a Linode in case they were not applied successfully.<br /><br />The `firewall_apply` event indicates if the firewalls were applied.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.linode.firewalls.post_apply_firewalls 
-
+EXEC linode.linode.firewalls.apply 
+@linodeId='{{ linodeId }}' --required
 ;
 ```
 </TabItem>

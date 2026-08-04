@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>network_transfers</code> resour
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>network_transfers</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="network_transfers" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.linode.network_transfers" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>network_transfers</code> resour
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_linode_transfer"
+    defaultValue="get"
     values={[
-        { label: 'get_linode_transfer', value: 'get_linode_transfer' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_linode_transfer">
+<TabItem value="get">
 
 A collection of the specified Linode's network transfer statistics.
 
@@ -86,9 +87,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_linode_transfer"><CopyableCode code="get_linode_transfer" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a></td>
     <td></td>
     <td>Returns a Linode's network transfer pool statistics for the current month.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -108,18 +109,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-linodeId">
+    <td><CopyableCode code="linodeId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Linode to look up.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_linode_transfer"
+    defaultValue="get"
     values={[
-        { label: 'get_linode_transfer', value: 'get_linode_transfer' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_linode_transfer">
+<TabItem value="get">
 
 Returns a Linode's network transfer pool statistics for the current month.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -129,6 +135,7 @@ billable,
 quota,
 used
 FROM linode.linode.network_transfers
+WHERE linodeId = '{{ linodeId }}' -- required
 ;
 ```
 </TabItem>

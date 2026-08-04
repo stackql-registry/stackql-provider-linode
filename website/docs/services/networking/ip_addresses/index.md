@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>ip_addresses</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>ip_addresses</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="ip_addresses" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.networking.ip_addresses" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists an <code>ip_addresses</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_ip"
+    defaultValue="get"
     values={[
-        { label: 'get_ip', value: 'get_ip' },
-        { label: 'get_ips', value: 'get_ips' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_ip">
+<TabItem value="get">
 
 The requested IP Address.
 
@@ -99,7 +100,7 @@ The requested IP Address.
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The type of address this is. (example: ipv4)</td>
+    <td>__Read-only__ The type of address this is. (ipv4, ipv6, ipv6/pool, ipv6/range) (example: ipv4)</td>
 </tr>
 <tr>
     <td><CopyableCode code="vpc_nat_1_1" /></td>
@@ -109,7 +110,7 @@ The requested IP Address.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_ips">
+<TabItem value="list">
 
 A paginated list of IP Addresses.
 
@@ -170,7 +171,7 @@ A paginated list of IP Addresses.
 <tr>
     <td><CopyableCode code="type" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__, __Read-only__ The type of address this is. (example: ipv4)</td>
+    <td>__Filterable__, __Read-only__ The type of address this is. (ipv4, ipv6, ipv6/pool, ipv6/range) (example: ipv4)</td>
 </tr>
 <tr>
     <td><CopyableCode code="vpc_nat_1_1" /></td>
@@ -198,42 +199,42 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_ip"><CopyableCode code="get_ip" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-address"><code>address</code></a></td>
     <td></td>
     <td>Returns information about a single IP Address on your Account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_ips"><CopyableCode code="get_ips" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-skip_ipv6_rdns"><code>skip_ipv6_rdns</code></a></td>
     <td>Returns a paginated list of IP addresses on your account for Linodes or Linode interfaces, excluding private addresses.<br /><br />&gt; 👍<br />&gt;<br />&gt; if your application frequently accesses this operation and doesn't require IPv6 RDNS data, you can use the `skip_ipv6_rdns` query string to improve performance.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_ip"><CopyableCode code="put_ip" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td><a href="#parameter-data__rdns"><code>data__rdns</code></a></td>
+    <td><a href="#parameter-address"><code>address</code></a>, <a href="#parameter-rdns"><code>rdns</code></a></td>
     <td></td>
     <td>Sets RDNS on an IP Address. Forward DNS must already be set up for reverse DNS to be applied. If you set the RDNS to `null` for public IPv4 addresses, it will be reset to the default _ip.linodeusercontent.com_ RDNS value.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_allocate_ip"><CopyableCode code="post_allocate_ip" /></a></td>
+    <td><a href="#allocate"><CopyableCode code="allocate" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td><a href="#parameter-type"><code>type</code></a>, <a href="#parameter-public"><code>public</code></a>, <a href="#parameter-linode_id"><code>linode_id</code></a></td>
     <td></td>
     <td>Allocates a new IPv4 Address on your Account. The Linode must be configured to support additional addresses - please [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) requesting additional addresses before attempting allocation.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can run this operation for Linodes with legacy configuration interfaces. You can't use it for Linodes with Linode interfaces. To allocate an IP for a Linode with Linode interfaces, use the [Add a Linode interface](https://techdocs.akamai.com/linode-api/reference/post-linode-interface) operation and set the public IPv4 address to `auto`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_assign_ips"><CopyableCode code="post_assign_ips" /></a></td>
+    <td><a href="#assign"><CopyableCode code="assign" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td><a href="#parameter-region"><code>region</code></a>, <a href="#parameter-assignments"><code>assignments</code></a></td>
     <td></td>
     <td>Assign any set of IPv4 addresses and IPv6 ranges to Linodes in one region. This allows swapping, shuffling, or otherwise reorganizing IPs among your Linodes.<br /><br />The following restrictions apply:<br /><br />- All Linodes need to have at least one public IPv4 address assigned.<br />  - For Linode interfaces, the Linode needs to have a public interface, and the address it receives can't be a private IPv4 address.<br />- Linodes may have no more than one assigned private IPv4 address.<br />- Linodes may have no more than one assigned IPv6 range.<br />- Shared IP addresses cannot be swapped between Linodes.<br /><br />[Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to request additional IPv4 addresses or IPv6 ranges beyond standard account limits.<br /><br />&gt; 📘<br />&gt;<br />&gt; Removing an IP address that has been set as a Managed Linode's `ssh.ip` causes the Managed Linode's SSH access settings to reset to their default values.<br /><br />To view and configure Managed Linode SSH settings, use the following operations:<br /><br />- [Get a Linode's managed settings](https://techdocs.akamai.com/linode-api/reference/get-managed-linode-setting)<br />- [Update a Linode's managed settings](https://techdocs.akamai.com/linode-api/reference/put-managed-linode-setting)<br /><br />&gt; 📘<br />&gt;<br />&gt; Addresses with an active 1:1 NAT to a VPC Interface address cannot be assigned to other Linodes.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_share_ips"><CopyableCode code="post_share_ips" /></a></td>
+    <td><a href="#share"><CopyableCode code="share" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td><a href="#parameter-linode_id"><code>linode_id</code></a>, <a href="#parameter-ips"><code>ips</code></a></td>
     <td></td>
@@ -255,6 +256,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-address">
+    <td><CopyableCode code="address" /></td>
+    <td><code>string (ip)</code></td>
+    <td>The address to operate on. (example: &#123;&#123;address&#125;&#125;)</td>
+</tr>
 <tr id="parameter-skip_ipv6_rdns">
     <td><CopyableCode code="skip_ipv6_rdns" /></td>
     <td><code>boolean</code></td>
@@ -266,13 +272,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_ip"
+    defaultValue="get"
     values={[
-        { label: 'get_ip', value: 'get_ip' },
-        { label: 'get_ips', value: 'get_ips' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_ip">
+<TabItem value="get">
 
 Returns information about a single IP Address on your Account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -290,10 +296,11 @@ subnet_mask,
 type,
 vpc_nat_1_1
 FROM linode.networking.ip_addresses
+WHERE address = '{{ address }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_ips">
+<TabItem value="list">
 
 Returns a paginated list of IP addresses on your account for Linodes or Linode interfaces, excluding private addresses.<br /><br />&gt; 👍<br />&gt;<br />&gt; if your application frequently accesses this operation and doesn't require IPv6 RDNS data, you can use the `skip_ipv6_rdns` query string to improve performance.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -321,21 +328,22 @@ WHERE skip_ipv6_rdns = '{{ skip_ipv6_rdns }}'
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_ip"
+    defaultValue="update"
     values={[
-        { label: 'put_ip', value: 'put_ip' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_ip">
+<TabItem value="update">
 
 Sets RDNS on an IP Address. Forward DNS must already be set up for reverse DNS to be applied. If you set the RDNS to `null` for public IPv4 addresses, it will be reset to the default _ip.linodeusercontent.com_ RDNS value.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.networking.ip_addresses
 SET 
-data__rdns = '{{ rdns }}'
+rdns = '{{ rdns }}'
 WHERE 
-data__rdns = '{{ rdns }}' --required
+address = '{{ address }}' --required
+AND rdns = '{{ rdns }}' --required
 RETURNING
 interface_id,
 linode_id,
@@ -356,19 +364,19 @@ vpc_nat_1_1;
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_allocate_ip"
+    defaultValue="allocate"
     values={[
-        { label: 'post_allocate_ip', value: 'post_allocate_ip' },
-        { label: 'post_assign_ips', value: 'post_assign_ips' },
-        { label: 'post_share_ips', value: 'post_share_ips' }
+        { label: 'allocate', value: 'allocate' },
+        { label: 'assign', value: 'assign' },
+        { label: 'share', value: 'share' }
     ]}
 >
-<TabItem value="post_allocate_ip">
+<TabItem value="allocate">
 
 Allocates a new IPv4 Address on your Account. The Linode must be configured to support additional addresses - please [Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) requesting additional addresses before attempting allocation.<br /><br />&gt; 📘<br />&gt;<br />&gt; You can run this operation for Linodes with legacy configuration interfaces. You can't use it for Linodes with Linode interfaces. To allocate an IP for a Linode with Linode interfaces, use the [Add a Linode interface](https://techdocs.akamai.com/linode-api/reference/post-linode-interface) operation and set the public IPv4 address to `auto`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.networking.ip_addresses.post_allocate_ip 
+EXEC linode.networking.ip_addresses.allocate 
 @@json=
 '{
 "linode_id": {{ linode_id }}, 
@@ -378,12 +386,12 @@ EXEC linode.networking.ip_addresses.post_allocate_ip
 ;
 ```
 </TabItem>
-<TabItem value="post_assign_ips">
+<TabItem value="assign">
 
 Assign any set of IPv4 addresses and IPv6 ranges to Linodes in one region. This allows swapping, shuffling, or otherwise reorganizing IPs among your Linodes.<br /><br />The following restrictions apply:<br /><br />- All Linodes need to have at least one public IPv4 address assigned.<br />  - For Linode interfaces, the Linode needs to have a public interface, and the address it receives can't be a private IPv4 address.<br />- Linodes may have no more than one assigned private IPv4 address.<br />- Linodes may have no more than one assigned IPv6 range.<br />- Shared IP addresses cannot be swapped between Linodes.<br /><br />[Open a support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to request additional IPv4 addresses or IPv6 ranges beyond standard account limits.<br /><br />&gt; 📘<br />&gt;<br />&gt; Removing an IP address that has been set as a Managed Linode's `ssh.ip` causes the Managed Linode's SSH access settings to reset to their default values.<br /><br />To view and configure Managed Linode SSH settings, use the following operations:<br /><br />- [Get a Linode's managed settings](https://techdocs.akamai.com/linode-api/reference/get-managed-linode-setting)<br />- [Update a Linode's managed settings](https://techdocs.akamai.com/linode-api/reference/put-managed-linode-setting)<br /><br />&gt; 📘<br />&gt;<br />&gt; Addresses with an active 1:1 NAT to a VPC Interface address cannot be assigned to other Linodes.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.networking.ip_addresses.post_assign_ips 
+EXEC linode.networking.ip_addresses.assign 
 @@json=
 '{
 "assignments": "{{ assignments }}", 
@@ -392,12 +400,12 @@ EXEC linode.networking.ip_addresses.post_assign_ips
 ;
 ```
 </TabItem>
-<TabItem value="post_share_ips">
+<TabItem value="share">
 
 Configure shared IPs.<br /><br />IP sharing allows IP address reassignment (also referred to as IP failover) from one Linode to another if the primary Linode becomes unresponsive. This means that requests to the primary Linode's IP address can be automatically rerouted to secondary Linodes at the configured shared IP addresses.<br /><br />IP failover requires configuration of a [BGP based failover service](https://techdocs.akamai.com/cloud-computing/docs/configure-failover-on-a-compute-instance) within the internal system of the primary Linode.<br /><br />&gt; 📘<br />&gt;<br />&gt; A public IPv4 address can't be shared if it's configured for a 1:1 NAT on a legacy configuration profile VPC interface or on a Linode VPC interface.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.networking.ip_addresses.post_share_ips 
+EXEC linode.networking.ip_addresses.share 
 @@json=
 '{
 "ips": "{{ ips }}", 

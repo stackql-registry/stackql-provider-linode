@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>firewall_settings</code> resour
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>firewall_settings</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="firewall_settings" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.networking.firewall_settings" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>firewall_settings</code> resour
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_firewall_settings"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_settings', value: 'get_firewall_settings' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_firewall_settings">
+<TabItem value="get">
 
 Returns default firewalls.
 
@@ -91,14 +92,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_firewall_settings"><CopyableCode code="get_firewall_settings" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>__Beta__ Returns default firewalls for Linodes, Linode VPC and public interfaces, and NodeBalancers.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_firewall_settings"><CopyableCode code="put_firewall_settings" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
     <td></td>
     <td></td>
@@ -136,12 +137,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_firewall_settings"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_settings', value: 'get_firewall_settings' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_firewall_settings">
+<TabItem value="get">
 
 __Beta__ Returns default firewalls for Linodes, Linode VPC and public interfaces, and NodeBalancers.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -163,19 +164,19 @@ AND page_size = '{{ page_size }}'
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_firewall_settings"
+    defaultValue="update"
     values={[
-        { label: 'put_firewall_settings', value: 'put_firewall_settings' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_firewall_settings">
+<TabItem value="update">
 
 __Beta__ You can update or add a default firewall to:<br /><br />- Linodes using legacy config profile interfaces<br /><br />- Linode VPC interfaces and Linode public interfaces<br /><br />- NodeBalancers<br /><br />If a firewall isn't provided during service creation, a default firewall is assigned, unless you have opted out of firewall protection.<br /><br />&gt; 📘<br />&gt;<br />&gt; Default firewalls on Linodes with Linode interfaces are applied to the interfaces, not the Linode itself.<br />&gt;<br />&gt; Default firewalls on Linodes with legacy configuration profile interfaces are applied directly to the Linode, not its interfaces.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.networking.firewall_settings
 SET 
-data__default_firewall_ids = '{{ default_firewall_ids }}'
+default_firewall_ids = '{{ default_firewall_ids }}'
 RETURNING
 default_firewall_ids;
 ```

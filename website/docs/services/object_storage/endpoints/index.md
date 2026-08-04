@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>endpoints</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>endpoints</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="endpoints" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.endpoints" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>endpoints</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_endpoints"
+    defaultValue="list"
     values={[
-        { label: 'get_object_storage_endpoints', value: 'get_object_storage_endpoints' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_endpoints">
+<TabItem value="list">
 
 A paginated list of endpoints you can access.
 
@@ -53,7 +54,7 @@ A paginated list of endpoints you can access.
 <tr>
     <td><CopyableCode code="endpoint_type" /></td>
     <td><code>string</code></td>
-    <td>The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information. (example: E1)</td>
+    <td>The type of `s3_endpoint` available to the active `user` in this `region`. See [Endpoint types](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) for more information. (E0, E1, E2, E3) (example: E1)</td>
 </tr>
 <tr>
     <td><CopyableCode code="region" /></td>
@@ -86,11 +87,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_endpoints"><CopyableCode code="get_object_storage_endpoints" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
-    <td>Returns a paginated list of all Object Storage endpoints available in your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of all Object Storage [endpoints](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) available in your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -114,14 +115,14 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_endpoints"
+    defaultValue="list"
     values={[
-        { label: 'get_object_storage_endpoints', value: 'get_object_storage_endpoints' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_object_storage_endpoints">
+<TabItem value="list">
 
-Returns a paginated list of all Object Storage endpoints available in your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a paginated list of all Object Storage [endpoints](https://techdocs.akamai.com/cloud-computing/docs/object-storage#endpoint-types) available in your account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT

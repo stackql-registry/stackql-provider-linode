@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>postgresql_instance_credentials
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>postgresql_instance_credentials</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="postgresql_instance_credentials" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.databases.postgresql_instance_credentials" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>postgresql_instance_credentials
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_databases_postgre_sql_instance_credentials"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_postgre_sql_instance_credentials', value: 'get_databases_postgre_sql_instance_credentials' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_databases_postgre_sql_instance_credentials">
+<TabItem value="get">
 
 PostgreSQL Managed Database root username and password.
 
@@ -81,16 +82,16 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_databases_postgre_sql_instance_credentials"><CopyableCode code="get_databases_postgre_sql_instance_credentials" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-instanceId"><code>instanceId</code></a></td>
     <td></td>
     <td>Display the root username and password for an accessible PostgreSQL Managed Database. The database's status needs to be `active`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_databases_postgre_sql_instance_credentials_reset"><CopyableCode code="post_databases_postgre_sql_instance_credentials_reset" /></a></td>
+    <td><a href="#reset_credentials"><CopyableCode code="reset_credentials" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td></td>
+    <td><a href="#parameter-instanceId"><code>instanceId</code></a></td>
     <td></td>
     <td>Reset the root password for a PostgreSQL Managed Database. A new root password is randomly generated and accessible with the [Get PostgreSQL Managed Database credentials](https://techdocs.akamai.com/linode-api/reference/get-databases-postgre-sql-instance-credentials) operation.<br /><br />- The database's status needs to be `active`.<br /><br />- Only unrestricted users can access this operation. These users have access regardless of the acting token's OAuth scopes.<br /><br />- It may take several seconds for credentials to reset.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -110,18 +111,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-instanceId">
+    <td><CopyableCode code="instanceId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Managed PostgreSQL Database.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_databases_postgre_sql_instance_credentials"
+    defaultValue="get"
     values={[
-        { label: 'get_databases_postgre_sql_instance_credentials', value: 'get_databases_postgre_sql_instance_credentials' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_databases_postgre_sql_instance_credentials">
+<TabItem value="get">
 
 Display the root username and password for an accessible PostgreSQL Managed Database. The database's status needs to be `active`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -130,6 +136,7 @@ SELECT
 password,
 username
 FROM linode.databases.postgresql_instance_credentials
+WHERE instanceId = '{{ instanceId }}' -- required
 ;
 ```
 </TabItem>
@@ -139,18 +146,18 @@ FROM linode.databases.postgresql_instance_credentials
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_databases_postgre_sql_instance_credentials_reset"
+    defaultValue="reset_credentials"
     values={[
-        { label: 'post_databases_postgre_sql_instance_credentials_reset', value: 'post_databases_postgre_sql_instance_credentials_reset' }
+        { label: 'reset_credentials', value: 'reset_credentials' }
     ]}
 >
-<TabItem value="post_databases_postgre_sql_instance_credentials_reset">
+<TabItem value="reset_credentials">
 
 Reset the root password for a PostgreSQL Managed Database. A new root password is randomly generated and accessible with the [Get PostgreSQL Managed Database credentials](https://techdocs.akamai.com/linode-api/reference/get-databases-postgre-sql-instance-credentials) operation.<br /><br />- The database's status needs to be `active`.<br /><br />- Only unrestricted users can access this operation. These users have access regardless of the acting token's OAuth scopes.<br /><br />- It may take several seconds for credentials to reset.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.databases.postgresql_instance_credentials.post_databases_postgre_sql_instance_credentials_reset 
-
+EXEC linode.databases.postgresql_instance_credentials.reset_credentials 
+@instanceId='{{ instanceId }}' --required
 ;
 ```
 </TabItem>

@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>firewall_rules</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>firewall_rules</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="firewall_rules" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.networking.firewall_rules" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>firewall_rules</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_firewall_rules"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_rules', value: 'get_firewall_rules' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_firewall_rules">
+<TabItem value="get">
 
 The requested Firewall Rules.
 
@@ -63,7 +64,7 @@ The requested Firewall Rules.
 <tr>
     <td><CopyableCode code="inbound_policy" /></td>
     <td><code>string</code></td>
-    <td>The default behavior for inbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `inbound.action` property of the Firewall Rule. (example: DROP)</td>
+    <td>The default behavior for inbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `inbound.action` property of the Firewall Rule. (ACCEPT, DROP) (example: DROP)</td>
 </tr>
 <tr>
     <td><CopyableCode code="outbound" /></td>
@@ -73,7 +74,7 @@ The requested Firewall Rules.
 <tr>
     <td><CopyableCode code="outbound_policy" /></td>
     <td><code>string</code></td>
-    <td>The default behavior for outbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `outbound.action` property of the Firewall Rule. (example: DROP)</td>
+    <td>The default behavior for outbound traffic. This setting can be overridden by [updating](https://techdocs.akamai.com/linode-api/reference/put-firewall-rules) the `outbound.action` property of the Firewall Rule. (ACCEPT, DROP) (example: ACCEPT)</td>
 </tr>
 <tr>
     <td><CopyableCode code="version" /></td>
@@ -101,16 +102,16 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_firewall_rules"><CopyableCode code="get_firewall_rules" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a></td>
     <td></td>
     <td>Returns the inbound and outbound Rules for a Firewall.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_firewall_rules"><CopyableCode code="put_firewall_rules" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a></td>
     <td></td>
     <td>Updates the inbound and outbound Rules for a Firewall.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- __Note__. This operation replaces all of a Firewall's `inbound` and `outbound` rulesets with the values specified in your request.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -130,18 +131,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-firewallId">
+    <td><CopyableCode code="firewallId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Firewall to access.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_firewall_rules"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_rules', value: 'get_firewall_rules' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_firewall_rules">
+<TabItem value="get">
 
 Returns the inbound and outbound Rules for a Firewall.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -154,6 +160,7 @@ outbound,
 outbound_policy,
 version
 FROM linode.networking.firewall_rules
+WHERE firewallId = '{{ firewallId }}' -- required
 ;
 ```
 </TabItem>
@@ -163,22 +170,24 @@ FROM linode.networking.firewall_rules
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_firewall_rules"
+    defaultValue="update"
     values={[
-        { label: 'put_firewall_rules', value: 'put_firewall_rules' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_firewall_rules">
+<TabItem value="update">
 
 Updates the inbound and outbound Rules for a Firewall.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- __Note__. This operation replaces all of a Firewall's `inbound` and `outbound` rulesets with the values specified in your request.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.networking.firewall_rules
 SET 
-data__inbound = '{{ inbound }}',
-data__inbound_policy = '{{ inbound_policy }}',
-data__outbound = '{{ outbound }}',
-data__outbound_policy = '{{ outbound_policy }}'
+inbound = '{{ inbound }}',
+outbound = '{{ outbound }}',
+inbound_policy = '{{ inbound_policy }}',
+outbound_policy = '{{ outbound_policy }}'
+WHERE 
+firewallId = '{{ firewallId }}' --required
 RETURNING
 fingerprint,
 inbound,

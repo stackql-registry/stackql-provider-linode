@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>instances</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>instances</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="instances" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.databases.instances" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>instances</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_databases_instances"
+    defaultValue="list"
     values={[
-        { label: 'get_databases_instances', value: 'get_databases_instances' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_databases_instances">
+<TabItem value="list">
 
 Returns a paginated list of all accessible Managed Databases on your account.
 
@@ -63,7 +64,7 @@ Returns a paginated list of all accessible Managed Databases on your account.
 <tr>
     <td><CopyableCode code="cluster_size" /></td>
     <td><code>integer</code></td>
-    <td>The number of Linode instance nodes deployed to the Managed Database.   - Choose `3` nodes to create a high availability cluster that consists of one primary node and two replica nodes.  - A `2` node cluster is only available with a dedicated plan. It consists of one primary node and one replica node.</td>
+    <td>The number of Linode instance nodes deployed to the Managed Database.   - Choose `3` nodes to create a high availability cluster that consists of one primary node and two replica nodes.  - A `2` node cluster is only available with a dedicated plan. It consists of one primary node and one replica node. (1, 2, 3)</td>
 </tr>
 <tr>
     <td><CopyableCode code="created" /></td>
@@ -78,7 +79,7 @@ Returns a paginated list of all accessible Managed Databases on your account.
 <tr>
     <td><CopyableCode code="engine" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__, __Read-only__ The Managed Database engine type. (example: mysql)</td>
+    <td>__Filterable__, __Read-only__ The Managed Database engine type. (mysql, postgresql) (example: mysql)</td>
 </tr>
 <tr>
     <td><CopyableCode code="fork" /></td>
@@ -88,7 +89,7 @@ Returns a paginated list of all accessible Managed Databases on your account.
 <tr>
     <td><CopyableCode code="hosts" /></td>
     <td><code>object</code></td>
-    <td>__Read-only__ The primary and secondary hosts for the Managed Database. These are assigned after provisioning is complete.</td>
+    <td>__Read-only__ The primary hostname and secondary read-only hostname for the Managed Database. The API assigns these hostnames after it successfully creates the Managed Database.</td>
 </tr>
 <tr>
     <td><CopyableCode code="instance_uri" /></td>
@@ -102,8 +103,8 @@ Returns a paginated list of all accessible Managed Databases on your account.
 </tr>
 <tr>
     <td><CopyableCode code="members" /></td>
-    <td><code>object</code></td>
-    <td>__Read-only__ A mapping between IP addresses and strings designating them as `primary` or `failover`.</td>
+    <td><code>string</code></td>
+    <td>__Read-only__ A mapping between IP addresses and strings designating them as `primary` or `failover`. (opaque JSON object)</td>
 </tr>
 <tr>
     <td><CopyableCode code="oldest_restore_time" /></td>
@@ -113,7 +114,7 @@ Returns a paginated list of all accessible Managed Databases on your account.
 <tr>
     <td><CopyableCode code="platform" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__, __Read-only__ The back-end platform for relational databases used by the service. (example: rdbms-default)</td>
+    <td>__Filterable__, __Read-only__ The back-end platform for relational databases used by the service. (rdbms-legacy, rdbms-default) (example: rdbms-default)</td>
 </tr>
 <tr>
     <td><CopyableCode code="port" /></td>
@@ -123,12 +124,12 @@ Returns a paginated list of all accessible Managed Databases on your account.
 <tr>
     <td><CopyableCode code="region" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The [Region](https://techdocs.akamai.com/linode-api/reference/get-regions) ID for the Managed Database. (example: us-east)</td>
+    <td>__Filterable__ The unique identifier for the [region](https://techdocs.akamai.com/linode-api/reference/get-regions) where the Managed Database lives. (example: us-east)</td>
 </tr>
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__, __Read-only__ The operating status of the Managed Database. (example: active)</td>
+    <td>__Filterable__, __Read-only__ The operating status of the Managed Database. (provisioning, active, suspending, suspended, resuming, failed, degraded, updating, resizing) (example: active)</td>
 </tr>
 <tr>
     <td><CopyableCode code="total_disk_size_gb" /></td>
@@ -181,7 +182,7 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_databases_instances"><CopyableCode code="get_databases_instances" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
@@ -219,12 +220,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_databases_instances"
+    defaultValue="list"
     values={[
-        { label: 'get_databases_instances', value: 'get_databases_instances' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_databases_instances">
+<TabItem value="list">
 
 Display all Managed Databases accessible to your user, regardless of engine type. For more detailed information on a particular database instance, make a request to its `instance_uri`.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 

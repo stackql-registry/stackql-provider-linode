@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>settings</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>settings</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="settings" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.settings" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>settings</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_account_settings"
+    defaultValue="get"
     values={[
-        { label: 'get_account_settings', value: 'get_account_settings' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account_settings">
+<TabItem value="get">
 
 Returns a single Account settings object.
 
@@ -58,12 +59,17 @@ Returns a single Account settings object.
 <tr>
     <td><CopyableCode code="interfaces_for_new_linodes" /></td>
     <td><code>string</code></td>
-    <td>__Beta__ Defines if new Linodes can use legacy configuration interfaces: - `legacy_config_only`. All new Linodes need to use legacy configuration interfaces. Prevously created Linodes with Linode Interfaces can still exist. Linodes using legacy configuration interfaces can't be upgraded to use Linode Interfaces. - `legacy_config_default_but_linode_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use legacy configuration interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode Interfaces. This is the default setting for existing accounts. - `linode_default_but_legacy_config_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use Linode Interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode interfaces. This is the default setting for new accounts. - `linode_only`. All new Linodes need to use Linode Interfaces. Prevously created Linodes with legacy configuration profile interfaces can still exist if they were created under a previous setting. Linodes using legacy configuration interfaces can be upgraded to Linode Interfaces. (example: linode_only)</td>
+    <td>__Beta__ Defines if new Linodes can use legacy configuration interfaces: - `legacy_config_only`. All new Linodes need to use legacy configuration interfaces. Prevously created Linodes with Linode Interfaces can still exist. Linodes using legacy configuration interfaces can't be upgraded to use Linode Interfaces. - `legacy_config_default_but_linode_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use legacy configuration interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode Interfaces. This is the default setting for existing accounts. - `linode_default_but_legacy_config_allowed`. New Linodes can use legacy configuration interfaces or Linode Interfaces, depending on the `interface_generation` setting specified when creating the Linode. By default, new Linodes use Linode Interfaces unless otherwise specified. Linodes that use legacy configuration interfaces can upgrade to Linode interfaces. This is the default setting for new accounts. - `linode_only`. All new Linodes need to use Linode Interfaces. Prevously created Linodes with legacy configuration profile interfaces can still exist if they were created under a previous setting. Linodes using legacy configuration interfaces can be upgraded to Linode Interfaces. (legacy_config_only, legacy_config_default_but_linode_allowed, linode_default_but_legacy_config_allowed, linode_only) (example: linode_only)</td>
 </tr>
 <tr>
     <td><CopyableCode code="longview_subscription" /></td>
     <td><code>string</code></td>
     <td>__Read-only__ The Longview Pro tier you are currently subscribed to. The value must be a [Longview subscription](https://techdocs.akamai.com/linode-api/reference/get-longview-subscriptions) ID or `null` for Longview Free. (example: longview-3)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="maintenance_policy" /></td>
+    <td><code>string</code></td>
+    <td>__Beta__ Defines the default maintenance policy for new Linodes created on this account. Review [maintenance policy](https://techdocs.akamai.com/cloud-computing/docs/host-maintenance-policy) documentation for more details. (linode/migrate, linode/power_off_on) (example: linode/migrate)</td>
 </tr>
 <tr>
     <td><CopyableCode code="managed" /></td>
@@ -78,7 +84,7 @@ Returns a single Account settings object.
 <tr>
     <td><CopyableCode code="object_storage" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ A string describing the status of this account's Object Storage service enrollment. (default: disabled, example: active)</td>
+    <td>__Read-only__ A string describing the status of this account's Object Storage service enrollment. (disabled, suspended, active) (default: disabled, example: active)</td>
 </tr>
 </tbody>
 </table>
@@ -101,21 +107,21 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_account_settings"><CopyableCode code="get_account_settings" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
     <td>Returns information related to your Account settings: Managed service subscription, interface settings for new Linodes, Longview subscription, and Network Helper.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_account_settings"><CopyableCode code="put_account_settings" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
     <td></td>
     <td></td>
     <td>Updates your account settings. For a Longview subscription plan, see [Update a Longview plan](https://techdocs.akamai.com/linode-api/reference/put-longview-plan).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_enable_account_managed"><CopyableCode code="post_enable_account_managed" /></a></td>
+    <td><a href="#enable_managed"><CopyableCode code="enable_managed" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td></td>
     <td></td>
@@ -143,12 +149,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_account_settings"
+    defaultValue="get"
     values={[
-        { label: 'get_account_settings', value: 'get_account_settings' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account_settings">
+<TabItem value="get">
 
 Returns information related to your Account settings: Managed service subscription, interface settings for new Linodes, Longview subscription, and Network Helper.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -157,6 +163,7 @@ SELECT
 backups_enabled,
 interfaces_for_new_linodes,
 longview_subscription,
+maintenance_policy,
 managed,
 network_helper,
 object_storage
@@ -170,25 +177,27 @@ FROM linode.account.settings
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_account_settings"
+    defaultValue="update"
     values={[
-        { label: 'put_account_settings', value: 'put_account_settings' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_account_settings">
+<TabItem value="update">
 
 Updates your account settings. For a Longview subscription plan, see [Update a Longview plan](https://techdocs.akamai.com/linode-api/reference/put-longview-plan).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.account.settings
 SET 
-data__backups_enabled = {{ backups_enabled }},
-data__interfaces_for_new_linodes = '{{ interfaces_for_new_linodes }}',
-data__network_helper = {{ network_helper }}
+backups_enabled = {{ backups_enabled }},
+interfaces_for_new_linodes = '{{ interfaces_for_new_linodes }}',
+maintenance_policy = '{{ maintenance_policy }}',
+network_helper = {{ network_helper }}
 RETURNING
 backups_enabled,
 interfaces_for_new_linodes,
 longview_subscription,
+maintenance_policy,
 managed,
 network_helper,
 object_storage;
@@ -200,17 +209,17 @@ object_storage;
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_enable_account_managed"
+    defaultValue="enable_managed"
     values={[
-        { label: 'post_enable_account_managed', value: 'post_enable_account_managed' }
+        { label: 'enable_managed', value: 'enable_managed' }
     ]}
 >
-<TabItem value="post_enable_account_managed">
+<TabItem value="enable_managed">
 
 Enables Linode Managed for the entire account and sends a welcome email to the account's associated email address. Linode Managed can monitor any service or software stack reachable over TCP or HTTP. See our [Linode Managed guide](https://www.linode.com/docs/guides/linode-managed/) to learn more.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.account.settings.post_enable_account_managed 
+EXEC linode.account.settings.enable_managed 
 
 ;
 ```

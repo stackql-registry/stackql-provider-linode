@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>quota_usage</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>quota_usage</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="quota_usage" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.object_storage.quota_usage" /></td></tr>
 </tbody></table>
@@ -32,14 +33,14 @@ Creates, updates, deletes, gets or lists a <code>quota_usage</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_object_storage_quota_usage"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_quota_usage', value: 'get_object_storage_quota_usage' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_quota_usage">
+<TabItem value="get">
 
-Usage data for the specified `object-storage-quotaId`.
+Usage data for the specified `objQuotaId`.
 
 <table>
 <thead>
@@ -53,7 +54,7 @@ Usage data for the specified `object-storage-quotaId`.
 <tr>
     <td><CopyableCode code="quota_limit" /></td>
     <td><code>integer</code></td>
-    <td>The availability limit for a specific Object Storage resource (`object-storage-quotaId`) for a single endpoint.</td>
+    <td>The availability limit for a specific Object Storage resource (`objQuotaId`) for a single endpoint.</td>
 </tr>
 <tr>
     <td><CopyableCode code="usage" /></td>
@@ -81,11 +82,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_object_storage_quota_usage"><CopyableCode code="get_object_storage_quota_usage" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-objQuotaId"><code>objQuotaId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Returns usage data for a specific `object-storage-quotaId`. This includes the maximum number of `object-storage-quotaId` resources you can have for a single endpoint and the current usage for that resource.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns usage data for a specific `objQuotaId`. This includes the maximum number of `objQuotaId` resources you can have for a single endpoint and the current usage for that resource.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -103,26 +104,32 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-objQuotaId">
+    <td><CopyableCode code="objQuotaId" /></td>
+    <td><code>string</code></td>
+    <td>The unique string that identifies the specific Object Storage-related quota to look up. This follows the pattern, `obj-<quota_type>-<s3_endpoint>`, for example, `obj-buckets-eu-central-1.linodeobjects.com`.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_object_storage_quota_usage"
+    defaultValue="get"
     values={[
-        { label: 'get_object_storage_quota_usage', value: 'get_object_storage_quota_usage' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_object_storage_quota_usage">
+<TabItem value="get">
 
-Returns usage data for a specific `object-storage-quotaId`. This includes the maximum number of `object-storage-quotaId` resources you can have for a single endpoint and the current usage for that resource.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns usage data for a specific `objQuotaId`. This includes the maximum number of `objQuotaId` resources you can have for a single endpoint and the current usage for that resource.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
 quota_limit,
 usage
 FROM linode.object_storage.quota_usage
+WHERE objQuotaId = '{{ objQuotaId }}' -- required
 ;
 ```
 </TabItem>

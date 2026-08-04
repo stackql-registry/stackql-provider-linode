@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>services</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>services</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="services" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.services" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>services</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_service"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_service', value: 'get_managed_service' },
-        { label: 'get_managed_services', value: 'get_managed_services' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_service">
+<TabItem value="get">
 
 The requested Managed Service.
 
@@ -84,7 +85,7 @@ The requested Managed Service.
 <tr>
     <td><CopyableCode code="label" /></td>
     <td><code>string</code></td>
-    <td>The label for this Service. This is for display purposes only. (example: prod-1, pattern: <code>[a-zA-Z0-9-_ \.]&#123;3,64&#125;</code>)</td>
+    <td>The label for this Service. This is for display purposes only. (example: prod-1, pattern: <code>&#91;a-zA-Z0-9-_ \.&#93;&#123;3,64&#125;</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="notes" /></td>
@@ -99,12 +100,12 @@ The requested Managed Service.
 <tr>
     <td><CopyableCode code="service_type" /></td>
     <td><code>string</code></td>
-    <td>How this Service is monitored. (example: url)</td>
+    <td>How this Service is monitored. (url, tcp) (example: url)</td>
 </tr>
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The current status of this Service. (example: ok)</td>
+    <td>__Read-only__ The current status of this Service. (disabled, pending, ok, problem) (example: ok)</td>
 </tr>
 <tr>
     <td><CopyableCode code="timeout" /></td>
@@ -119,7 +120,7 @@ The requested Managed Service.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_managed_services">
+<TabItem value="list">
 
 A paginated list of Managed Services.
 
@@ -133,24 +134,69 @@ A paginated list of Managed Services.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Read-only__ This Service's unique ID.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="address" /></td>
+    <td><code>string (url)</code></td>
+    <td>The URL at which this Service is monitored. URL parameters such as `?no-cache=1` are preserved. URL fragments/anchors such as `#monitor` are __not__ preserved. (example: https://example.org)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="body" /></td>
+    <td><code>string</code></td>
+    <td>What to expect to find in the response body for the Service to be considered up. (example: it worked)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="consultation_group" /></td>
+    <td><code>string</code></td>
+    <td>The group of ManagedContacts who should be notified or consulted with when an Issue is detected. (example: on-call)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="created" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ When this Managed Service was created. (example: 2018-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="credentials" /></td>
     <td><code>array</code></td>
-    <td></td>
+    <td>An array of ManagedCredential IDs that should be used when attempting to resolve issues with this Service.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>The label for this Service. This is for display purposes only. (example: prod-1, pattern: <code>&#91;a-zA-Z0-9-_ \.&#93;&#123;3,64&#125;</code>)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="notes" /></td>
+    <td><code>string</code></td>
+    <td>Any information relevant to the Service that Linode special forces should know when attempting to resolve Issues. (example: The service name is my-cool-application)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
+    <td><CopyableCode code="region" /></td>
+    <td><code>string</code></td>
+    <td>The Region in which this Service is located. This is required if address is a private IP, and may not be set otherwise.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="service_type" /></td>
+    <td><code>string</code></td>
+    <td>How this Service is monitored. (url, tcp) (example: url)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="status" /></td>
+    <td><code>string</code></td>
+    <td>__Read-only__ The current status of this Service. (disabled, pending, ok, problem) (example: ok)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="timeout" /></td>
     <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td>How long to wait, in seconds, for a response before considering the Service to be down.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="updated" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ When this Managed Service was last updated. (example: 2018-03-01T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -173,53 +219,53 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_service"><CopyableCode code="get_managed_service" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
+    <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-serviceId"><code>serviceId</code></a></td>
+    <td></td>
+    <td>Returns the configuration settings for a single service monitor.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+</tr>
+<tr>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
-    <td>Returns information about a single Managed Service on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of service monitors on your account. These are the services on your Linodes monitored by Linode Managed.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_managed_services"><CopyableCode code="get_managed_services" /></a></td>
-    <td><CopyableCode code="select" /></td>
-    <td></td>
-    <td></td>
-    <td>Returns a paginated list of Managed Services on your Account. These are the services Linode Managed is monitoring and will report and attempt to resolve issues with.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
-</tr>
-<tr>
-    <td><a href="#post_managed_service"><CopyableCode code="post_managed_service" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__label"><code>data__label</code></a>, <a href="#parameter-data__service_type"><code>data__service_type</code></a>, <a href="#parameter-data__address"><code>data__address</code></a>, <a href="#parameter-data__timeout"><code>data__timeout</code></a></td>
+    <td><a href="#parameter-label"><code>label</code></a>, <a href="#parameter-service_type"><code>service_type</code></a>, <a href="#parameter-address"><code>address</code></a>, <a href="#parameter-timeout"><code>timeout</code></a></td>
     <td></td>
-    <td>Creates a Managed Service. Linode Managed will begin monitoring this service and reporting and attempting to resolve any Issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Creates a service monitor. Linode Managed monitors this service and alerts Akamai Support when issues are detected.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_managed_service"><CopyableCode code="put_managed_service" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
+    <td><a href="#parameter-serviceId"><code>serviceId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Updates information about a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Updates a service monitor's configuration settings.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_managed_service"><CopyableCode code="delete_managed_service" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
+    <td><a href="#parameter-serviceId"><code>serviceId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Deletes a Managed Service.  This service will no longer be monitored by Linode Managed.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Deletes a service monitor, so that the service is no longer monitored by Linode Managed.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_disable_managed_service"><CopyableCode code="post_disable_managed_service" /></a></td>
+    <td><a href="#disable"><CopyableCode code="disable" /></a></td>
     <td><CopyableCode code="exec" /></td>
+    <td><a href="#parameter-serviceId"><code>serviceId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Temporarily disables monitoring of a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Temporarily disables monitoring of a service on a managed Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_enable_managed_service"><CopyableCode code="post_enable_managed_service" /></a></td>
+    <td><a href="#enable"><CopyableCode code="enable" /></a></td>
     <td><CopyableCode code="exec" /></td>
+    <td><a href="#parameter-serviceId"><code>serviceId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Enables monitoring of a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Enables monitoring of a service on a managed Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -237,21 +283,50 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-serviceId">
+    <td><CopyableCode code="serviceId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Managed Service to enable.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_service"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_service', value: 'get_managed_service' },
-        { label: 'get_managed_services', value: 'get_managed_services' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_service">
+<TabItem value="get">
 
-Returns information about a single Managed Service on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns the configuration settings for a single service monitor.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+
+```sql
+SELECT
+id,
+address,
+body,
+consultation_group,
+created,
+credentials,
+label,
+notes,
+region,
+service_type,
+status,
+timeout,
+updated
+FROM linode.managed.services
+WHERE serviceId = '{{ serviceId }}' -- required
+;
+```
+</TabItem>
+<TabItem value="list">
+
+Returns a paginated list of service monitors on your account. These are the services on your Linodes monitored by Linode Managed.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
@@ -272,47 +347,33 @@ FROM linode.managed.services
 ;
 ```
 </TabItem>
-<TabItem value="get_managed_services">
-
-Returns a paginated list of Managed Services on your Account. These are the services Linode Managed is monitoring and will report and attempt to resolve issues with.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
-
-```sql
-SELECT
-data,
-page,
-pages,
-results
-FROM linode.managed.services
-;
-```
-</TabItem>
 </Tabs>
 
 
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_managed_service"
+    defaultValue="create"
     values={[
-        { label: 'post_managed_service', value: 'post_managed_service' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_managed_service">
+<TabItem value="create">
 
-Creates a Managed Service. Linode Managed will begin monitoring this service and reporting and attempting to resolve any Issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Creates a service monitor. Linode Managed monitors this service and alerts Akamai Support when issues are detected.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.managed.services (
-data__address,
-data__body,
-data__consultation_group,
-data__credentials,
-data__label,
-data__notes,
-data__region,
-data__service_type,
-data__timeout
+address,
+body,
+consultation_group,
+credentials,
+label,
+notes,
+region,
+service_type,
+timeout
 )
 SELECT 
 '{{ address }}' /* required */,
@@ -343,57 +404,49 @@ updated
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: services
   props:
     - name: address
-      value: string
-      description: >
-        The URL at which this Service is monitored. URL parameters such as `?no-cache=1` are preserved. URL fragments/anchors such as `#monitor` are __not__ preserved.
-        
+      value: "{{ address }}"
+      description: |
+        The URL at which this Service is monitored. URL parameters such as \`?no-cache=1\` are preserved. URL fragments/anchors such as \`#monitor\` are __not__ preserved.
     - name: body
-      value: string
-      description: >
+      value: "{{ body }}"
+      description: |
         What to expect to find in the response body for the Service to be considered up.
-        
     - name: consultation_group
-      value: string
-      description: >
+      value: "{{ consultation_group }}"
+      description: |
         The group of ManagedContacts who should be notified or consulted with when an Issue is detected.
-        
     - name: credentials
-      value: array
-      description: >
+      value:
+        - {{ credentials }}
+      description: |
         An array of ManagedCredential IDs that should be used when attempting to resolve issues with this Service.
-        
     - name: label
-      value: string
-      description: >
+      value: "{{ label }}"
+      description: |
         The label for this Service. This is for display purposes only.
-        
     - name: notes
-      value: string
-      description: >
+      value: "{{ notes }}"
+      description: |
         Any information relevant to the Service that Linode special forces should know when attempting to resolve Issues.
-        
     - name: region
-      value: string
-      description: >
+      value: "{{ region }}"
+      description: |
         The Region in which this Service is located. This is required if address is a private IP, and may not be set otherwise.
-        
     - name: service_type
-      value: string
-      description: >
+      value: "{{ service_type }}"
+      description: |
         How this Service is monitored.
-        
       valid_values: ['url', 'tcp']
     - name: timeout
-      value: integer
-      description: >
+      value: {{ timeout }}
+      description: |
         How long to wait, in seconds, for a response before considering the Service to be down.
-        
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -401,27 +454,29 @@ updated
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_managed_service"
+    defaultValue="update"
     values={[
-        { label: 'put_managed_service', value: 'put_managed_service' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_managed_service">
+<TabItem value="update">
 
-Updates information about a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Updates a service monitor's configuration settings.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.managed.services
 SET 
-data__address = '{{ address }}',
-data__body = '{{ body }}',
-data__consultation_group = '{{ consultation_group }}',
-data__credentials = '{{ credentials }}',
-data__label = '{{ label }}',
-data__notes = '{{ notes }}',
-data__region = '{{ region }}',
-data__service_type = '{{ service_type }}',
-data__timeout = {{ timeout }}
+address = '{{ address }}',
+body = '{{ body }}',
+consultation_group = '{{ consultation_group }}',
+credentials = '{{ credentials }}',
+label = '{{ label }}',
+notes = '{{ notes }}',
+region = '{{ region }}',
+service_type = '{{ service_type }}',
+timeout = {{ timeout }}
+WHERE 
+serviceId = '{{ serviceId }}' --required
 RETURNING
 id,
 address,
@@ -444,17 +499,18 @@ updated;
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_managed_service"
+    defaultValue="delete"
     values={[
-        { label: 'delete_managed_service', value: 'delete_managed_service' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_managed_service">
+<TabItem value="delete">
 
-Deletes a Managed Service.  This service will no longer be monitored by Linode Managed.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Deletes a service monitor, so that the service is no longer monitored by Linode Managed.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.managed.services
+WHERE serviceId = '{{ serviceId }}' --required
 ;
 ```
 </TabItem>
@@ -464,29 +520,29 @@ DELETE FROM linode.managed.services
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_disable_managed_service"
+    defaultValue="disable"
     values={[
-        { label: 'post_disable_managed_service', value: 'post_disable_managed_service' },
-        { label: 'post_enable_managed_service', value: 'post_enable_managed_service' }
+        { label: 'disable', value: 'disable' },
+        { label: 'enable', value: 'enable' }
     ]}
 >
-<TabItem value="post_disable_managed_service">
+<TabItem value="disable">
 
-Temporarily disables monitoring of a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Temporarily disables monitoring of a service on a managed Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.managed.services.post_disable_managed_service 
-
+EXEC linode.managed.services.disable 
+@serviceId='{{ serviceId }}' --required
 ;
 ```
 </TabItem>
-<TabItem value="post_enable_managed_service">
+<TabItem value="enable">
 
-Enables monitoring of a Managed Service.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Enables monitoring of a service on a managed Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.managed.services.post_enable_managed_service 
-
+EXEC linode.managed.services.enable 
+@serviceId='{{ serviceId }}' --required
 ;
 ```
 </TabItem>

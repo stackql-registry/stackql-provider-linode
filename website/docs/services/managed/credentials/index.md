@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>credentials</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>credentials</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="credentials" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.credentials" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>credentials</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_credential"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_credential', value: 'get_managed_credential' },
-        { label: 'get_managed_credentials', value: 'get_managed_credentials' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_credential">
+<TabItem value="get">
 
 The requested Managed Credential.
 
@@ -59,7 +60,7 @@ The requested Managed Credential.
 <tr>
     <td><CopyableCode code="label" /></td>
     <td><code>string</code></td>
-    <td>The unique label for this Credential. This is for display purposes only. (example: prod-password-1, pattern: <code>[a-zA-Z0-9-_ \.]&#123;2,75&#125;</code>)</td>
+    <td>The unique label for this Credential. This is for display purposes only. (example: prod-password-1, pattern: <code>&#91;a-zA-Z0-9-_ \.&#93;&#123;2,75&#125;</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="last_decrypted" /></td>
@@ -69,7 +70,7 @@ The requested Managed Credential.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_managed_credentials">
+<TabItem value="list">
 
 A paginated list of ManagedCredentials.
 
@@ -83,24 +84,19 @@ A paginated list of ManagedCredentials.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Read-only__ This Credential's unique ID.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="label" /></td>
+    <td><code>string</code></td>
+    <td>The unique label for this Credential. This is for display purposes only. (example: prod-password-1, pattern: <code>&#91;a-zA-Z0-9-_ \.&#93;&#123;2,75&#125;</code>)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="last_decrypted" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ The date this Credential was last decrypted by a member of Linode special forces. (example: 2018-01-01T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -123,46 +119,46 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_credential"><CopyableCode code="get_managed_credential" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-credentialId"><code>credentialId</code></a></td>
     <td></td>
     <td>Returns a single Managed Credential.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_managed_credentials"><CopyableCode code="get_managed_credentials" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
-    <td>Returns a paginated list of Managed Credentials on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of managed credentials on your account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_managed_credential"><CopyableCode code="post_managed_credential" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__label"><code>data__label</code></a>, <a href="#parameter-data__password"><code>data__password</code></a></td>
+    <td><a href="#parameter-label"><code>label</code></a>, <a href="#parameter-password"><code>password</code></a></td>
     <td></td>
-    <td>Creates a Managed Credential. A Managed Credential is stored securely to allow Linode special forces to access your Managed Services and resolve issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Creates a managed credential to store usernames and passwords for applications running on your Linode. Akamai Support can use these credentials to access your applications when investigating or resolving issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_managed_credential"><CopyableCode code="put_managed_credential" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
-    <td></td>
+    <td><a href="#parameter-credentialId"><code>credentialId</code></a></td>
     <td></td>
     <td>Updates the label of a Managed Credential. This operation does not update the username and password for a Managed Credential. To do this, run the [Update a managed credential's username and password](https://techdocs.akamai.com/linode-api/reference/post-managed-credential-username-password)) operation instead. This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_managed_credential_revoke"><CopyableCode code="post_managed_credential_revoke" /></a></td>
+    <td><a href="#revoke"><CopyableCode code="revoke" /></a></td>
     <td><CopyableCode code="exec" /></td>
+    <td><a href="#parameter-credentialId"><code>credentialId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Deletes a Managed Credential.  Linode special forces will no longer have access to this Credential when attempting to resolve issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Deletes a managed credential.  Akamai Support will no longer have access to this credential when investigating or resolving issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_managed_credential_username_password"><CopyableCode code="post_managed_credential_username_password" /></a></td>
+    <td><a href="#update_username_password"><CopyableCode code="update_username_password" /></a></td>
     <td><CopyableCode code="exec" /></td>
-    <td><a href="#parameter-password"><code>password</code></a></td>
+    <td><a href="#parameter-credentialId"><code>credentialId</code></a>, <a href="#parameter-password"><code>password</code></a></td>
     <td></td>
-    <td>Updates the username and password for a Managed Credential.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Updates the username and password for a managed credential.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -180,6 +176,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-credentialId">
+    <td><CopyableCode code="credentialId" /></td>
+    <td><code>string</code></td>
+    <td>The ID of the Credential to update.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -196,13 +197,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_credential"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_credential', value: 'get_managed_credential' },
-        { label: 'get_managed_credentials', value: 'get_managed_credentials' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_credential">
+<TabItem value="get">
 
 Returns a single Managed Credential.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -212,19 +213,19 @@ id,
 label,
 last_decrypted
 FROM linode.managed.credentials
+WHERE credentialId = '{{ credentialId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_managed_credentials">
+<TabItem value="list">
 
-Returns a paginated list of Managed Credentials on your Account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a paginated list of managed credentials on your account.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+label,
+last_decrypted
 FROM linode.managed.credentials
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'
@@ -237,21 +238,21 @@ AND page_size = '{{ page_size }}'
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_managed_credential"
+    defaultValue="create"
     values={[
-        { label: 'post_managed_credential', value: 'post_managed_credential' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_managed_credential">
+<TabItem value="create">
 
-Creates a Managed Credential. A Managed Credential is stored securely to allow Linode special forces to access your Managed Services and resolve issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Creates a managed credential to store usernames and passwords for applications running on your Linode. Akamai Support can use these credentials to access your applications when investigating or resolving issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.managed.credentials (
-data__label,
-data__password,
-data__username
+label,
+password,
+username
 )
 SELECT 
 '{{ label }}' /* required */,
@@ -266,26 +267,23 @@ last_decrypted
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: credentials
   props:
     - name: label
-      value: string
-      description: >
+      value: "{{ label }}"
+      description: |
         The unique label for this Credential. This is for display purposes only.
-        
     - name: password
-      value: string
-      description: >
+      value: "{{ password }}"
+      description: |
         The password to use when accessing the Managed Service.
-        
     - name: username
-      value: string
-      description: >
+      value: "{{ username }}"
+      description: |
         The username to use when accessing the Managed Service.
-        
-```
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -293,19 +291,21 @@ last_decrypted
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_managed_credential"
+    defaultValue="update"
     values={[
-        { label: 'put_managed_credential', value: 'put_managed_credential' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_managed_credential">
+<TabItem value="update">
 
 Updates the label of a Managed Credential. This operation does not update the username and password for a Managed Credential. To do this, run the [Update a managed credential's username and password](https://techdocs.akamai.com/linode-api/reference/post-managed-credential-username-password)) operation instead. This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.managed.credentials
 SET 
-data__label = '{{ label }}'
+label = '{{ label }}'
+WHERE 
+credentialId = '{{ credentialId }}' --required
 RETURNING
 id,
 label,
@@ -318,28 +318,29 @@ last_decrypted;
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_managed_credential_revoke"
+    defaultValue="revoke"
     values={[
-        { label: 'post_managed_credential_revoke', value: 'post_managed_credential_revoke' },
-        { label: 'post_managed_credential_username_password', value: 'post_managed_credential_username_password' }
+        { label: 'revoke', value: 'revoke' },
+        { label: 'update_username_password', value: 'update_username_password' }
     ]}
 >
-<TabItem value="post_managed_credential_revoke">
+<TabItem value="revoke">
 
-Deletes a Managed Credential.  Linode special forces will no longer have access to this Credential when attempting to resolve issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Deletes a managed credential.  Akamai Support will no longer have access to this credential when investigating or resolving issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.managed.credentials.post_managed_credential_revoke 
-
+EXEC linode.managed.credentials.revoke 
+@credentialId='{{ credentialId }}' --required
 ;
 ```
 </TabItem>
-<TabItem value="post_managed_credential_username_password">
+<TabItem value="update_username_password">
 
-Updates the username and password for a Managed Credential.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Updates the username and password for a managed credential.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.managed.credentials.post_managed_credential_username_password 
+EXEC linode.managed.credentials.update_username_password 
+@credentialId='{{ credentialId }}' --required 
 @@json=
 '{
 "password": "{{ password }}", 

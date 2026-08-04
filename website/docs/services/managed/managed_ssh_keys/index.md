@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>managed_ssh_keys</code> resourc
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>managed_ssh_keys</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="managed_ssh_keys" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.managed_ssh_keys" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>managed_ssh_keys</code> resourc
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_ssh_key"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_ssh_key', value: 'get_managed_ssh_key' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_managed_ssh_key">
+<TabItem value="get">
 
 The requested Managed SSH public key.
 
@@ -76,11 +77,11 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_ssh_key"><CopyableCode code="get_managed_ssh_key" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
-    <td>Returns the unique SSH public key assigned to your Linode account's Managed service. If you [add this public key](https://www.linode.com/docs/products/services/managed/get-started/#adding-the-public-key) to a Linode on your account, Linode special forces will be able to log in to the Linode with this key when attempting to resolve issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns the unique SSH public key assigned to Linode Managed on your account. If you [add this public key](https://techdocs.akamai.com/cloud-computing/docs/configure-ssh-access-for-linode-managed) to a Linode on your account, Akamai Support can securely access that Linode to help resolve any issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -104,14 +105,14 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_ssh_key"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_ssh_key', value: 'get_managed_ssh_key' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_managed_ssh_key">
+<TabItem value="get">
 
-Returns the unique SSH public key assigned to your Linode account's Managed service. If you [add this public key](https://www.linode.com/docs/products/services/managed/get-started/#adding-the-public-key) to a Linode on your account, Linode special forces will be able to log in to the Linode with this key when attempting to resolve issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns the unique SSH public key assigned to Linode Managed on your account. If you [add this public key](https://techdocs.akamai.com/cloud-computing/docs/configure-ssh-access-for-linode-managed) to a Linode on your account, Akamai Support can securely access that Linode to help resolve any issues.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT

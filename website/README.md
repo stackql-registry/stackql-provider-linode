@@ -1,6 +1,23 @@
 # Website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+The documentation microsite for the `linode` StackQL provider, served at
+[linode-provider.stackql.io](https://linode-provider.stackql.io). Built with
+[Docusaurus](https://docusaurus.io/) 3.10.
+
+> Provider generation (fetch, split, mappings, normalize, generate, test, publish)
+> is documented in the [repository root README](../README.md). This README covers
+> the website only. The service docs under `docs/` are generated from the provider
+> output - do not edit them by hand.
+
+## Shared configuration
+
+Navbar, footer, theme and plugin configuration is shared across the StackQL
+provider microsites via [`stackql/docusaurus-config`](https://github.com/stackql/docusaurus-config),
+vendored into `.shared-config/` at build time. The `vendor-config` script runs
+automatically before `start` and `build` (it clones the shared config, so network
+access to GitHub is required). Site-local files are `provider.js` (the provider
+identity), the thin `docusaurus.config.js` / `sidebars.js` wrappers, the
+components/theme under `src/`, and the assets under `static/`.
 
 ## Installation
 
@@ -14,7 +31,8 @@ yarn
 yarn start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Starts a local dev server and opens a browser window. Most changes are reflected
+live without restarting the server.
 
 ## Build
 
@@ -22,20 +40,20 @@ This command starts a local development server and opens up a browser window. Mo
 yarn build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+Generates static content into the `build` directory, servable by any static host.
+
+```bash
+yarn serve
+```
+
+Serves the built `build` directory locally to verify the production build.
 
 ## Deployment
 
-Using SSH:
-
-```bash
-USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```bash
-GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+The site deploys to `linode-provider.stackql.io` via **GitHub Pages**, driven by
+the GitHub Actions workflow `.github/workflows/prod-web-deploy.yml` (on push to
+`main` touching `website/**`): it runs `yarn build` (which vendors the shared
+config), then publishes `website/build` with `actions/deploy-pages`. Pull requests
+run `.github/workflows/test-web-deploy.yml` as a build check. `static/CNAME` pins
+the custom domain and `static/.nojekyll` lets GitHub Pages serve Docusaurus's
+underscore-prefixed asset paths.

@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>firewall_devices</code> resourc
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>firewall_devices</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="firewall_devices" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.networking.firewall_devices" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists a <code>firewall_devices</code> resourc
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_firewall_device"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_device', value: 'get_firewall_device' },
-        { label: 'get_firewall_devices', value: 'get_firewall_devices' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_firewall_device">
+<TabItem value="get">
 
 The requested Firewall Device.
 
@@ -59,22 +60,22 @@ The requested Firewall Device.
 <tr>
     <td><CopyableCode code="created" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this device was created. (example: 2018-01-01T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this device was created. (example: 2025-01-01T00:01:01)</td>
 </tr>
 <tr>
     <td><CopyableCode code="entity" /></td>
     <td><code>object</code></td>
-    <td>__Read-only__ The compute service or interface this firewall is assigned to.</td>
+    <td>The Linode, NodeBalancer, or Linode interface this firewall is assigned to.</td>
 </tr>
 <tr>
     <td><CopyableCode code="updated" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this device was last updated. (example: 2018-01-02T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this device was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_firewall_devices">
+<TabItem value="list">
 
 A paginated list of Firewall Devices.
 
@@ -88,24 +89,24 @@ A paginated list of Firewall Devices.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
-    <td><code>array</code></td>
-    <td></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Filterable__ The device's unique ID.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="created" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Filterable__, __Read-only__ When this device was created. (example: 2025-01-01T00:01:01)</td>
 </tr>
 <tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
+    <td><CopyableCode code="entity" /></td>
+    <td><code>object</code></td>
+    <td>The Linode, NodeBalancer, or Linode interface this firewall is assigned to.</td>
 </tr>
 <tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td><CopyableCode code="updated" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Filterable__, __Read-only__ When this device was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -128,30 +129,30 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_firewall_device"><CopyableCode code="get_firewall_device" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a>, <a href="#parameter-deviceId"><code>deviceId</code></a></td>
     <td></td>
     <td>Returns information for a Firewall Device, which assigns a Firewall to a service (referred to as the Device's `entity`).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_firewall_devices"><CopyableCode code="get_firewall_devices" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Returns a paginated list of a firewall's devices. A firewall device assigns a firewall to a service (referred to as the device's `entity`).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_firewall_device"><CopyableCode code="post_firewall_device" /></a></td>
+    <td><a href="#create"><CopyableCode code="create" /></a></td>
     <td><CopyableCode code="insert" /></td>
-    <td><a href="#parameter-data__id"><code>data__id</code></a>, <a href="#parameter-data__type"><code>data__type</code></a></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a>, <a href="#parameter-id"><code>id</code></a>, <a href="#parameter-type"><code>type</code></a></td>
     <td></td>
-    <td>Creates a firewall device, which assigns a firewall to a service (referred to as the device's `entity`) and applies the firewall's rules to the device.<br /><br />- Currently, devices with `linode`, `interface`, and `nodebalancer` entity types are accepted.<br />  - The `linode` type is not allowed for Linodes using Linode interfaces.<br />  - The `interface` type is not allowed for legacy config interfaces. For VPC and public legacy config profile interfaces, the firewall is applied through the `linode` device.<br /><br />- Firewalls only apply to inbound TCP traffic to NodeBalancers.<br /><br />- A firewall can be assigned to multiple services at a time.<br /><br />- A service can have one assigned firewall at a time.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- A `firewall_device_add` event is generated when the firewall device is added successfully.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Creates a firewall device, which assigns a firewall to a service (referred to as the device's `entity`) and applies the firewall's rules to the device.<br /><br />- Currently, devices with `linode`, `linode_interface`, and `nodebalancer` entity types are accepted.<br />  - The `linode` type is not allowed for Linodes using Linode interfaces.<br />  - The `linode_interface` type is not allowed for legacy config interfaces. For VPC and public legacy config profile interfaces, the firewall is applied through the `linode` device.<br /><br />- Firewalls only apply to inbound TCP traffic to NodeBalancers.<br /><br />- A firewall can be assigned to multiple services at a time.<br /><br />- A service can have one assigned firewall at a time.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- A `firewall_device_add` event is generated when the firewall device is added successfully.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#delete_firewall_device"><CopyableCode code="delete_firewall_device" /></a></td>
+    <td><a href="#delete"><CopyableCode code="delete" /></a></td>
     <td><CopyableCode code="delete" /></td>
-    <td></td>
+    <td><a href="#parameter-firewallId"><code>firewallId</code></a>, <a href="#parameter-deviceId"><code>deviceId</code></a></td>
     <td></td>
     <td>Removes a Firewall Device, which removes a Firewall from the service it was assigned to by the Device. This removes all of the Firewall's Rules from the service. If any other Firewalls have been assigned to the service, then those Rules remain in effect.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- A `firewall_device_remove` Event is generated when the Firewall Device is removed successfully.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -171,6 +172,16 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-deviceId">
+    <td><CopyableCode code="deviceId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Firewall Device to access.</td>
+</tr>
+<tr id="parameter-firewallId">
+    <td><CopyableCode code="firewallId" /></td>
+    <td><code>string</code></td>
+    <td>ID of the Firewall to access.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -187,13 +198,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_firewall_device"
+    defaultValue="get"
     values={[
-        { label: 'get_firewall_device', value: 'get_firewall_device' },
-        { label: 'get_firewall_devices', value: 'get_firewall_devices' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_firewall_device">
+<TabItem value="get">
 
 Returns information for a Firewall Device, which assigns a Firewall to a service (referred to as the Device's `entity`).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -204,21 +215,24 @@ created,
 entity,
 updated
 FROM linode.networking.firewall_devices
+WHERE firewallId = '{{ firewallId }}' -- required
+AND deviceId = '{{ deviceId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_firewall_devices">
+<TabItem value="list">
 
 Returns a paginated list of a firewall's devices. A firewall device assigns a firewall to a service (referred to as the device's `entity`).<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+created,
+entity,
+updated
 FROM linode.networking.firewall_devices
-WHERE page = '{{ page }}'
+WHERE firewallId = '{{ firewallId }}' -- required
+AND page = '{{ page }}'
 AND page_size = '{{ page_size }}'
 ;
 ```
@@ -229,24 +243,26 @@ AND page_size = '{{ page_size }}'
 ## `INSERT` examples
 
 <Tabs
-    defaultValue="post_firewall_device"
+    defaultValue="create"
     values={[
-        { label: 'post_firewall_device', value: 'post_firewall_device' },
+        { label: 'create', value: 'create' },
         { label: 'Manifest', value: 'manifest' }
     ]}
 >
-<TabItem value="post_firewall_device">
+<TabItem value="create">
 
-Creates a firewall device, which assigns a firewall to a service (referred to as the device's `entity`) and applies the firewall's rules to the device.<br /><br />- Currently, devices with `linode`, `interface`, and `nodebalancer` entity types are accepted.<br />  - The `linode` type is not allowed for Linodes using Linode interfaces.<br />  - The `interface` type is not allowed for legacy config interfaces. For VPC and public legacy config profile interfaces, the firewall is applied through the `linode` device.<br /><br />- Firewalls only apply to inbound TCP traffic to NodeBalancers.<br /><br />- A firewall can be assigned to multiple services at a time.<br /><br />- A service can have one assigned firewall at a time.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- A `firewall_device_add` event is generated when the firewall device is added successfully.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Creates a firewall device, which assigns a firewall to a service (referred to as the device's `entity`) and applies the firewall's rules to the device.<br /><br />- Currently, devices with `linode`, `linode_interface`, and `nodebalancer` entity types are accepted.<br />  - The `linode` type is not allowed for Linodes using Linode interfaces.<br />  - The `linode_interface` type is not allowed for legacy config interfaces. For VPC and public legacy config profile interfaces, the firewall is applied through the `linode` device.<br /><br />- Firewalls only apply to inbound TCP traffic to NodeBalancers.<br /><br />- A firewall can be assigned to multiple services at a time.<br /><br />- A service can have one assigned firewall at a time.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- A `firewall_device_add` event is generated when the firewall device is added successfully.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 INSERT INTO linode.networking.firewall_devices (
-data__id,
-data__type
+id,
+type,
+firewallId
 )
 SELECT 
 {{ id }} /* required */,
-'{{ type }}' /* required */
+'{{ type }}' /* required */,
+'{{ firewallId }}'
 RETURNING
 id,
 created,
@@ -257,22 +273,23 @@ updated
 </TabItem>
 <TabItem value="manifest">
 
-```yaml
-# Description fields are for documentation purposes
+<CodeBlock language="yaml">{`# Description fields are for documentation purposes
 - name: firewall_devices
   props:
+    - name: firewallId
+      value: "{{ firewallId }}"
+      description: Required parameter for the firewall_devices resource.
     - name: id
-      value: integer
-      description: >
+      value: {{ id }}
+      description: |
         The entity's ID.
-        
     - name: type
-      value: string
-      description: >
+      value: "{{ type }}"
+      description: |
         The entity's type.
-        
-      valid_values: ['linode', 'nodebalancer', 'interface']
-```
+      valid_values: ['linode', 'nodebalancer', 'linode_interface']
+`}</CodeBlock>
+
 </TabItem>
 </Tabs>
 
@@ -280,17 +297,19 @@ updated
 ## `DELETE` examples
 
 <Tabs
-    defaultValue="delete_firewall_device"
+    defaultValue="delete"
     values={[
-        { label: 'delete_firewall_device', value: 'delete_firewall_device' }
+        { label: 'delete', value: 'delete' }
     ]}
 >
-<TabItem value="delete_firewall_device">
+<TabItem value="delete">
 
 Removes a Firewall Device, which removes a Firewall from the service it was assigned to by the Device. This removes all of the Firewall's Rules from the service. If any other Firewalls have been assigned to the service, then those Rules remain in effect.<br /><br />- Assigned Linodes must not have any ongoing live migrations.<br /><br />- A `firewall_device_remove` Event is generated when the Firewall Device is removed successfully.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 DELETE FROM linode.networking.firewall_devices
+WHERE firewallId = '{{ firewallId }}' --required
+AND deviceId = '{{ deviceId }}' --required
 ;
 ```
 </TabItem>

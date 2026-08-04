@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>issues</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>issues</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="issues" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.issues" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists an <code>issues</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_issue"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_issue', value: 'get_managed_issue' },
-        { label: 'get_managed_issues', value: 'get_managed_issues' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_issue">
+<TabItem value="get">
 
 The requested issue.
 
@@ -74,7 +75,7 @@ The requested issue.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_managed_issues">
+<TabItem value="list">
 
 A paginated list of open or ongoing Managed Issues.
 
@@ -88,24 +89,24 @@ A paginated list of open or ongoing Managed Issues.
 </thead>
 <tbody>
 <tr>
-    <td><CopyableCode code="data" /></td>
+    <td><CopyableCode code="id" /></td>
+    <td><code>integer</code></td>
+    <td>__Read-only__ This Issue's unique ID.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="created" /></td>
+    <td><code>string (date-time)</code></td>
+    <td>__Read-only__ When this Issue was created. Issues are created in response to issues detected with Managed Services, so this is also when the Issue was detected. (example: 2018-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="entity" /></td>
+    <td><code>object</code></td>
+    <td>__Read-only__ The ticket this Managed Issue opened.</td>
+</tr>
+<tr>
+    <td><CopyableCode code="services" /></td>
     <td><code>array</code></td>
-    <td></td>
-</tr>
-<tr>
-    <td><CopyableCode code="page" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The current [page](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="pages" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of [pages](https://techdocs.akamai.com/linode-api/reference/pagination).</td>
-</tr>
-<tr>
-    <td><CopyableCode code="results" /></td>
-    <td><code>integer</code></td>
-    <td>__Read-only__ The total number of results.</td>
+    <td>__Read-only__ An array of Managed Service IDs that were affected by this Issue.</td>
 </tr>
 </tbody>
 </table>
@@ -128,18 +129,18 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_issue"><CopyableCode code="get_managed_issue" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-issueId"><code>issueId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Returns a single Issue that is impacting or did impact one of your Managed Services.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a single issue affecting one of your service monitors.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_managed_issues"><CopyableCode code="get_managed_issues" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
-    <td>Returns a paginated list of recent and ongoing issues detected on your Managed Services.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns a paginated list of recent and ongoing issues detected on your service monitors.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -157,6 +158,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-issueId">
+    <td><CopyableCode code="issueId" /></td>
+    <td><code>string</code></td>
+    <td>The Issue to look up.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -173,15 +179,15 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_issue"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_issue', value: 'get_managed_issue' },
-        { label: 'get_managed_issues', value: 'get_managed_issues' }
+        { label: 'get', value: 'get' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_managed_issue">
+<TabItem value="get">
 
-Returns a single Issue that is impacting or did impact one of your Managed Services.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a single issue affecting one of your service monitors.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
@@ -190,19 +196,20 @@ created,
 entity,
 services
 FROM linode.managed.issues
+WHERE issueId = '{{ issueId }}' -- required
 ;
 ```
 </TabItem>
-<TabItem value="get_managed_issues">
+<TabItem value="list">
 
-Returns a paginated list of recent and ongoing issues detected on your Managed Services.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns a paginated list of recent and ongoing issues detected on your service monitors.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
-data,
-page,
-pages,
-results
+id,
+created,
+entity,
+services
 FROM linode.managed.issues
 WHERE page = '{{ page }}'
 AND page_size = '{{ page_size }}'

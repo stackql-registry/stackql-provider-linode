@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>availability</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>availability</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="availability" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.availability" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>availability</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_account_availability"
+    defaultValue="get"
     values={[
-        { label: 'get_account_availability', value: 'get_account_availability' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account_availability">
+<TabItem value="get">
 
 The services available in the specified region.
 
@@ -86,9 +87,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_account_availability"><CopyableCode code="get_account_availability" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-regionId"><code>regionId</code></a></td>
     <td></td>
     <td>View the available services for your account, in a specific region.<br /><br />&gt; 📘<br />&gt;<br />&gt; Only account users with _unrestricted_ access can run this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -108,18 +109,23 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-regionId">
+    <td><CopyableCode code="regionId" /></td>
+    <td><code>string</code></td>
+    <td>The abbreviated value ("slug") for the applicable data center. Run the [List regions](https://techdocs.akamai.com/linode-api/reference/get-regions) operation to view the slug for each data center.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_account_availability"
+    defaultValue="get"
     values={[
-        { label: 'get_account_availability', value: 'get_account_availability' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account_availability">
+<TabItem value="get">
 
 View the available services for your account, in a specific region.<br /><br />&gt; 📘<br />&gt;<br />&gt; Only account users with _unrestricted_ access can run this operation.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -129,6 +135,7 @@ available,
 region,
 unavailable
 FROM linode.account.availability
+WHERE regionId = '{{ regionId }}' -- required
 ;
 ```
 </TabItem>

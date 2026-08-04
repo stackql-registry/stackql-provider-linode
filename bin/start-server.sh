@@ -67,8 +67,12 @@ echo "Registry path: $REG_PATH"
 echo "Port: $PORT"
 echo "Verify signatures: $VERIFY"
 
-# Check if stackql binary exists
-if [ ! -f "$BASE_DIR/stackql" ]; then
+# Locate the stackql binary: repo root first, then PATH, else download
+STACKQL_BIN="$BASE_DIR/stackql"
+if [ ! -f "$STACKQL_BIN" ] && command -v stackql > /dev/null 2>&1; then
+  STACKQL_BIN="$(command -v stackql)"
+fi
+if [ ! -f "$STACKQL_BIN" ]; then
   echo "StackQL binary not found. Downloading..."
   
   # Determine OS and architecture
@@ -100,6 +104,7 @@ if [ ! -f "$BASE_DIR/stackql" ]; then
   rm stackql.zip
   chmod +x stackql
   echo "StackQL binary downloaded successfully"
+  STACKQL_BIN="$BASE_DIR/stackql"
 fi
 
 # Set registry configuration
@@ -118,7 +123,7 @@ fi
 # Start the server
 echo "Starting StackQL server with registry: $REG"
 cd "$BASE_DIR"
-nohup ./stackql --registry="${REG}" --pgsrv.port="${PORT}" srv > stackql-server.log 2>&1 &
+nohup "$STACKQL_BIN" --registry="${REG}" --pgsrv.port="${PORT}" srv > stackql-server.log 2>&1 &
 SERVER_PID=$!
 
 # Check if server started successfully

@@ -1,0 +1,17 @@
+{
+  "pagination": {
+    "algorithm": "page_number",
+    "requestToken": {
+      "key": "page",
+      "location": "query"
+    },
+    "responseToken": {
+      "key": "$.page",
+      "location": "body"
+    },
+    "responseTerminator": {
+      "key": "$.pages",
+      "location": "body"
+    }
+  }
+}

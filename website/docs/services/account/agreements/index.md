@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>agreements</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>agreements</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="agreements" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.account.agreements" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>agreements</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_account_agreements"
+    defaultValue="get"
     values={[
-        { label: 'get_account_agreements', value: 'get_account_agreements' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account_agreements">
+<TabItem value="get">
 
 The status of each acceptance agreement for your account.
 
@@ -91,14 +92,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_account_agreements"><CopyableCode code="get_account_agreements" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td></td>
     <td>Returns all agreements and their acceptance status for your account. __OAuth scopes__.<br /><br />    ```<br />    account:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#post_account_agreements"><CopyableCode code="post_account_agreements" /></a></td>
+    <td><a href="#acknowledge"><CopyableCode code="acknowledge" /></a></td>
     <td><CopyableCode code="exec" /></td>
     <td></td>
     <td></td>
@@ -126,12 +127,12 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_account_agreements"
+    defaultValue="get"
     values={[
-        { label: 'get_account_agreements', value: 'get_account_agreements' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_account_agreements">
+<TabItem value="get">
 
 Returns all agreements and their acceptance status for your account. __OAuth scopes__.<br /><br />    ```<br />    account:read_only<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -151,17 +152,17 @@ FROM linode.account.agreements
 ## Lifecycle Methods
 
 <Tabs
-    defaultValue="post_account_agreements"
+    defaultValue="acknowledge"
     values={[
-        { label: 'post_account_agreements', value: 'post_account_agreements' }
+        { label: 'acknowledge', value: 'acknowledge' }
     ]}
 >
-<TabItem value="post_account_agreements">
+<TabItem value="acknowledge">
 
 Accept required agreements by setting them to `true`. This remains until the content of the agreement changes. If it does, you need to run this operation again to accept it. If you set this to `false`, the API rejects the request and you need to open a [support ticket](https://techdocs.akamai.com/linode-api/reference/post-ticket) to reset the agreement. Omitted agreements are left unchanged. __OAuth scopes__.<br /><br />    ```<br />    account:read_write<br />    ```<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
-EXEC linode.account.agreements.post_account_agreements 
+EXEC linode.account.agreements.acknowledge 
 @@json=
 '{
 "billing_agreement": {{ billing_agreement }}, 

@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>interface_firewalls</code> res
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>interface_firewalls</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="interface_firewalls" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.linode.interface_firewalls" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists an <code>interface_firewalls</code> res
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_linode_interface_firewalls"
+    defaultValue="list"
     values={[
-        { label: 'get_linode_interface_firewalls', value: 'get_linode_interface_firewalls' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_linode_interface_firewalls">
+<TabItem value="list">
 
 Returns a paginated list of firewalls assigned to an interface.
 
@@ -58,12 +59,17 @@ Returns a paginated list of firewalls assigned to an interface.
 <tr>
     <td><CopyableCode code="created" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2018-01-01T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was created. (example: 2025-01-01T00:01:01)</td>
+</tr>
+<tr>
+    <td><CopyableCode code="entities" /></td>
+    <td><code>array</code></td>
+    <td>__Read-only__ The Linodes, NodeBalancers, and Linode interfaces this firewall is assigned to.</td>
 </tr>
 <tr>
     <td><CopyableCode code="label" /></td>
     <td><code>string</code></td>
-    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^[a-zA-Z]((?!--|__|\.\.)[a-zA-Z0-9-_.])+$</code>)</td>
+    <td>__Filterable__ The Firewall's label, for display purposes only.  Firewall labels have the following constraints:    - Must begin and end with an alphanumeric character.   - May only consist of alphanumeric characters, hyphens (`-`), underscores (`_`) or periods (`.`).   - Cannot have two hyphens (`--`), underscores (`__`) or periods (`..`) in a row.   - Must be between 3 and 32 characters.   - Must be unique. (example: firewall123, pattern: <code>^&#91;a-zA-Z&#93;((?!--|__|\.\.)&#91;a-zA-Z0-9-_.&#93;)+$</code>)</td>
 </tr>
 <tr>
     <td><CopyableCode code="rules" /></td>
@@ -73,7 +79,7 @@ Returns a paginated list of firewalls assigned to an interface.
 <tr>
     <td><CopyableCode code="status" /></td>
     <td><code>string</code></td>
-    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (example: enabled)</td>
+    <td>__Read-only__ The status of this Firewall.    - When a Firewall is first created its status is `enabled`.   - Run the [Update a firewall](https://techdocs.akamai.com/linode-api/reference/put-firewall) operation to set a Firewall's status to `enabled` or `disabled`.   - Run the [Delete a firewall](https://techdocs.akamai.com/linode-api/reference/delete-firewall) operation to delete a Firewall. (enabled, disabled, deleted) (example: enabled)</td>
 </tr>
 <tr>
     <td><CopyableCode code="tags" /></td>
@@ -83,7 +89,7 @@ Returns a paginated list of firewalls assigned to an interface.
 <tr>
     <td><CopyableCode code="updated" /></td>
     <td><code>string (date-time)</code></td>
-    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2018-01-02T00:01:01)</td>
+    <td>__Filterable__, __Read-only__ When this Firewall was last updated. (example: 2025-01-02T00:01:01)</td>
 </tr>
 </tbody>
 </table>
@@ -106,9 +112,9 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_linode_interface_firewalls"><CopyableCode code="get_linode_interface_firewalls" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a>, <a href="#parameter-interfaceId"><code>interfaceId</code></a></td>
     <td></td>
     <td>__Beta__ Lists firewalls assigned to an interface.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
@@ -128,18 +134,28 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-interfaceId">
+    <td><CopyableCode code="interfaceId" /></td>
+    <td><code>string</code></td>
+    <td>The `id` of the Linode interface.</td>
+</tr>
+<tr id="parameter-linodeId">
+    <td><CopyableCode code="linodeId" /></td>
+    <td><code>string</code></td>
+    <td>The `id` of the Linode.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_linode_interface_firewalls"
+    defaultValue="list"
     values={[
-        { label: 'get_linode_interface_firewalls', value: 'get_linode_interface_firewalls' }
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_linode_interface_firewalls">
+<TabItem value="list">
 
 __Beta__ Lists firewalls assigned to an interface.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -147,12 +163,15 @@ __Beta__ Lists firewalls assigned to an interface.<br /><br />[Learn more...](ht
 SELECT
 id,
 created,
+entities,
 label,
 rules,
 status,
 tags,
 updated
 FROM linode.linode.interface_firewalls
+WHERE linodeId = '{{ linodeId }}' -- required
+AND interfaceId = '{{ interfaceId }}' -- required
 ;
 ```
 </TabItem>

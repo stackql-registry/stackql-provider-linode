@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists a <code>settings</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>settings</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="settings" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.managed.settings" /></td></tr>
 </tbody></table>
@@ -32,12 +33,12 @@ Creates, updates, deletes, gets or lists a <code>settings</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_managed_linode_setting"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_linode_setting', value: 'get_managed_linode_setting' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_managed_linode_setting">
+<TabItem value="get">
 
 The requested Linode's Managed settings.
 
@@ -91,18 +92,18 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_managed_linode_setting"><CopyableCode code="get_managed_linode_setting" /></a></td>
+    <td><a href="#get"><CopyableCode code="get" /></a></td>
     <td><CopyableCode code="select" /></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Returns a single Linode's Managed settings.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Returns the managed settings for a single Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#put_managed_linode_setting"><CopyableCode code="put_managed_linode_setting" /></a></td>
+    <td><a href="#update"><CopyableCode code="update" /></a></td>
     <td><CopyableCode code="replace" /></td>
+    <td><a href="#parameter-linodeId"><code>linodeId</code></a></td>
     <td></td>
-    <td></td>
-    <td>Updates a single Linode's Managed settings. This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
+    <td>Updates the managed settings for a Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 </tbody>
 </table>
@@ -120,20 +121,25 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-linodeId">
+    <td><CopyableCode code="linodeId" /></td>
+    <td><code>string</code></td>
+    <td>The Linode ID whose settings we are accessing.</td>
+</tr>
 </tbody>
 </table>
 
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_managed_linode_setting"
+    defaultValue="get"
     values={[
-        { label: 'get_managed_linode_setting', value: 'get_managed_linode_setting' }
+        { label: 'get', value: 'get' }
     ]}
 >
-<TabItem value="get_managed_linode_setting">
+<TabItem value="get">
 
-Returns a single Linode's Managed settings.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Returns the managed settings for a single Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 SELECT
@@ -142,6 +148,7 @@ group,
 label,
 ssh
 FROM linode.managed.settings
+WHERE linodeId = '{{ linodeId }}' -- required
 ;
 ```
 </TabItem>
@@ -151,19 +158,21 @@ FROM linode.managed.settings
 ## `REPLACE` examples
 
 <Tabs
-    defaultValue="put_managed_linode_setting"
+    defaultValue="update"
     values={[
-        { label: 'put_managed_linode_setting', value: 'put_managed_linode_setting' }
+        { label: 'update', value: 'update' }
     ]}
 >
-<TabItem value="put_managed_linode_setting">
+<TabItem value="update">
 
-Updates a single Linode's Managed settings. This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
+Updates the managed settings for a Linode.<br /><br />This operation can only be accessed by the unrestricted users of an account.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
 ```sql
 REPLACE linode.managed.settings
 SET 
-data__ssh = '{{ ssh }}'
+ssh = '{{ ssh }}'
+WHERE 
+linodeId = '{{ linodeId }}' --required
 RETURNING
 id,
 group,

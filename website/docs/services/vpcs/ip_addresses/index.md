@@ -15,6 +15,7 @@ image: /img/stackql-linode-provider-featured-image.png
 ---
 
 import CopyableCode from '@site/src/components/CopyableCode/CopyableCode';
+import CodeBlock from '@theme/CodeBlock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -22,7 +23,7 @@ Creates, updates, deletes, gets or lists an <code>ip_addresses</code> resource.
 
 ## Overview
 <table><tbody>
-<tr><td><b>Name</b></td><td><code>ip_addresses</code></td></tr>
+<tr><td><b>Name</b></td><td><CopyableCode code="ip_addresses" /></td></tr>
 <tr><td><b>Type</b></td><td>Resource</td></tr>
 <tr><td><b>Id</b></td><td><CopyableCode code="linode.vpcs.ip_addresses" /></td></tr>
 </tbody></table>
@@ -32,13 +33,13 @@ Creates, updates, deletes, gets or lists an <code>ip_addresses</code> resource.
 The following fields are returned by `SELECT` queries:
 
 <Tabs
-    defaultValue="get_vpc_ips"
+    defaultValue="list_by_vpc"
     values={[
-        { label: 'get_vpc_ips', value: 'get_vpc_ips' },
-        { label: 'get_vpcs_ips', value: 'get_vpcs_ips' }
+        { label: 'list_by_vpc', value: 'list_by_vpc' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_vpc_ips">
+<TabItem value="list_by_vpc">
 
 The IP addresses for the requested VPC.
 
@@ -119,7 +120,7 @@ The IP addresses for the requested VPC.
 </tbody>
 </table>
 </TabItem>
-<TabItem value="get_vpcs_ips">
+<TabItem value="list">
 
 A paginated list of VPC interface IP addresses.
 
@@ -218,14 +219,14 @@ The following methods are available for this resource:
 </thead>
 <tbody>
 <tr>
-    <td><a href="#get_vpc_ips"><CopyableCode code="get_vpc_ips" /></a></td>
+    <td><a href="#list_by_vpc"><CopyableCode code="list_by_vpc" /></a></td>
     <td><CopyableCode code="select" /></td>
-    <td></td>
+    <td><a href="#parameter-vpcId"><code>vpcId</code></a></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
     <td>Returns a paginated list of IP addresses for a single VPC.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)</td>
 </tr>
 <tr>
-    <td><a href="#get_vpcs_ips"><CopyableCode code="get_vpcs_ips" /></a></td>
+    <td><a href="#list"><CopyableCode code="list" /></a></td>
     <td><CopyableCode code="select" /></td>
     <td></td>
     <td><a href="#parameter-page"><code>page</code></a>, <a href="#parameter-page_size"><code>page_size</code></a></td>
@@ -247,6 +248,11 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
     </tr>
 </thead>
 <tbody>
+<tr id="parameter-vpcId">
+    <td><CopyableCode code="vpcId" /></td>
+    <td><code>string</code></td>
+    <td>The `id` of the VPC.</td>
+</tr>
 <tr id="parameter-page">
     <td><CopyableCode code="page" /></td>
     <td><code>integer</code></td>
@@ -263,13 +269,13 @@ Parameters can be passed in the `WHERE` clause of a query. Check the [Methods](#
 ## `SELECT` examples
 
 <Tabs
-    defaultValue="get_vpc_ips"
+    defaultValue="list_by_vpc"
     values={[
-        { label: 'get_vpc_ips', value: 'get_vpc_ips' },
-        { label: 'get_vpcs_ips', value: 'get_vpcs_ips' }
+        { label: 'list_by_vpc', value: 'list_by_vpc' },
+        { label: 'list', value: 'list' }
     ]}
 >
-<TabItem value="get_vpc_ips">
+<TabItem value="list_by_vpc">
 
 Returns a paginated list of IP addresses for a single VPC.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
@@ -289,12 +295,13 @@ prefix,
 region,
 subnet_mask
 FROM linode.vpcs.ip_addresses
-WHERE page = '{{ page }}'
+WHERE vpcId = '{{ vpcId }}' -- required
+AND page = '{{ page }}'
 AND page_size = '{{ page_size }}'
 ;
 ```
 </TabItem>
-<TabItem value="get_vpcs_ips">
+<TabItem value="list">
 
 Returns a paginated list of all VPC IP addresses and address ranges on your account.<br /><br />&gt; 📘<br />&gt;<br />&gt; If a Linode has several configuration profiles that include a VPC interface, address information for all of them is listed in the response. Since VPCs can use the same address space, you may see duplicate IP addresses.<br /><br />[Learn more...](https://techdocs.akamai.com/cloud-computing/docs/getting-started-with-the-linode-cli)<br /><br />[Learn more...](https://techdocs.akamai.com/linode-api/reference/get-started#oauth)
 
