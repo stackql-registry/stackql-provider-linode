@@ -68,7 +68,11 @@ stackql.exe shell --auth=$Auth
 ```
 </details>
 
-## Compute inventory
+## Example Queries
+
+Try the following queries using `stackql shell`, or run them from a script or CI pipeline with `stackql exec`.
+
+### Compute inventory
 
 All Linode instances on your account, with placement, plan and status:
 
@@ -83,7 +87,7 @@ SELECT
 FROM linode.linode.instances;
 ```
 
-## Find the right plan and region
+### Find the right plan and region
 
 The plan catalog with pricing - `price` is an object, so project the hourly and monthly rates with `json_extract`:
 
@@ -123,7 +127,7 @@ FROM linode.images.images
 WHERE vendor = 'Debian';
 ```
 
-## Launch a Linode
+### Launch a Linode
 
 `INSERT` columns are the native Linode API body properties (no prefixes). This launches the smallest available plan running Debian 12:
 
@@ -166,7 +170,7 @@ DELETE FROM linode.linode.instances
 WHERE linodeId = 12345678;
 ```
 
-## Storage
+### Storage
 
 Block storage volumes and Object Storage buckets across the account:
 
@@ -189,7 +193,7 @@ SELECT
 FROM linode.object_storage.buckets;
 ```
 
-## Kubernetes
+### Kubernetes
 
 LKE clusters on the account:
 
@@ -202,7 +206,7 @@ SELECT
 FROM linode.lke.clusters;
 ```
 
-## Account and billing
+### Account and billing
 
 Your account standing at a glance:
 
