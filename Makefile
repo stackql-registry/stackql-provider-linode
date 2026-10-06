@@ -7,6 +7,7 @@
 SHELL := /bin/bash
 
 PROVIDER_NAME := linode
+SOURCE_PROJECT ?= https://github.com/stackql-registry/stackql-provider-linode
 SPEC_URL      := https://github.com/linode/linode-api-docs/raw/refs/heads/development/openapi.json
 DOWNLOAD_DIR  := provider-dev/downloaded
 SOURCE_DIR    := provider-dev/source
@@ -127,7 +128,8 @@ docs:
 	  --provider-name $(PROVIDER_NAME) \
 	  --provider-dir ./$(OPENAPI_DIR)/src/$(PROVIDER_NAME)/v00.00.00000 \
 	  --output-dir ./website \
-	  --provider-data-dir ./provider-dev/docgen/provider-data
+	  --provider-data-dir ./provider-dev/docgen/provider-data \
+	  --source-project $(SOURCE_PROJECT)
 
 website:
 	cd website && yarn build
