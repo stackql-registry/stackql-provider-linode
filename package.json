@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@stackql/pgwire-lite": "^1.0.1",
-    "@stackql/provider-utils": "^0.7.11"
+    "@stackql/provider-utils": "^0.7.12"
   },
   "keywords": [
     "stackql",
