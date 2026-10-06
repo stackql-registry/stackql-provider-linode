@@ -22,6 +22,7 @@ Cloud hosting platform that provides virtual private servers, Kubernetes, manage
 
 total services: __21__  
 total resources: __163__  
+source project: __[stackql-provider-linode](https://github.com/stackql-registry/stackql-provider-linode)__  
 
 :::
 
